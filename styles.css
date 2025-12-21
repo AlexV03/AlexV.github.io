@@ -30,8 +30,7 @@
             opacity: 0.2; /* CHANGE THIS: Transparency (0.0-1.0) */
             pointer-events: none; /* Can't click on it */
             z-index: -1; /* Behind project cards */
-            /* animation: swirl-move 25s ease-in-out infinite; */
-            animation: swirl-move 25s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+            animation: swirl-move 25s ease-in-out infinite;
         }
 
         /* Second swirly line with different color */
@@ -39,8 +38,7 @@
             border-color: #2563eb; /* Different color */
             width: 250px;
             height: 250px;
-            /* animation: swirl-move 20s ease-in-out infinite reverse; */
-            animation: swirl-move 20s cubic-bezier(0.17, 0.67, 0.83, 0.67) reverse;
+            animation: swirl-move 20s ease-in-out infinite reverse;
             animation-delay: -5s; /* Starts at different point in animation */
         }
 
