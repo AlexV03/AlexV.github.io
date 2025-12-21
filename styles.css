@@ -1,5 +1,5 @@
 /* ========================================
-           GENERAL RESET AND BODY STYLES. JUST LIKE THIS IS UPDATED
+           GENERAL RESET AND BODY STYLES
            ======================================== */
         
         * {
@@ -11,7 +11,64 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #1a1a2e; /* CHANGE THIS: Main page background color */
-            color: #eee; /* CHANGE THIS: Default text color */  
+            color: #eee; /* CHANGE THIS: Default text color */
+            position: relative;
+            overflow-x: hidden; /* Prevents horizontal scroll from decorations */
+        }
+
+        /* ========================================
+           MAGICAL SWIRLY LINES DECORATION
+           Animated curvy lines that move around behind content
+           ======================================== */
+        
+        .swirl-line {
+            position: fixed; /* Stays in view while scrolling */
+            width: 300px; /* CHANGE THIS: Length of the swirl */
+            height: 300px;
+            border: 3px solid #e94560; /* CHANGE THIS: Line color and thickness */
+            border-radius: 50% 40% 60% 50%; /* Creates organic swirly shape */
+            opacity: 0.2; /* CHANGE THIS: Transparency (0.0-1.0) */
+            pointer-events: none; /* Can't click on it */
+            z-index: 0; /* Behind project cards */
+            animation: swirl-move 25s ease-in-out infinite;
+        }
+
+        /* Second swirly line with different color */
+        .swirl-line:nth-child(2) {
+            border-color: #533483; /* Different color */
+            width: 250px;
+            height: 250px;
+            animation: swirl-move 20s ease-in-out infinite reverse;
+            animation-delay: -5s; /* Starts at different point in animation */
+        }
+
+        /* Animation that moves the swirl around the screen */
+        @keyframes swirl-move {
+            0% {
+                top: 20%;
+                left: 10%;
+                transform: rotate(0deg) scale(1);
+            }
+            25% {
+                top: 60%;
+                left: 70%;
+                transform: rotate(90deg) scale(1.2);
+            }
+            50% {
+                top: 30%;
+                left: 80%;
+                transform: rotate(180deg) scale(0.9);
+            }
+            75% {
+                top: 70%;
+                left: 20%;
+                transform: rotate(270deg) scale(1.1);
+            }
+            100% {
+                top: 20%;
+                left: 10%;
+                transform: rotate(360deg) scale(1);
+            }
         }
 
         /* ========================================
@@ -60,7 +117,7 @@
         .page-header h1 {
             font-size: 3rem; /* CHANGE THIS: Title size */
             font-weight: 700; /* CHANGE THIS: Title boldness (100-900) */
-            color: #eee; /* CHANGE THIS: Title text color */
+            color: #1981d6; /* CHANGE THIS: Title text color */
             margin: 0;
         }
 
