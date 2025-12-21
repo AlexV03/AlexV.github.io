@@ -10,7 +10,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1a1a2e; /* CHANGE THIS: Main page background color */
+            background-color: #0a1929; /* CHANGE THIS: Main page background color */
             color: #eee; /* CHANGE THIS: Default text color */
             position: relative;
             overflow-x: hidden; /* Prevents horizontal scroll from decorations */
@@ -25,20 +25,22 @@
             position: fixed; /* Stays in view while scrolling */
             width: 300px; /* CHANGE THIS: Length of the swirl */
             height: 300px;
-            border: 3px solid #E58200; /* CHANGE THIS: Line color and thickness */
+            border: 3px solid #fb923c; /* CHANGE THIS: Line color and thickness */
             border-radius: 50% 40% 60% 50%; /* Creates organic swirly shape */
             opacity: 0.2; /* CHANGE THIS: Transparency (0.0-1.0) */
             pointer-events: none; /* Can't click on it */
             z-index: -1; /* Behind project cards */
-            animation: swirl-move 25s ease-in-out infinite;
+            /* animation: swirl-move 25s ease-in-out infinite; */
+            animation: swirl-move 25s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
         }
 
         /* Second swirly line with different color */
         .swirl-line:nth-child(2) {
-            border-color: #05DCE6; /* Different color */
+            border-color: #2563eb; /* Different color */
             width: 250px;
             height: 250px;
-            animation: swirl-move 20s ease-in-out infinite reverse;
+            /* animation: swirl-move 20s ease-in-out infinite reverse; */
+            animation: swirl-move 20s cubic-bezier(0.17, 0.67, 0.83, 0.67) reverse;
             animation-delay: -5s; /* Starts at different point in animation */
         }
 
@@ -78,7 +80,7 @@
         nav {
             position: sticky; /* Makes the nav bar stick to top when scrolling */
             top: 0;
-            background-color: #16213e; /* CHANGE THIS: Top bar background color */
+            background-color: #1e3a5f; /* CHANGE THIS: Top bar background color */
             padding: 1.5rem 2rem; /* CHANGE THIS: Top bar height (1.5rem = top/bottom, 2rem = left/right) */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Shadow under the top bar */
             z-index: 1000; /* Keeps nav bar above other elements */
@@ -92,7 +94,7 @@
         }
 
         nav a {
-            color: #eee; /* CHANGE THIS: Button text color */
+            color: #f8fafc; /* CHANGE THIS: Button text color */
             text-decoration: none; /* Removes underline from links */
             font-size: 1.1rem; /* CHANGE THIS: Button text size */
             padding: 0.5rem 1rem; /* CHANGE THIS: Button size (top/bottom, left/right) */
@@ -102,7 +104,7 @@
 
         nav a:hover {
             /* background-color: #0f3460; CHANGE THIS: Button color when you hover over it */
-            background-color: #db9926;
+            background-color: #2563eb;
         }
 
         /* ========================================
@@ -112,7 +114,7 @@
         .page-header {
             text-align: center; /* Centers the title */
             padding: 3rem 2rem; /* CHANGE THIS: Space around title (top/bottom, left/right) */
-            background-color: #1a1a2e; /* CHANGE THIS: Background color of title section */
+            background-color: #0a1929; /* CHANGE THIS: Background color of title section */
             position: relative;
             z-index: 1;
         }
@@ -120,7 +122,7 @@
         .page-header h1 {
             font-size: 3rem; /* CHANGE THIS: Title size */
             font-weight: 700; /* CHANGE THIS: Title boldness (100-900) */
-            color: #1981d6; /* CHANGE THIS: Title text color */
+            color: #60a5fa; /* CHANGE THIS: Title text color */
             margin: 0;
         }
 
@@ -147,7 +149,7 @@
            ======================================== */
         
         .project-card {
-            background-color: #0f3460; /* CHANGE THIS: Card background color */
+            background-color: #1e3a5f; /* CHANGE THIS: Card background color */
             border-radius: 10px; /* CHANGE THIS: Rounded corners (higher = more round) */
             overflow: hidden; /* Keeps content inside the rounded corners */
             cursor: pointer; /* Changes cursor to hand pointer on hover */
@@ -177,7 +179,7 @@
             font-weight: 600; /* CHANGE THIS: Title text boldness (100-900) */
             text-align: center; /* Centers the title text */
             background-color: #0f3460; /* CHANGE THIS: Title background color */
-            color: #eee; /* CHANGE THIS: Title text color */
+            color: #f8fafc; /* CHANGE THIS: Title text color */
         }
 
         /* ========================================
