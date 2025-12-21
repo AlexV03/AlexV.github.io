@@ -29,7 +29,7 @@
             border-radius: 50% 40% 60% 50%; /* Creates organic swirly shape */
             opacity: 0.2; /* CHANGE THIS: Transparency (0.0-1.0) */
             pointer-events: none; /* Can't click on it */
-            z-index: 0; /* Behind project cards */
+            z-index: 1; /* Behind project cards */
             animation: swirl-move 25s ease-in-out infinite;
         }
 
