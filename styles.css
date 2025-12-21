@@ -25,7 +25,7 @@
             position: fixed; /* Stays in view while scrolling */
             width: 300px; /* CHANGE THIS: Length of the swirl */
             height: 300px;
-            border: 3px solid #e94560; /* CHANGE THIS: Line color and thickness */
+            border: 3px solid #E58200; /* CHANGE THIS: Line color and thickness */
             border-radius: 50% 40% 60% 50%; /* Creates organic swirly shape */
             opacity: 0.2; /* CHANGE THIS: Transparency (0.0-1.0) */
             pointer-events: none; /* Can't click on it */
@@ -35,7 +35,7 @@
 
         /* Second swirly line with different color */
         .swirl-line:nth-child(2) {
-            border-color: #533483; /* Different color */
+            border-color: #05DCE6; /* Different color */
             width: 250px;
             height: 250px;
             animation: swirl-move 20s ease-in-out infinite reverse;
@@ -101,7 +101,8 @@
         }
 
         nav a:hover {
-            background-color: #0f3460; /* CHANGE THIS: Button color when you hover over it */
+            /* background-color: #0f3460; CHANGE THIS: Button color when you hover over it */
+            background-color: #db9926;
         }
 
         /* ========================================
