@@ -246,11 +246,11 @@ nav a:hover {
 
 .hover-image {
     position: fixed;
-    top: 20px;
-    left: 20px;
-    width: 100px;
+    top: 10px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
     /* CHANGE THIS: Size of the square */
-    height: 100px;
     z-index: 2000;
     /* Above everything */
 }
