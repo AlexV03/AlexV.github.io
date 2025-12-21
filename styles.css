@@ -29,7 +29,7 @@
             border-radius: 50% 40% 60% 50%; /* Creates organic swirly shape */
             opacity: 0.2; /* CHANGE THIS: Transparency (0.0-1.0) */
             pointer-events: none; /* Can't click on it */
-            z-index: 1; /* Behind project cards */
+            z-index: 0; /* Behind project cards */
             animation: swirl-move 25s ease-in-out infinite;
         }
 
@@ -129,6 +129,8 @@
             padding: 2rem; /* CHANGE THIS: Space around the entire grid */
             max-width: 1400px; /* CHANGE THIS: Maximum width of the grid container */
             margin: 0 auto; /* Centers the container */
+            position: relative;
+            z-index: 1;
         }
 
         .projects-grid {
