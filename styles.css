@@ -25,14 +25,12 @@
             position: fixed; /* Stays in view while scrolling */
             width: 300px; /* CHANGE THIS: Length of the swirl */
             height: 300px;
-            border: 10px solid #e94560; /* CHANGE THIS: Line color and thickness */
+            border: 3px solid #e94560; /* CHANGE THIS: Line color and thickness */
             border-radius: 50% 40% 60% 50%; /* Creates organic swirly shape */
-            opacity: 1; /* CHANGE THIS: Transparency (0.0-1.0) */
+            opacity: 0.2; /* CHANGE THIS: Transparency (0.0-1.0) */
             pointer-events: none; /* Can't click on it */
             z-index: -1; /* Behind project cards */
-            top: 100px;
-            left: 100px;
-            /* animation: swirl-move 25s ease-in-out infinite; */
+            animation: swirl-move 25s ease-in-out infinite;
         }
 
         /* Second swirly line with different color */
