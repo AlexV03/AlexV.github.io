@@ -336,11 +336,11 @@ nav a:hover {
 .content-border::before {
     content: '';
     position: fixed;
-    top: 72px; /* Below nav bar, adjust as needed */
+    top: 50px; /* Below nav bar, adjust as needed */
     left: 50%;
     transform: translateX(-50%);
     width: 105%; /* Or 1200px to match border */
-    height: 8px; /* Height of gap to cover */
+    height: 30px; /* Height of gap to cover */
     background-color: #0a1929;
     z-index: 98;
 }
@@ -365,7 +365,6 @@ nav a:hover {
     height: 100vh; /* Full height sides */
     background-color: #fb923c;
 }
-
 
 .border-top::before {
     left: calc(50% - 600px); /* CHANGE: Calculate left position */
@@ -405,7 +404,7 @@ nav a:hover {
     margin: 0 auto;
     margin-top: 90px; /* Space below fixed top border */
     padding: 2rem;
-    padding-bottom: 20px; /* Space above fixed bottom border */
+    padding-bottom: 50px; /* Space above fixed bottom border */
     min-height: calc(100vh - 90px);
 }
 
