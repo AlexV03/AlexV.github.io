@@ -44,7 +44,8 @@ body {
 }
 
 /* Second swirly line with different color */
-.swirl-line:nth-of-type(2) {
+/* .swirl-line:nth-of-type(2) { */
+.swirl-line:nth-child(2) {
     border-color: #2563eb;
     /* Different color */
     width: 250px;
