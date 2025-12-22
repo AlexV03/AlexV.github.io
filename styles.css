@@ -333,6 +333,18 @@ nav a:hover {
     padding-top: 0; /* Remove this padding */
 }
 
+.content-border::before {
+    content: '';
+    position: fixed;
+    top: 72px; /* Below nav bar, adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 105%; /* Or 1200px to match border */
+    height: 8px; /* Height of gap to cover */
+    background-color: #0a1929;
+    z-index: 98;
+}
+
 .border-top {
     position: fixed;
     top: 80px;
@@ -381,7 +393,7 @@ nav a:hover {
     position: fixed;
     bottom: -21px;
     left: 0;
-    width: 100%;
+    width: 105%;
     height: 21px; /* CHANGE: Match bottom border position */
     background-color: #0a1929; /* Same as body background */
     z-index: 99; /* Below border, above content */
@@ -395,6 +407,19 @@ nav a:hover {
     padding: 2rem;
     padding-bottom: 20px; /* Space above fixed bottom border */
     min-height: calc(100vh - 90px);
+}
+
+/* ========================================
+           Linkies colours
+           ======================================== */
+
+a {
+    color: #fb923c; /* Link color */
+    text-decoration: underline; /* Optional: keep/remove underline */
+}
+
+a:hover {
+    color: #2563eb; /* Color when hovering */
 }
 
 /* ========================================
