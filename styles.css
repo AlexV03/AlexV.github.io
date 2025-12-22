@@ -333,40 +333,48 @@ nav a:hover {
     padding-top: 100px; /* Space below nav bar */
 }
 
-/* Top border - stays fixed */
 .border-top {
     position: fixed;
-    top: 80px; /* Below nav bar */
+    top: 80px;
     left: 50%;
     transform: translateX(-50%);
     width: 1200px;
-    height: 0;
-    border-top: 3px solid #fb923c;
-    border-left: 3px solid #fb923c;
-    border-right: 3px solid #fb923c;
-    z-index: 100;
-    box-sizing: border-box;
+    height: 3px; /* CHANGE: Give it height to cover the gap */
+    background-color: #fb923c; /* Top border as background */
+    z-index: 101; /* CHANGE: Higher than content borders */
 }
 
-/* Content area */
+.border-top::before,
+.border-top::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 3px;
+    height: 100vh; /* Full height sides */
+    background-color: #fb923c;
+}
+
+.border-top::before {
+    left: 0; /* Left side */
+}
+
+.border-top::after {
+    right: 0; /* Right side */
+}
+
 .border-content {
-    max-width: 1200px;
+    max-width: 1194px; /* CHANGE: 1200px - 6px (both borders) */
     margin: 0 auto;
-    margin-top: 80px;
-    border-left: 3px solid #fb923c;
-    border-right: 3px solid #fb923c;
+    margin-top: 83px; /* CHANGE: 80px + 3px border height */
     padding: 2rem;
-    min-height: calc(100vh - 80px);
-    box-sizing: border-box;
+    min-height: calc(100vh - 83px);
 }
 
-/* Bottom border - scrolls with content */
 .border-bottom {
-    width: 100%;
-    height: 0;
-    border-bottom: 3px solid #fb923c;
-    border-left: 3px solid #fb923c;
-    border-right: 3px solid #fb923c;
+    width: 1200px;
+    margin: 0 auto;
+    height: 3px;
+    background-color: #fb923c;
 }
 
 /* ========================================
