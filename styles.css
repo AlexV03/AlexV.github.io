@@ -162,6 +162,47 @@ nav a:hover {
     margin: 0;
 }
 
+.page-header img {
+    max-width: 500px;
+    height: auto;
+}
+
+.page-game img {
+    max-width: 800px;
+    height: auto;
+    border: 5px solid #fb923c;
+    border-radius: 10px;
+}
+
+.i1 {
+    position: fixed;
+    left: 50%; /*Center of screen*/
+    transform: translateX(-50%); /*Shift back by half of image width*/
+    top: 200px;
+    margin-left: 100px; /*Offset*/
+}
+.i2 {
+    position: fixed;
+    left: 50%; /*Center of screen*/
+    transform: translateX(-50%); /*Shift back by half of image width*/
+    top: 300px;
+    margin-left: 100px; /*Offset*/
+}
+.i3 {
+    position: fixed;
+    left: 50%; /*Center of screen*/
+    transform: translateX(-50%); /*Shift back by half of image width*/
+    top: 400px;
+    margin-left: 100px; /*Offset*/
+}
+.i4 {
+    position: fixed;
+    left: 50%; /*Center of screen*/
+    transform: translateX(-50%); /*Shift back by half of image width*/
+    top: 500px;
+    margin-left: 100px; /*Offset*/
+}
+
 /* ========================================
            PROJECTS GRID LAYOUT
            ======================================== */
