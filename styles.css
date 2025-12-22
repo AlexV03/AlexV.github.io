@@ -170,11 +170,11 @@ nav a:hover {
 .page-game img {
     max-width: 800px;
     height: auto;
-    /* border: 3px solid #fb923c; */
-    border-top: 5px solid red;
+    border: 3px double #fb923c;
+    /* border-top: 5px solid red;
     border-bottom: 5px dashed blue;
     border-left: 3px double green;
-    border-right: 3px groove orange;
+    border-right: 3px groove orange; */
     border-radius: 10px;
 }
 
@@ -336,25 +336,28 @@ nav a:hover {
 /* Top border - stays fixed */
 .border-top {
     position: fixed;
-    top: 80px; /* CHANGE: Below your nav bar */
+    top: 80px; /* Below nav bar */
     left: 50%;
     transform: translateX(-50%);
-    width: 1200px; /* CHANGE: Match content-border width */
+    width: 1200px;
     height: 0;
-    border-top: 3px solid #fb923c; /* Top line */
-    border-left: 3px solid #fb923c; /* Left line */
-    border-right: 3px solid #fb923c; /* Right line */
+    border-top: 3px solid #fb923c;
+    border-left: 3px solid #fb923c;
+    border-right: 3px solid #fb923c;
     z-index: 100;
+    box-sizing: border-box;
 }
 
 /* Content area */
 .border-content {
     max-width: 1200px;
     margin: 0 auto;
+    margin-top: 80px;
     border-left: 3px solid #fb923c;
     border-right: 3px solid #fb923c;
     padding: 2rem;
-    min-height: 100vh; /* Makes it tall enough to scroll */
+    min-height: calc(100vh - 80px);
+    box-sizing: border-box;
 }
 
 /* Bottom border - scrolls with content */
