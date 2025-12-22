@@ -163,7 +163,7 @@ nav a:hover {
 }
 
 .page-header img {
-    max-width: 500px;
+    max-width: 700px;
     height: auto;
 }
 
@@ -182,7 +182,7 @@ nav a:hover {
     position: absolute;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
-    top: 410px;
+    top: 0px;
     margin-left: 350px; /*Offset*/
 }
 .i1 img {
@@ -192,7 +192,7 @@ nav a:hover {
     position: absolute;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
-    top: 1000px;
+    top: 350px;
     margin-left: 350px; /*Offset*/
 }
 .i2 img {
@@ -202,15 +202,15 @@ nav a:hover {
     position: absolute;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
-    top: 1300px;
-    margin-left: 350px; /*Offset*/
+    top: 650px;
+    margin-left: -180px; /*Offset*/
 }
 .i4 {
     position: absolute;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
-    top: 1600px;
-    margin-left: 350px; /*Offset*/
+    top: 770px;
+    margin-left: 180px; /*Offset*/
 }
 
 /* ========================================
@@ -333,16 +333,27 @@ nav a:hover {
     padding-top: 0; /* Remove this padding */
 }
 
+.border-top {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1200px;
+    height: 3px; /* CHANGE: Give it height to cover the gap */
+    background-color: #fb923c; /* Top border as background */
+    z-index: 101; /* CHANGE: Higher than content borders TODO!!! HAVE TO TEST IF NEWEST TEST WORKS*/
+}
+
 .border-top::before,
 .border-top::after {
     content: '';
     position: fixed;
-    top: 0px; /* CHANGE: 80px + 3px (top border height) */
+    top: 0;
     width: 3px;
-    height: calc(100vh - 83px); /* CHANGE: Full height minus the top offset */
+    height: 100vh; /* Full height sides */
     background-color: #fb923c;
-    z-index: 99;
 }
+
 
 .border-top::before {
     left: calc(50% - 600px); /* CHANGE: Calculate left position */
