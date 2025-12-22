@@ -368,7 +368,7 @@ nav a:hover {
 /* Bottom border - FIXED at bottom of viewport */
 .border-bottom {
     position: fixed; /* CHANGE: Make it fixed */
-    bottom: 20px; /* CHANGE: Stick to bottom */
+    bottom: 21px; /* CHANGE: Stick to bottom */
     left: 50%;
     transform: translateX(-50%);
     width: 1200px;
@@ -384,7 +384,7 @@ nav a:hover {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 20px; /* CHANGE: Match bottom border position */
+    height: 21px; /* CHANGE: Match bottom border position */
     background-color: #0a1929; /* Same as body background */
     z-index: 99; /* Below border, above content */
 }
