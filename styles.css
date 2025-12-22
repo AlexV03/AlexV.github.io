@@ -170,37 +170,47 @@ nav a:hover {
 .page-game img {
     max-width: 800px;
     height: auto;
-    border: 5px solid #fb923c;
+    /* border: 3px solid #fb923c; */
+    border-top: 5px solid red;
+    border-bottom: 5px dashed blue;
+    border-left: 3px double green;
+    border-right: 3px groove orange;
     border-radius: 10px;
 }
 
 .i1 {
-    position: fixed;
+    position: absolute;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
-    top: 200px;
-    margin-left: 100px; /*Offset*/
+    top: 410px;
+    margin-left: 350px; /*Offset*/
+}
+.i1 img {
+    max-width: 400px; /* Overrides max-width from the parent */
 }
 .i2 {
-    position: fixed;
+    position: absolute;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
-    top: 300px;
-    margin-left: 100px; /*Offset*/
+    top: 1000px;
+    margin-left: 350px; /*Offset*/
+}
+.i2 img {
+    max-width: 400px; /* Overrides max-width from the parent */
 }
 .i3 {
-    position: fixed;
+    position: absolute;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
-    top: 400px;
-    margin-left: 100px; /*Offset*/
+    top: 1300px;
+    margin-left: 350px; /*Offset*/
 }
 .i4 {
-    position: fixed;
+    position: absolute;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
-    top: 500px;
-    margin-left: 100px; /*Offset*/
+    top: 1600px;
+    margin-left: 350px; /*Offset*/
 }
 
 /* ========================================
@@ -310,6 +320,50 @@ nav a:hover {
 .hover-image:hover img {
     opacity: 1;
     /* Visible when hovered */
+}
+
+/* ========================================
+           CONCENT BORDER
+           ======================================== */
+
+.content-border {
+    max-width: 1200px; /* CHANGE: Width of the border */
+    margin: 0 auto; /* Centers it */
+    position: relative;
+    padding-top: 100px; /* Space below nav bar */
+}
+
+/* Top border - stays fixed */
+.border-top {
+    position: fixed;
+    top: 80px; /* CHANGE: Below your nav bar */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1200px; /* CHANGE: Match content-border width */
+    height: 0;
+    border-top: 3px solid #fb923c; /* Top line */
+    border-left: 3px solid #fb923c; /* Left line */
+    border-right: 3px solid #fb923c; /* Right line */
+    z-index: 100;
+}
+
+/* Content area */
+.border-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-left: 3px solid #fb923c;
+    border-right: 3px solid #fb923c;
+    padding: 2rem;
+    min-height: 100vh; /* Makes it tall enough to scroll */
+}
+
+/* Bottom border - scrolls with content */
+.border-bottom {
+    width: 100%;
+    height: 0;
+    border-bottom: 3px solid #fb923c;
+    border-left: 3px solid #fb923c;
+    border-right: 3px solid #fb923c;
 }
 
 /* ========================================
