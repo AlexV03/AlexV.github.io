@@ -282,18 +282,16 @@ nav a:hover {
 }
 
 .project-title {
-    padding: 1.5rem;
-    /* CHANGE THIS: Space inside the title area */
-    font-size: 1.2rem;
-    /* CHANGE THIS: Title text size */
+    padding: 1rem 1.5rem; /* CHANGE: Less top/bottom padding */
+    font-size: 1.4rem; /* CHANGE THIS: Make text bigger */
     font-weight: 600;
-    /* CHANGE THIS: Title text boldness (100-900) */
     text-align: center;
-    /* Centers the title text */
     background-color: #0f3460;
-    /* CHANGE THIS: Title background color */
     color: #f8fafc;
-    /* CHANGE THIS: Title text color */
+    height: 80px; /* ADD THIS: Fixed height so image doesn't shrink */
+    display: flex; /* ADD THIS: For centering */
+    align-items: center; /* ADD THIS: Vertically centers text */
+    justify-content: center; /* ADD THIS: Horizontally centers text */
 }
 
 .hover-image {
