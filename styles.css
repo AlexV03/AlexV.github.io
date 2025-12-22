@@ -323,58 +323,68 @@ nav a:hover {
 }
 
 /* ========================================
-           CONCENT BORDER
+           CONTENT BORDER
            ======================================== */
 
 .content-border {
-    max-width: 1200px; /* CHANGE: Width of the border */
-    margin: 0 auto; /* Centers it */
+    max-width: 1200px;
+    margin: 0 auto;
     position: relative;
-    padding-top: 100px; /* Space below nav bar */
+    padding-top: 0; /* Remove this padding */
 }
 
+/* Top border - FIXED, doesn't move */
 .border-top {
     position: fixed;
-    top: 80px;
+    top: 80px; /* Below nav bar */
     left: 50%;
     transform: translateX(-50%);
     width: 1200px;
-    height: 3px; /* CHANGE: Give it height to cover the gap */
-    background-color: #fb923c; /* Top border as background */
-    z-index: 101; /* CHANGE: Higher than content borders */
+    height: 3px;
+    background-color: #fb923c;
+    z-index: 100;
 }
 
+/* Side borders extending from top */
 .border-top::before,
 .border-top::after {
     content: '';
-    position: absolute;
-    top: 0;
+    position: fixed; /* CHANGE: Make sides fixed too */
+    top: 80px; /* CHANGE: Start at same position as top */
     width: 3px;
-    height: 100vh; /* Full height sides */
+    height: 100vh;
     background-color: #fb923c;
+    z-index: 99;
 }
 
 .border-top::before {
-    left: 0; /* Left side */
+    left: calc(50% - 600px); /* CHANGE: Calculate left position */
 }
 
 .border-top::after {
-    right: 0; /* Right side */
+    right: calc(50% - 600px); /* CHANGE: Calculate right position */
 }
 
-.border-content {
-    max-width: 1194px; /* CHANGE: 1200px - 6px (both borders) */
-    margin: 0 auto;
-    margin-top: 83px; /* CHANGE: 80px + 3px border height */
-    padding: 2rem;
-    min-height: calc(100vh - 83px);
-}
-
+/* Bottom border - FIXED at bottom of viewport */
 .border-bottom {
+    position: fixed; /* CHANGE: Make it fixed */
+    bottom: 0; /* CHANGE: Stick to bottom */
+    left: 50%;
+    transform: translateX(-50%);
     width: 1200px;
-    margin: 0 auto;
     height: 3px;
     background-color: #fb923c;
+    z-index: 100;
+}
+
+/* Content area */
+.border-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 90px; /* Space below fixed top border */
+    padding: 2rem;
+    padding-bottom: 20px; /* Space above fixed bottom border */
+    min-height: calc(100vh - 90px);
 }
 
 /* ========================================
