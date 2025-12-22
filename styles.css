@@ -333,26 +333,13 @@ nav a:hover {
     padding-top: 0; /* Remove this padding */
 }
 
-/* Top border - FIXED, doesn't move */
-.border-top {
-    position: fixed;
-    top: 80px; /* Below nav bar */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1200px;
-    height: 3px;
-    background-color: #fb923c;
-    z-index: 100;
-}
-
-/* Side borders extending from top */
 .border-top::before,
 .border-top::after {
     content: '';
-    position: fixed; /* CHANGE: Make sides fixed too */
-    top: 80px; /* CHANGE: Start at same position as top */
+    position: fixed;
+    top: 83px; /* CHANGE: 80px + 3px (top border height) */
     width: 3px;
-    height: 100vh;
+    height: calc(100vh - 83px); /* CHANGE: Full height minus the top offset */
     background-color: #fb923c;
     z-index: 99;
 }
@@ -384,7 +371,7 @@ nav a:hover {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 21px; /* CHANGE: Match bottom border position */
+    height: 0px; /* CHANGE: Match bottom border position */
     background-color: #0a1929; /* Same as body background */
     z-index: 99; /* Below border, above content */
 }
