@@ -178,39 +178,152 @@ nav a:hover {
     border-radius: 10px;
 }
 
-.i1 {
+video {
+    max-width: 800px;
+    border: 3px double #fb923c;
+    border-radius: 10px;
+}
+
+code {
+    background-color: #1e3a5f; /* Box background color behind the code */
+    color: #fb923c; /* Text color of the code */
+    padding: 2px 6px; /* Space inside the box (top/bottom, left/right) */
+    border-radius: 4px; /* Rounded corners on the box */
+    font-family: 'Courier New', monospace; /* Monospace font (all letters same width, like real code editors) */
+}
+
+pre {
+    background-color: #1e3a5f; /* Background for multi-line code blocks */
+    color: #f8fafc; /* Text color */
+    padding: 1.5rem; /* Space around the code */
+    border-radius: 10px; /* Rounded corners */
+    overflow-x: auto; /* Adds scroll bar if code is too wide */
+    border: 2px solid #fb923c; /* Border around the block */
+}
+
+pre code {
+    background-color: transparent; /* Removes the code background inside pre (prevents double background) */
+    padding: 0;
+}
+
+/* ========================================
+           GRABLINGS PAGE IMAGES
+           ======================================== */
+
+.grai1 {
     position: absolute;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
     top: 0px;
     margin-left: 350px; /*Offset*/
 }
-.i1 img {
+.grai1 img {
     max-width: 400px; /* Overrides max-width from the parent */
 }
-.i2 {
+
+.grai2 {
     position: absolute;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
     top: 350px;
     margin-left: 350px; /*Offset*/
 }
-.i2 img {
+.grai2 img {
     max-width: 400px; /* Overrides max-width from the parent */
 }
-.i3 {
+
+.grai3 {
     position: absolute;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
     top: 650px;
     margin-left: -180px; /*Offset*/
 }
-.i4 {
+
+.grai4 {
     position: absolute;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
     top: 770px;
     margin-left: 180px; /*Offset*/
+}
+
+/* ========================================
+           RIVERSE PAGE IMAGES
+           ======================================== */
+
+/*Images*/
+.rivi1 {
+    position: absolute;
+    left: 50%; /*Center of screen*/
+    transform: translateX(-50%); /*Shift back by half of image width*/
+    top: 0px;
+    margin-left: 350px; /*Offset*/
+}
+.rivi1 img {
+    max-width: 400px; /* Overrides max-width from the parent */
+}
+
+.rivi2 {
+    position: absolute;
+    left: 50%; /*Center of screen*/
+    transform: translateX(-50%); /*Shift back by half of image width*/
+    top: 350px;
+    margin-left: 350px; /*Offset*/
+}
+.rivi2 img {
+    max-width: 400px; /* Overrides max-width from the parent */
+}
+
+/*Videos*/
+.rivv1 {
+    position: absolute;
+    left: 50%; /*Center of screen*/
+    transform: translateX(-50%); /*Shift back by half of image width*/
+    top: 350px;
+    margin-left: 350px; /*Offset*/
+}
+
+.rivv2 {
+    position: absolute;
+    left: 50%; /*Center of screen*/
+    transform: translateX(-50%); /*Shift back by half of image width*/
+    top: 350px;
+    margin-left: 350px; /*Offset*/
+}
+
+.rivv3 {
+    position: absolute;
+    left: 50%; /*Center of screen*/
+    transform: translateX(-50%); /*Shift back by half of image width*/
+    top: 350px;
+    margin-left: 350px; /*Offset*/
+}
+
+/* ========================================
+           RAY TRACED AUDIO PAGE IMAGES
+           ======================================== */
+
+.rayi1 {
+    position: absolute;
+    left: 50%; /*Center of screen*/
+    transform: translateX(-50%); /*Shift back by half of image width*/
+    top: 0px;
+    margin-left: 350px; /*Offset*/
+}
+.rayi1 img {
+    max-width: 400px; /* Overrides max-width from the parent */
+}
+
+.rayi2 {
+    position: absolute;
+    left: 50%; /*Center of screen*/
+    transform: translateX(-50%); /*Shift back by half of image width*/
+    top: 350px;
+    margin-left: 350px; /*Offset*/
+}
+.rayi2 img {
+    max-width: 400px; /* Overrides max-width from the parent */
 }
 
 /* ========================================

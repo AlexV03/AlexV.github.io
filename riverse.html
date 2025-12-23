@@ -1,10 +1,12 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riverse</title>
     <link rel="stylesheet" href="styles.css"> <!-- Links to same CSS file -->
 </head>
+
 <body>
     <!-- Swirls (optional, for consistency) -->
     <div class="swirl-line"></div>
@@ -50,25 +52,112 @@
 
             <br>
 
+            <pre><code class="language-cpp">
+            void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _worldTime)
+{
+	if (hasReachedEnd)
+		return;
+
+	if (currentIndex == endIndex)
+	{
+		hasReachedEnd = true;
+
+		/*const FsnapShots& snap = snapshots[currentIndex];
+		if (isPlayerSnapshot)
+			GetOwner()->SetActorLocation(snap.position);
+		else
+			ownerRootComponent->SetWorldLocationAndRotation(snap.position, snap.rotation);*/
+
+		return;
+	}
+	else
+	{
+		int prefIndex2 = currentIndex - 1;
+		if (hasLooped)
+		{
+			if (prefIndex2 < 0)
+				prefIndex2 = maxSnapshots - 1;
+		}
+		else
+		{
+			if (prefIndex2 < 0)
+				prefIndex2 = 0;
+		}
+
+		if (_worldTime < snapshots[prefIndex2].worldTime)//HasreachedEnd bool not set properly in time manager
+		{
+			if (!snapshots[currentIndex].isInvalid)
+				if (currentIndex != endIndex)
+				{
+					snapshots[currentIndex].isInvalid = true;
+					currentIndex--;
+					if (currentIndex < 0)
+						currentIndex = maxSnapshots - 1;
+				}
+		}
+
+
+		int prefIndex = currentIndex - 1;
+		if (hasLooped)
+		{
+			if (prefIndex < 0)
+				prefIndex = maxSnapshots - 1;
+		}
+		else
+		{
+			if (prefIndex < 0)
+				prefIndex = 0;
+		}
+
+		const FsnapShots& curSnap = snapshots[currentIndex];
+		const FsnapShots& prefSnap = snapshots[prefIndex];
+
+		float alpha = (curSnap.worldTime - _worldTime) / (curSnap.worldTime - prefSnap.worldTime);
+		//alpha = FMath::Clamp(alpha, 0.0f, 1.0f);
+
+		//lerping
+		FVector position = FMath::Lerp(curSnap.position, prefSnap.position, alpha);
+		FRotator rotation = FMath::Lerp(curSnap.rotation, prefSnap.rotation, alpha);
+
+		ownerRootComponent->SetWorldLocationAndRotation(position, rotation);
+	}
+}
+            </code></pre>
+
             <a href="https://buas.itch.io/team-bludhaven" target="_blank">Itch.io page of Riverse</a>
 
-            <div class="page-game i1">
-                <img src="Content/Images/Tower1.png" alt="T1">
+            <!--Images-->
+
+            <div class="page-game rivi1">
+                <img src="Content/Images/M3LevelRiv.PNG" alt="T1">
             </div>
-            <div class="page-game i2">
+            <div class="page-game rivi2">
                 <img src="Content/Images/Tower2.png" alt="T2">
             </div>
 
-            <div class="page-game i3">
-                <img src="Content/Images/UiNodesP1.PNG" alt="Ui1">
+            <!--Videos-->
+            <div class="page-game rivv1">
+                <video controls width="800">
+                    <source src="Content/Videos/DuckRewinds.mp4" type="video/mp4">
+                </video>
             </div>
-            <div class="page-game i4">
-                <img src="Content/Images/UiNodesP2.PNG" alt="Ui2">
+
+            <div class="page-game rivv2">
+                <video controls width="800">
+                    <source src="Content/Videos/GroupRewind.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="page-game rivv3">
+                <video controls width="800">
+                    <source src="Content/Videos/RewindInProject.mp4" type="video/mp4">
+                </video>
             </div>
 
         </div>
         <div class="border-bottom"></div>
     </div>
-    
+
 </body>
+
 </html>
