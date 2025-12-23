@@ -221,7 +221,16 @@ summary {
 }
 
 summary:hover {
-    background-color: #2563eb;
+    background-color: #2057cd;
+}
+
+/* Hide the original text and show custom text */
+details summary::before {
+    content: "Click to open code"; /* Text when closed */
+}
+
+details[open] summary::before {
+    content: "Click to close code"; /* Text when open */
 }
 
 /* ========================================
@@ -302,19 +311,17 @@ summary:hover {
 }
 
 .rivv2 {
-    position: absolute;
+    position: relative;
+    margin: 2rem auto;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
-    top: 350px;
-    margin-left: 350px; /*Offset*/
 }
 
 .rivv3 {
-    position: absolute;
+    position: relative;
+    margin: 2rem auto;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
-    top: 350px;
-    margin-left: 350px; /*Offset*/
 }
 
 /* ========================================
