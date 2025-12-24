@@ -12,6 +12,10 @@
     <div class="swirl-line"></div>
     <div class="swirl-line"></div>
 
+    <div class="hover-image secret2">
+        <img src="Content/Images/ddslogo.png" alt="Hidden image">
+    </div>
+
     <!-- Navigation bar (copy from main page) -->
     <nav>
         <ul>
@@ -86,7 +90,7 @@ void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _
 				prefIndex2 = 0;
 		}
 
-		if (_worldTime < snapshots[prefIndex2].worldTime)//HasreachedEnd bool not set properly in time manager
+		if (_worldTime < snapshots[prefIndex2].worldTime)
 		{
 			if (!snapshots[currentIndex].isInvalid)
 				if (currentIndex != endIndex)
@@ -127,6 +131,7 @@ void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _
             </details>
 
             <br>
+
             <!--Videos-->
             <div class="content-row">
                 <div class="page-game rivv1">
@@ -136,10 +141,44 @@ void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _
                 </div>
 
                 <div class="text-beside">
-                    <p><b>Title:</b></p>
-                    <p>Text here explaining the video...</p>
+                    <p><b>Objects test:</b></p>
+                    <p>Testes out rewinding many objects at same time.</p>
                 </div>
             </div>
+
+            <br>
+
+            <details open>
+                <summary></summary>
+                <pre><code class="language-cpp">
+void UBPC_TimeRewind::RecordSnapshot(float _deltaTime, float _worldTime)
+{
+	FsnapShots snapShot;
+
+	snapShot.position = ownerRootComponent->GetComponentLocation();
+	snapShot.rotation = ownerRootComponent->GetComponentRotation();
+	if (ownerRootComponent->IsSimulatingPhysics())
+	{
+		snapShot.velocity = ownerRootComponent->GetPhysicsLinearVelocity();
+		snapShot.angularVelocity = ownerRootComponent->GetPhysicsAngularVelocityInRadians();
+	}
+	snapShot.worldTime = _worldTime;
+	snapShot.isInvalid = false;
+
+	snapshots[currentIndex] = snapShot;
+
+	currentIndex++;
+
+	if (currentIndex >= maxSnapshots)
+	{
+		currentIndex = 0;
+		hasLooped = true;
+	}
+
+	snapshots[currentIndex].isInvalid = false;//
+}
+            </code></pre>
+            </details>
 
             <br>
 
@@ -151,8 +190,8 @@ void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _
                 </div>
 
                 <div class="text-beside">
-                    <p><b>Title:</b></p>
-                    <p>Text here explaining the video...</p>
+                    <p><b>Group test:</b></p>
+                    <p>Testing out rewinding different groups of objects.</p>
                 </div>
             </div>
 
@@ -166,8 +205,8 @@ void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _
                 </div>
 
                 <div class="text-beside">
-                    <p><b>Title:</b></p>
-                    <p>Text here explaining the video...</p>
+                    <p><b>In the game:</b></p>
+                    <p>Rewinding with highlighting groups.</p>
                 </div>
             </div>
 
