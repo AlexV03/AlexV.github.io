@@ -37,7 +37,8 @@
             <!-- Your images and text go here -->
             <p><b>About:</b></p>
             <p>
-                Riverse is made in my first year at buas we a group of 12 people, we got certain reference game to choose from a we choosed for Cluster truck.<br>
+                Riverse is made in my first year at buas with a group of 12 people, we got certain reference games<br>
+                to choose from and we choosed for Cluster truck.<br>
                 We had 8 weeks the time to concept the game, work it out and to make it.<br>
                 The game is a fast past platform game where you have to reach the goal as fast as possible<br>
                 by jumping from platform to platform, abvoiding obstacles and rewinding hinders with your pocketwatch.
@@ -47,17 +48,20 @@
 
             <p><b>Creation I made:</b></p>
             <p>
-                In this project I created the time rewind feature. The feature has the ability to set groups of object that can be rewinded, with this
-                you can look at a rewindable object then every other object in the same group will be highlighted showing that those objects will be
-                rewinded back in time when you activate the rewind. I have chosen for this option so you could control what to rewind, this fitted with our
+                In this project I created the time rewind feature. The feature has the ability to set groups of object
+                that can be rewinded, with this
+                you can look at a rewindable object then every other object in the same group will be highlighted
+                showing that those objects will be
+                rewinded back in time when you activate the rewind. I have chosen for this option so you could control
+                what to rewind, this fitted with our
                 design to give it a better player experience.
             </p>
 
             <br>
 
             <details open>
-            <summary></summary>
-            <pre><code class="language-cpp">
+                <summary></summary>
+                <pre><code class="language-cpp">
 void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _worldTime)
 {
 	if (hasReachedEnd)
@@ -66,13 +70,6 @@ void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _
 	if (currentIndex == endIndex)
 	{
 		hasReachedEnd = true;
-
-		/*const FsnapShots& snap = snapshots[currentIndex];
-		if (isPlayerSnapshot)
-			GetOwner()->SetActorLocation(snap.position);
-		else
-			ownerRootComponent->SetWorldLocationAndRotation(snap.position, snap.rotation);*/
-
 		return;
 	}
 	else
@@ -118,7 +115,6 @@ void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _
 		const FsnapShots& prefSnap = snapshots[prefIndex];
 
 		float alpha = (curSnap.worldTime - _worldTime) / (curSnap.worldTime - prefSnap.worldTime);
-		//alpha = FMath::Clamp(alpha, 0.0f, 1.0f);
 
 		//lerping
 		FVector position = FMath::Lerp(curSnap.position, prefSnap.position, alpha);
@@ -132,26 +128,47 @@ void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _
 
             <br>
             <!--Videos-->
-            <div class="page-game rivv1">
-                <video controls width="400">
-                    <source src="Content/Videos/DuckRewinds.mp4" type="video/mp4">
-                </video>
+            <div class="content-row">
+                <div class="page-game rivv1">
+                    <video controls width="400">
+                        <source src="Content/Videos/DuckRewinds.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="text-beside">
+                    <p><b>Title:</b></p>
+                    <p>Text here explaining the video...</p>
+                </div>
             </div>
 
             <br>
 
-            <div class="page-game rivv2">
-                <video controls width="400">
-                    <source src="Content/Videos/GroupRewind.mp4" type="video/mp4">
-                </video>
+            <div class="content-row">
+                <div class="page-game rivv2">
+                    <video controls width="400">
+                        <source src="Content/Videos/GroupRewind.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="text-beside">
+                    <p><b>Title:</b></p>
+                    <p>Text here explaining the video...</p>
+                </div>
             </div>
 
             <br>
 
-            <div class="page-game rivv3">
-                <video controls width="400">
-                    <source src="Content/Videos/RewindInProject.mp4" type="video/mp4">
-                </video>
+            <div class="content-row">
+                <div class="page-game rivv3">
+                    <video controls width="400">
+                        <source src="Content/Videos/RewindInProject.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="text-beside">
+                    <p><b>Title:</b></p>
+                    <p>Text here explaining the video...</p>
+                </div>
             </div>
 
             <br>

@@ -233,6 +233,17 @@ details[open] summary::before {
     content: "Click to close code"; /* Text when open */
 }
 
+.content-row {
+    display: flex;
+    gap: 2rem; /* Space between video and text */
+    align-items: flex-start; /* Align to top */
+    margin: 2rem 0;
+}
+
+.text-beside {
+    flex: 1; /* Text takes remaining space */
+}
+
 /* ========================================
            GRABLINGS PAGE IMAGES
            ======================================== */
@@ -285,7 +296,7 @@ details[open] summary::before {
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
     top: 0px;
-    margin-left: 350px; /*Offset*/
+    margin-left: 387px; /*Offset*/
 }
 .rivi1 img {
     max-width: 400px; /* Overrides max-width from the parent */
@@ -305,21 +316,21 @@ details[open] summary::before {
 /*Videos*/
 .rivv1 {
     position: relative;
-    margin: 2rem auto;
+    margin: 0rem auto;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
 }
 
 .rivv2 {
     position: relative;
-    margin: 2rem auto;
+    margin: 0rem auto;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
 }
 
 .rivv3 {
     position: relative;
-    margin: 2rem auto;
+    margin: 0rem auto;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
 }
