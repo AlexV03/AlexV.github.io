@@ -41,7 +41,7 @@
             <!-- Your images and text go here -->
             <p><b>About:</b></p>
             <p>
-                Riverse is made in my first year at buas with a group of 12 people in the unreal engine game engine,<br>
+                Riverse is made in my first year at buas with a group of 12 people in the unreal engine game engine,
                 we got certain reference games<br>
                 to choose from and we choosed for Cluster truck.<br>
                 We had 8 weeks the time to concept the game, work it out and to make it.<br>
@@ -143,7 +143,12 @@ void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _
 
                 <div class="text-beside">
                     <p><b>Objects test:</b></p>
-                    <p>Testes out rewinding many objects at same time.</p>
+                    <p>The PlaySnapshot function makes sures that the recorded data is applied to the object correctly.<br>
+                    it does this by using a circular buffer using indexes. It grabs a snapshot checks it with the worldtime<br>
+                    if it went far enough backwards in time then the current snapshot becomes invalid and it goes to the next<br>
+                    snapshot. It loops the index and applies the position and rotation with lerping to the object.<br>
+                    The video shows a test with many objects recording and rewinding at the same time to see if the system can<br>
+                    handle that.</p>
                 </div>
             </div>
 
@@ -192,7 +197,12 @@ void UBPC_TimeRewind::RecordSnapshot(float _deltaTime, float _worldTime)
 
                 <div class="text-beside">
                     <p><b>Group test:</b></p>
-                    <p>Testing out rewinding different groups of objects.</p>
+                    <p>The RecordSnapshot function records the neccesary data of that object that needs to be rewinded.<br>
+                    It does this by creating a local snapshot, giving it all the values it needs and then applying it to<br>
+                    the snapshots buffer. it then increases the index and if needed loops it.<br>
+                    The video to the side shows a test where 2 groups of rewindable objecs are shown. You aim at a object<br>
+                    in that group and then when you rewind, all those objects will rewind back in time.<br>
+                    without the other group being rewinded.</p>
                 </div>
             </div>
 
@@ -207,7 +217,7 @@ void UBPC_TimeRewind::RecordSnapshot(float _deltaTime, float _worldTime)
 
                 <div class="text-beside">
                     <p><b>In the game:</b></p>
-                    <p>Rewinding with highlighting groups.</p>
+                    <p>The video shows how it looks in the game with highliting a group that can be rewinded.</p>
                 </div>
             </div>
 
@@ -215,7 +225,8 @@ void UBPC_TimeRewind::RecordSnapshot(float _deltaTime, float _worldTime)
 
             <p><b>My thoughts:</b></p>
             <p>
-                ...
+                Making this feature in unreal engine was a fun challenge to do. I hadn't used c++ in ureal engine a lot before so it<br>
+                figuring out how to use it was very interesting and i learned a lot from it. 
             </p>
 
             <br>

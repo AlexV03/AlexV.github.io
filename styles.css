@@ -374,6 +374,7 @@ details[open] summary::before {
     /* Centers the container */
     position: relative;
     z-index: 1;
+    padding-bottom: 4rem;
 }
 
 .projects-grid {
