@@ -447,7 +447,7 @@ details[open] summary::before {
            ======================================== */
 
 .hover-image {
-    position: fixed;
+    position: absolute;
     width: 40px;
     height: 40px;
     /* CHANGE THIS: Size of the square */

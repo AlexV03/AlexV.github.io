@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riverse</title>
+    <title>DiceOfTheMice</title>
     <link rel="stylesheet" href="styles.css"> <!-- Links to same CSS file -->
 </head>
 
@@ -67,67 +67,7 @@
             <details open>
                 <summary></summary>
                 <pre><code class="language-cpp">
-void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _worldTime)
-{
-	if (hasReachedEnd)
-		return;
-
-	if (currentIndex == endIndex)
-	{
-		hasReachedEnd = true;
-		return;
-	}
-	else
-	{
-		int prefIndex2 = currentIndex - 1;
-		if (hasLooped)
-		{
-			if (prefIndex2 < 0)
-				prefIndex2 = maxSnapshots - 1;
-		}
-		else
-		{
-			if (prefIndex2 < 0)
-				prefIndex2 = 0;
-		}
-
-		if (_worldTime < snapshots[prefIndex2].worldTime)
-		{
-			if (!snapshots[currentIndex].isInvalid)
-				if (currentIndex != endIndex)
-				{
-					snapshots[currentIndex].isInvalid = true;
-					currentIndex--;
-					if (currentIndex < 0)
-						currentIndex = maxSnapshots - 1;
-				}
-		}
-
-
-		int prefIndex = currentIndex - 1;
-		if (hasLooped)
-		{
-			if (prefIndex < 0)
-				prefIndex = maxSnapshots - 1;
-		}
-		else
-		{
-			if (prefIndex < 0)
-				prefIndex = 0;
-		}
-
-		const FsnapShots& curSnap = snapshots[currentIndex];
-		const FsnapShots& prefSnap = snapshots[prefIndex];
-
-		float alpha = (curSnap.worldTime - _worldTime) / (curSnap.worldTime - prefSnap.worldTime);
-
-		//lerping
-		FVector position = FMath::Lerp(curSnap.position, prefSnap.position, alpha);
-		FRotator rotation = FMath::Lerp(curSnap.rotation, prefSnap.rotation, alpha);
-
-		ownerRootComponent->SetWorldLocationAndRotation(position, rotation);
-	}
-}
+...
             </code></pre>
             </details>
 
@@ -152,32 +92,7 @@ void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _
             <details open>
                 <summary></summary>
                 <pre><code class="language-cpp">
-void UBPC_TimeRewind::RecordSnapshot(float _deltaTime, float _worldTime)
-{
-	FsnapShots snapShot;
-
-	snapShot.position = ownerRootComponent->GetComponentLocation();
-	snapShot.rotation = ownerRootComponent->GetComponentRotation();
-	if (ownerRootComponent->IsSimulatingPhysics())
-	{
-		snapShot.velocity = ownerRootComponent->GetPhysicsLinearVelocity();
-		snapShot.angularVelocity = ownerRootComponent->GetPhysicsAngularVelocityInRadians();
-	}
-	snapShot.worldTime = _worldTime;
-	snapShot.isInvalid = false;
-
-	snapshots[currentIndex] = snapShot;
-
-	currentIndex++;
-
-	if (currentIndex >= maxSnapshots)
-	{
-		currentIndex = 0;
-		hasLooped = true;
-	}
-
-	snapshots[currentIndex].isInvalid = false;//
-}
+v...
             </code></pre>
             </details>
 
@@ -220,7 +135,7 @@ void UBPC_TimeRewind::RecordSnapshot(float _deltaTime, float _worldTime)
 
             <br>
 
-            <a href="https://buas.itch.io/team-bludhaven" target="_blank">Itch.io page of Riverse</a>
+            <a href="https://aafke.itch.io/dice-of-the-mice" target="_blank">Itch.io page of DiceOfTheMice</a>
 
             <!--Images-->
 
