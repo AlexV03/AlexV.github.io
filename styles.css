@@ -104,6 +104,9 @@ nav {
     /* Shadow under the top bar */
     z-index: 1000;
     /* Keeps nav bar above other elements */
+    display: flex; /* ADD THIS */
+    justify-content: space-between; /* ADD THIS - pushes items apart */
+    align-items: center; /* ADD THIS - centers vertically */
 }
 
 nav ul {
@@ -118,7 +121,7 @@ nav ul {
 }
 
 nav a {
-    color: #f8fafc;
+    color: #f8fafc !important;
     /* CHANGE THIS: Button text color */
     text-decoration: none;
     /* Removes underline from links */
@@ -135,8 +138,32 @@ nav a {
 
 nav a:hover {
     /* background-color: #0f3460; CHANGE THIS: Button color when you hover over it */
-    background-color: #2e5992;
+    /* background-color: #2e5992; */
+    background-color: #b52e64;
     z-index: auto;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem; /* Space between icons */
+}
+
+.social-icon {
+    display: block;
+    width: 30px; /* CHANGE: Icon size */
+    height: 30px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.social-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.social-icon:hover {
+    transform: scale(1.2); /* Grows on hover */
+    opacity: 0.8; /* Slightly fades */
 }
 
 /* ========================================
