@@ -384,6 +384,7 @@ details[open] summary::before {
     /* 3 columns of equal width */
     gap: 1.5rem;
     /* CHANGE THIS: Space between project cards */
+    margin-bottom: 4rem;
 }
 
 /* ========================================
@@ -447,21 +448,66 @@ details[open] summary::before {
            Tag for title
            ======================================== */
 
-.tag-container {
+.project-tags {
     display: flex;
-    gap: 0.5rem; /* Space between tags */
-    margin-bottom: 1.5rem; /* Space below tags */
-    flex-wrap: wrap; /* Wraps to next line if too many */
+    gap: 0.5rem;
+    padding: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #1e3a5f;
 }
 
 .tag {
-    background-color: #1e3a5f; /* Filled background color */
-    color: #fb923c; /* Text color */
-    padding: 0.5rem 1rem; /* Space inside (top/bottom, left/right) */
-    border-radius: 5px; /* Rounded corners */
-    border: 2px solid #fb923c; /* Border around it */
-    font-weight: 600; /* Bold text */
-    font-size: 0.9rem; /* Text size */
+    align-items: center;
+    background-color: #fb923c; /* Rectangle color - change this */
+    border-radius: 7px;
+    color: #f5f2f4; /* Text color */
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 0.75rem;
+    height: 2em; /* Fixed height */
+    justify-content: center;
+    line-height: 1.5;
+    margin: 1px 0.5rem 0.5rem 0;
+    padding: 0px 0.75em; /* Horizontal padding only */
+    transition: 0.2s ease-in; /* Smooth hover effect */
+    vertical-align: middle;
+    white-space: nowrap; /* Text stays on one line */
+}
+
+/* ========================================
+           Project info box
+           ======================================== */
+
+.project-info-box {
+    background-color: #1e3a5f; /* CHANGE: Box background color */
+    border: 3px solid #fb923c; /* CHANGE: Border thickness and color */
+    border-radius: 10px; /* CHANGE: Rounded corners */
+    padding: 1.5rem; /* CHANGE: Space inside box */
+    margin-bottom: 2rem; /* CHANGE: Space below box */
+    max-width: 600px; /* CHANGE: Fixed horizontal width */
+    /* Height grows automatically with content */
+}
+
+.info-item {
+    margin-bottom: 0.75rem; /* CHANGE: Space between items */
+    line-height: 1.6;
+}
+
+.info-item:last-child {
+    margin-bottom: 0; /* No space after last item */
+}
+
+.info-label {
+    font-weight: bold;
+    color: #fb923c; /* CHANGE: Label text color */
+    font-size: 1rem; /* CHANGE: Label text size */
+}
+
+.info-value {
+    color: #f8fafc; /* CHANGE: Value text color */
+    font-size: 1rem; /* CHANGE: Value text size */
+    margin-left: 0.5rem;
 }
 
 /* ========================================
