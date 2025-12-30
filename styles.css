@@ -295,7 +295,7 @@ details[open] summary::before {
     position: absolute;
     left: 50%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
-    top: 0px;
+    top: 30px;
     margin-left: 387px; /*Offset*/
 }
 .rivi1 img {
@@ -454,25 +454,26 @@ details[open] summary::before {
     padding: 0.5rem;
     justify-content: center;
     flex-wrap: wrap;
-    background-color: #1e3a5f;
+    background-color: transparent; /* CHANGE: Remove background */
+    /* OR just delete the background-color line */
 }
 
 .tag {
     align-items: center;
-    background-color: #fb923c; /* Rectangle color - change this */
+    background-color: #fb923c; /* Each tag has its own background */
     border-radius: 7px;
-    color: #f5f2f4; /* Text color */
+    color: #f5f2f4;
     cursor: pointer;
     display: inline-flex;
     font-size: 0.75rem;
-    height: 2em; /* Fixed height */
+    height: 2em;
     justify-content: center;
     line-height: 1.5;
-    margin: 1px 0.5rem 0.5rem 0;
-    padding: 0px 0.75em; /* Horizontal padding only */
-    transition: 0.2s ease-in; /* Smooth hover effect */
+    margin: 0;
+    padding: 0px 0.75em;
+    transition: 0.2s ease-in;
     vertical-align: middle;
-    white-space: nowrap; /* Text stays on one line */
+    white-space: nowrap;
 }
 
 /* ========================================
@@ -483,14 +484,14 @@ details[open] summary::before {
     background-color: #1e3a5f; /* CHANGE: Box background color */
     border: 3px solid #fb923c; /* CHANGE: Border thickness and color */
     border-radius: 10px; /* CHANGE: Rounded corners */
-    padding: 1.5rem; /* CHANGE: Space inside box */
+    padding: 1rem; /* CHANGE: Space inside box */
     margin-bottom: 2rem; /* CHANGE: Space below box */
     max-width: 600px; /* CHANGE: Fixed horizontal width */
     /* Height grows automatically with content */
 }
 
 .info-item {
-    margin-bottom: 0.75rem; /* CHANGE: Space between items */
+    margin-bottom: 0rem; /* CHANGE: Space between items */
     line-height: 1.6;
 }
 
