@@ -444,6 +444,27 @@ details[open] summary::before {
 }
 
 /* ========================================
+           Tag for title
+           ======================================== */
+
+.tag-container {
+    display: flex;
+    gap: 0.5rem; /* Space between tags */
+    margin-bottom: 1.5rem; /* Space below tags */
+    flex-wrap: wrap; /* Wraps to next line if too many */
+}
+
+.tag {
+    background-color: #1e3a5f; /* Filled background color */
+    color: #fb923c; /* Text color */
+    padding: 0.5rem 1rem; /* Space inside (top/bottom, left/right) */
+    border-radius: 5px; /* Rounded corners */
+    border: 2px solid #fb923c; /* Border around it */
+    font-weight: 600; /* Bold text */
+    font-size: 0.9rem; /* Text size */
+}
+
+/* ========================================
            Invisible hover image
            ======================================== */
 
