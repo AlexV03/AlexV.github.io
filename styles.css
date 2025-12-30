@@ -138,8 +138,7 @@ nav a {
 
 nav a:hover {
     /* background-color: #0f3460; CHANGE THIS: Button color when you hover over it */
-    /* background-color: #2e5992; */
-    background-color: #b52e64;
+    background-color: #2e5992;
     z-index: auto;
 }
 
@@ -467,7 +466,7 @@ details[open] summary::before {
     text-align: center;
     background-color: #0f3460;
     color: #f8fafc;
-    height: 80px; /* ADD THIS: Fixed height so image doesn't shrink */
+    height: 50px; /* ADD THIS: Fixed height so image doesn't shrink */
     display: flex; /* ADD THIS: For centering */
     align-items: center; /* ADD THIS: Vertically centers text */
     justify-content: center; /* ADD THIS: Horizontally centers text */
@@ -504,6 +503,11 @@ details[open] summary::before {
     transition: 0.2s ease-in;
     vertical-align: middle;
     white-space: nowrap;
+}
+
+.TagBox {
+    display: flex;
+    
 }
 
 /* ========================================
