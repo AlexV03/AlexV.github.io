@@ -130,11 +130,13 @@ nav a {
     /* Rounded corners on buttons */
     transition: background-color 0.3s ease;
     /* Smooth color change on hover */
+    position: relative;
 }
 
 nav a:hover {
     /* background-color: #0f3460; CHANGE THIS: Button color when you hover over it */
-    background-color: #2563eb;
+    background-color: #2e5992;
+    z-index: auto;
 }
 
 /* ========================================
@@ -467,6 +469,7 @@ details[open] summary::before {
     display: inline-flex;
     font-size: 0.75rem;
     height: 2em;
+    width: 50px;
     justify-content: center;
     line-height: 1.5;
     margin: 0;
