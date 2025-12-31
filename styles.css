@@ -129,66 +129,56 @@ body {
            NAVIGATION BAR (TOP BAR)
            ======================================== */
 
-nav {
+.main-nav {
     position: sticky;
-    /* Makes the nav bar stick to top when scrolling */
     top: 0;
     background-color: var(--bg-secondary);
-    /* CHANGE THIS: Top bar background color */
     padding: 1.5rem 2rem;
-    /* CHANGE THIS: Top bar height (1.5rem = top/bottom, 2rem = left/right) */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    /* Shadow under the top bar */
     z-index: var(--z-nav);
-    /* Keeps nav bar above other elements */
-    display: flex; /* ADD THIS */
-    justify-content: space-between; /* ADD THIS - pushes items apart */
-    align-items: center; /* ADD THIS - centers vertically */
-    gap: var(--gap-lg);
-}
-
-nav ul {
-    list-style: none;
-    /* Removes bullet points */
     display: flex;
-    /* Makes buttons horizontal */
+    justify-content: space-between;
+    align-items: center;
     gap: var(--gap-lg);
-    /* CHANGE THIS: Space between buttons */
-    /* justify-content: center; */
-    margin: 0;
-    /* Centers the buttons */
 }
 
-nav a {
-    color: var(--text-light) !important;
-    /* CHANGE THIS: Button text color */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: var(--gap-lg);
+    margin: 0;
+}
+
+/* Navigation button links - SPECIFIC */
+.main-nav .nav-links a {
+    color: var(--text-light);
     text-decoration: none;
-    /* Removes underline from links */
     font-size: 1.1rem;
-    /* CHANGE THIS: Button text size */
     padding: 0.5rem 1rem;
-    /* CHANGE THIS: Button size (top/bottom, left/right) */
     border-radius: 5px;
-    /* Rounded corners on buttons */
-    transition: background-color 0.3s ease, color 0.3s ease;
-    /* Smooth color change on hover */
+    transition: background-color 0.3s ease;
     position: relative;
 }
 
-nav a:hover {
-    /* background-color: #0f3460; CHANGE THIS: Button color when you hover over it */
-    background-color: var(--hov-blue);
-    /* z-index: auto; */
+/* Navigation button hover - ONLY affects nav buttons */
+.main-nav .nav-links a:hover {
+    background-color: #2e5992;
+    /* Color stays var(--text-light) from parent rule */
 }
 
-nav a:focus {
-    outline: 2px solid var(--accent-orange); /* ADDED: Keyboard navigation visibility */
+.main-nav .nav-links a:focus {
+    outline: 2px solid var(--accent-orange);
     outline-offset: 2px;
 }
+
+/* ========================================
+           Socials in nav bar
+           ======================================== */
 
 .social-links {
     display: flex;
     gap: var(--gap-sm); /* Space between icons */
+    margin-right: 0.1rem;
 }
 
 .social-icon {
@@ -809,6 +799,168 @@ a:hover {
 }
 
 /* ========================================
+   ABOUT PAGE SECTIONS
+   WHY: Organized content areas with spacing
+   ======================================== */
+
+.about-section,
+.contact-section {
+    margin-bottom: 4rem; /* Space between sections */
+}
+
+.section-title {
+    font-size: 2.5rem; /* CHANGE: Title size */
+    color: var(--accent-orange); /* CHANGE: Title color */
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-align: left; /* CHANGE: left, center, or right */
+}
+
+/* ========================================
+   ABOUT ME SECTION
+   ======================================== */
+
+.about-content {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Wraps on small screens */
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px; /* Minimum width before wrapping */
+    font-size: 1.1rem; /* CHANGE: Text size */
+    line-height: 1.8; /* CHANGE: Line spacing */
+    color: var(--text-muted); /* CHANGE: Text color */
+    max-width: 700px; /* CHANGE: Maximum width for readability */
+}
+
+/* Optional inline profile image */
+.about-image-inline {
+    flex-shrink: 0;
+    width: 250px; /* CHANGE: Image width */
+    height: 250px; /* CHANGE: Image height */
+    border-radius: 50%; /* CHANGE: Makes it circular (use 10px for rounded square) */
+    overflow: hidden;
+    border: 4px solid var(--accent-orange); /* CHANGE: Border color/width */
+}
+
+.about-image-inline img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crops image to fit */
+}
+
+/* ========================================
+   CONTACT INFO SECTION
+   ======================================== */
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* CHANGE: Space between contact items */
+    max-width: 450px; /* CHANGE: Maximum width */
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem; /* CHANGE: Padding inside each item */
+    background-color: var(--bg-secondary); /* CHANGE: Background color */
+    border-radius: 8px; /* CHANGE: Rounded corners */
+    border-left: 4px solid var(--accent-orange); /* CHANGE: Left accent bar */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-item:hover {
+    transform: translateX(5px); /* CHANGE: Slides right on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.contact-label {
+    font-weight: bold;
+    color: var(--accent-orange); /* CHANGE: Label color */
+    min-width: 100px; /* CHANGE: Fixed width for alignment */
+    font-size: 1rem; /* CHANGE: Label size */
+}
+
+.contact-link {
+    color: var(--text-light); /* CHANGE: Link color */
+    text-decoration: none;
+    font-size: 1rem; /* CHANGE: Link text size */
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: var(--accent-blue); /* CHANGE: Hover color */
+    text-decoration: underline;
+}
+
+.download-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem; /* CHANGE: Padding around button text */
+    background-color: #205392; /* CHANGE: Button background */
+    color: white !important; /* CHANGE: Always white text */
+    border-radius: 6px; /* CHANGE: Rounded corners */
+    font-weight: 600; /* CHANGE: Bold text */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.download-button:hover {
+    background-color: #1e40af; /* CHANGE: Darker blue on hover */
+    transform: scale(1.05); /* CHANGE: Slightly grows on hover */
+    text-decoration: none; /* Remove underline on hover */
+}
+
+.download-icon {
+    font-size: 1.2rem; /* CHANGE: Icon size */
+    transition: transform 0.3s ease;
+}
+
+/* ========================================
+   FLOATING/POSITIONED IMAGES
+   WHY: Decorative images you can place anywhere
+   WHAT: Position them however you want!
+   ======================================== */
+
+.floating-image {
+    position: absolute;
+    z-index: var(--z-content); /* Above background, below text */
+    opacity: 0.3; /* CHANGE: Transparency (0.0 = invisible, 1.0 = solid) */
+    pointer-events: none; /* Can't click on it */
+    transition: opacity 0.3s ease;
+}
+
+.floating-image:hover {
+    opacity: 0.6; /* CHANGE: Opacity on hover */
+}
+
+.floating-image img {
+    width: 100%; /* Takes container size */
+    height: auto;
+}
+
+/* Position first floating image */
+.floating-image-1 {
+    top: 100px; /* CHANGE: Distance from top */
+    right: 50px; /* CHANGE: Distance from right */
+    width: 200px; /* CHANGE: Image width */
+    transform: rotate(15deg); /* CHANGE: Rotation angle */
+}
+
+/* Position second floating image */
+.floating-image-2 {
+    bottom: 150px; /* CHANGE: Distance from bottom */
+    left: 780px; /* CHANGE: Distance from left */
+    width: 150px; /* CHANGE: Image width */
+    transform: rotate(-10deg); /* CHANGE: Rotation angle */
+}
+
+/* ========================================
    ACCESSIBILITY - REDUCED MOTION
    WHY: Respects user preference for reduced animations
    WHAT: Disables animations for users with vestibular disorders
@@ -921,5 +1073,37 @@ a:hover {
     
     h3 {
         font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem; /* Smaller on mobile */
+        text-align: center;
+    }
+    
+    .about-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .about-image-inline {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+    
+    .contact-label {
+        min-width: auto;
+    }
+    
+    /* Hide floating images on mobile */
+    .floating-image {
+        display: none;
     }
 }

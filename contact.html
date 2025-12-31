@@ -1,59 +1,81 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Links to same CSS file -->
+    
+    <!-- SEO Meta Tags - ADDED -->
+    <meta name="description" content="My blogs">
+    <meta name="author" content="Alex V">
+    
+    <!-- Open Graph - ADDED -->
+    <meta property="og:title" content="Blogs">
+    <meta property="og:description" content="Blogs about projects">
+    <meta property="og:image" content="Content/Images/gllogo.PNG">
+    
+    <title>Blog page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
+
+
+<!--TURN INTO BLOG LINK-->
+
 <body>
     <div class="swirl-line"></div>
     <div class="swirl-line"></div>
 
-    <!-- KEPT: Secret easter egg -->
-    <div class="hover-image secret2">
+    <!-- ADDED: Secret easter egg for consistency -->
+    <div class="hover-image secret3">
         <img src="Content/Images/ddslogo.png" alt="Hidden DDS logo easter egg">
     </div>
 
-    <!-- CHANGED: Added social links for consistency -->
+    <!-- CHANGED: Added social links -->
     <nav class="main-nav" aria-label="Main navigation">
         <ul class="nav-links">
-            <li><a href="index.html" aria-current="page">Projects</a></li>
-            <!-- CHANGED: href to index.html and added aria-current -->
+            <li><a href="index.html">Projects</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html" aria-current="page">Blog</a></li>
         </ul>
-
-        <!-- 
-        WHY: Social media links for external profiles
-        WHAT: Icon links to LinkedIn and Itch.io
-        CHANGED: Added aria-label and rel security
-        -->
+        
         <div class="social-links">
-            <a href="https://www.linkedin.com/in/yourprofile" 
+            <a href="https://www.linkedin.com/in/av3xv/" 
                target="_blank" 
                rel="noopener noreferrer" 
                class="social-icon"
                aria-label="LinkedIn Profile">
-                <img src="Content/Images/linkedin-icon.png" alt="LinkedIn">
-                <!-- CHANGED: Use actual LinkedIn icon -->
+                <img src="Content/Images/LinkedinIcon.png" alt="LinkedIn">
             </a>
-            <a href="https://yourname.itch.io" 
+            <a href="https://av03.itch.io/" 
                target="_blank" 
                rel="noopener noreferrer" 
                class="social-icon"
                aria-label="Itch.io Profile">
-                <img src="Content/Images/itchio-icon.png" alt="Itch.io">
-                <!-- CHANGED: Use actual Itch.io icon -->
+                <img src="Content/Images/ItchIcon.png" alt="Itch.io">
             </a>
         </div>
     </nav>
 
-    <!-- Big header title -->
-    <div class="page-header">
-        <h1>Contact</h1>
-    </div>
-
-    <!-- Your content goes here -->
+    <p>
+        I really enjoyed participating in this game jam and had a lot of fun brainstorming what kind of game we could make and then creating it. I had a talented and great team, and I think we made a fun little local co-op game in the time we had.
+    </p>
     
+    <h2>Connect</h2>
+        <p>
+            <a href="https://www.linkedin.com/in/av3xv/" 
+                target="_blank" 
+                rel="noopener noreferrer">
+                Linkedin
+            </a>
+
+            <br>
+
+            <a href="https://av03.itch.io/" 
+                target="_blank" 
+                rel="noopener noreferrer">
+                Itch.io
+            </a>
+        </p>
+
 </body>
 </html>

@@ -1,59 +1,146 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Links to same CSS file -->
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Learn more about Alex V - Game Developer specializing in Unreal Engine and C++">
+    <meta name="author" content="Alex V">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="About - Alex V">
+    <meta property="og:description" content="Game developer portfolio and contact information">
+    <meta property="og:image" content="Content/Images/profile-preview.jpg">
+    
+    <title>About - Alex V</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
+
 <body>
     <div class="swirl-line"></div>
     <div class="swirl-line"></div>
 
-    <!-- KEPT: Secret easter egg -->
-    <div class="hover-image secret2">
+    <div class="hover-image secret3">
         <img src="Content/Images/ddslogo.png" alt="Hidden DDS logo easter egg">
     </div>
 
-    <!-- CHANGED: Added social links for consistency -->
     <nav class="main-nav" aria-label="Main navigation">
         <ul class="nav-links">
-            <li><a href="index.html" aria-current="page">Projects</a></li>
-            <!-- CHANGED: href to index.html and added aria-current -->
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html">Projects</a></li>
+            <li><a href="about.html" aria-current="page">About</a></li>
+            <li><a href="contact.html">Blog</a></li>
         </ul>
-
-        <!-- 
-        WHY: Social media links for external profiles
-        WHAT: Icon links to LinkedIn and Itch.io
-        CHANGED: Added aria-label and rel security
-        -->
+        
         <div class="social-links">
-            <a href="https://www.linkedin.com/in/yourprofile" 
+            <a href="https://www.linkedin.com/in/av3xv/" 
                target="_blank" 
                rel="noopener noreferrer" 
                class="social-icon"
                aria-label="LinkedIn Profile">
-                <img src="Content/Images/linkedin-icon.png" alt="LinkedIn">
-                <!-- CHANGED: Use actual LinkedIn icon -->
+                <img src="Content/Images/LinkedinIcon.png" alt="LinkedIn">
             </a>
-            <a href="https://yourname.itch.io" 
+            <a href="https://av03.itch.io/" 
                target="_blank" 
                rel="noopener noreferrer" 
                class="social-icon"
                aria-label="Itch.io Profile">
-                <img src="Content/Images/itchio-icon.png" alt="Itch.io">
-                <!-- CHANGED: Use actual Itch.io icon -->
+                <img src="Content/Images/ItchIcon.png" alt="Itch.io">
             </a>
         </div>
     </nav>
 
-    <!-- Big header title -->
-    <div class="page-header">
-        <h1>About me</h1>
-    </div>
+    <!-- Main content with border frame -->
+    <main class="content-border">
+        <div class="border-top"></div>
+        <div class="border-content">
+            
+            <!-- About Me Section -->
+            <section class="about-section">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <p class="about-text">
+                        Hi! I'm Alex, quack
+                    </p>
+                    
+                    <!-- Optional: Profile image inside the about section -->
+                    <!-- <div class="about-image-inline">
+                        <img src="Content/Images/profile-photo.jpg" alt="Alex V - Game Developer">
+                    </div> -->
+                </div>
+            </section>
 
-    <!-- Your content goes here -->
-    
+            <!-- Contact Info Section -->
+            <section class="contact-section">
+                <h2 class="section-title">Contact Info</h2>
+                
+                <div class="contact-links">
+                    <!-- Email -->
+                    <div class="contact-item">
+                        <span class="contact-label">Email:</span>
+                        <a href="mailto:your.email@example.com" class="contact-link">
+                            your.email@example.com
+                        </a>
+                    </div>
+                    
+                    <!-- LinkedIn -->
+                    <div class="contact-item">
+                        <span class="contact-label">LinkedIn:</span>
+                        <a href="https://www.linkedin.com/in/av3xv/" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="contact-link">
+                            linkedin
+                        </a>
+                    </div>
+                    
+                    <!-- Itch.io -->
+                    <div class="contact-item">
+                        <span class="contact-label">Itch.io:</span>
+                        <a href="https://av03.itch.io/" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="contact-link">
+                            Itch.io
+                        </a>
+                    </div>
+                    
+                    <!-- GitHub (optional) -->
+                    <!-- <div class="contact-item">
+                        <span class="contact-label">GitHub:</span>
+                        <a href="https://github.com/yourusername" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="contact-link">
+                            github.com/yourusername
+                        </a>
+                    </div> -->
+
+                    <div class="contact-item">
+                        <span class="contact-label">Resume:</span>
+                        <a href="Content/Documents/Alex_V_CV.pdf" 
+                            download="Alex_V_Resume.pdf" 
+                            class="contact-link download-button">
+                        <span class="download-icon">📄</span>
+                        Download CV
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Floating/Positioned Images (Optional decorations) -->
+            <div class="floating-image floating-image-1">
+                <img src="Content/Images/decoration-1.png" alt="Game controller decoration">
+            </div>
+            
+            <div class="floating-image floating-image-2">
+                <img src="Content/Images/decoration-2.png" alt="Code snippet decoration">
+            </div>
+
+        </div>
+        <div class="border-bottom"></div>
+    </main>
+
 </body>
 </html>
