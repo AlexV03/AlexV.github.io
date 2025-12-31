@@ -2,20 +2,56 @@
            GENERAL RESET AND BODY STYLES
            ======================================== */
 
-* {
+:root {
+    /* Colors */
+    --bg-primary: #0a1929;
+    --bg-secondary: #1e3a5f;
+    --bg-accent: #0f3460;
+    --accent-orange: #fb923c;
+    --accent-blue: #2563eb;
+    --text-light: #f8fafc;
+    --text-muted: #eee;
+    --hov-blue: #2e5992;
+    
+    /* Spacing */
+    --border-width: 3px;
+    --border-radius: 10px;
+    --gap-sm: 1rem;
+    --gap-md: 1.5rem;
+    --gap-lg: 2rem;
+    
+    /* Z-index scale - WHY: Prevents z-index chaos */
+    --z-background: 1;
+    --z-content: 10;
+    --z-nav: 100;
+    --z-border-mask: 98;
+    --z-border-cover: 99;
+    --z-border: 101;
+    --z-overlay: 150;
+    
+    /* Layout */
+    --max-width-content: 1200px;
+    --max-width-container: 1400px;
+}
+
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0a1929;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-family: cursive;
+    background-color: var(--bg-primary);
     /* CHANGE THIS: Main page background color */
-    color: #eee;
+    color: var(--text-muted);
     /* CHANGE THIS: Default text color */
     position: relative;
     overflow-x: hidden;
+    line-height: 1.6;
     /* Prevents horizontal scroll from decorations */
 }
 
@@ -30,7 +66,7 @@ body {
     width: 300px;
     /* CHANGE THIS: Length of the swirl */
     height: 300px;
-    border: 3px solid #fb923c;
+    border: var(--border-width) solid var(--accent-orange);
     /* CHANGE THIS: Line color and thickness */
     border-radius: 50% 40% 60% 50%;
     /* Creates organic swirly shape */
@@ -38,15 +74,16 @@ body {
     /* CHANGE THIS: Transparency (0.0-1.0) */
     pointer-events: none;
     /* Can't click on it */
-    z-index: -1;
+    z-index: var(--z-background);
     /* Behind project cards */
     animation: swirl-move 25s ease-in-out infinite;
+    will-change: transform;
 }
 
 /* Second swirly line with different color */
 /* .swirl-line:nth-of-type(2) { */
 .swirl-line:nth-child(2) {
-    border-color: #2563eb;
+    border-color: var(--accent-blue);
     /* Different color */
     width: 250px;
     height: 250px;
@@ -96,17 +133,18 @@ nav {
     position: sticky;
     /* Makes the nav bar stick to top when scrolling */
     top: 0;
-    background-color: #1e3a5f;
+    background-color: var(--bg-secondary);
     /* CHANGE THIS: Top bar background color */
     padding: 1.5rem 2rem;
     /* CHANGE THIS: Top bar height (1.5rem = top/bottom, 2rem = left/right) */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     /* Shadow under the top bar */
-    z-index: 1000;
+    z-index: var(--z-nav);
     /* Keeps nav bar above other elements */
     display: flex; /* ADD THIS */
     justify-content: space-between; /* ADD THIS - pushes items apart */
     align-items: center; /* ADD THIS - centers vertically */
+    gap: var(--gap-lg);
 }
 
 nav ul {
@@ -114,14 +152,15 @@ nav ul {
     /* Removes bullet points */
     display: flex;
     /* Makes buttons horizontal */
-    gap: 2rem;
+    gap: var(--gap-lg);
     /* CHANGE THIS: Space between buttons */
-    justify-content: center;
+    /* justify-content: center; */
+    margin: 0;
     /* Centers the buttons */
 }
 
 nav a {
-    color: #f8fafc !important;
+    color: var(--text-light) !important;
     /* CHANGE THIS: Button text color */
     text-decoration: none;
     /* Removes underline from links */
@@ -131,20 +170,25 @@ nav a {
     /* CHANGE THIS: Button size (top/bottom, left/right) */
     border-radius: 5px;
     /* Rounded corners on buttons */
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     /* Smooth color change on hover */
     position: relative;
 }
 
 nav a:hover {
     /* background-color: #0f3460; CHANGE THIS: Button color when you hover over it */
-    background-color: #2e5992;
-    z-index: auto;
+    background-color: var(--hov-blue);
+    /* z-index: auto; */
+}
+
+nav a:focus {
+    outline: 2px solid var(--accent-orange); /* ADDED: Keyboard navigation visibility */
+    outline-offset: 2px;
 }
 
 .social-links {
     display: flex;
-    gap: 1rem; /* Space between icons */
+    gap: var(--gap-sm); /* Space between icons */
 }
 
 .social-icon {
@@ -165,6 +209,11 @@ nav a:hover {
     opacity: 0.8; /* Slightly fades */
 }
 
+.social-icon:focus {
+    outline: 2px solid var(--accent-orange); /* ADDED: Accessibility */
+    outline-offset: 2px;
+}
+
 /* ========================================
            PAGE TITLE (Big title above projects)
            ======================================== */
@@ -174,63 +223,87 @@ nav a:hover {
     /* Centers the title */
     padding: 3rem 2rem;
     /* CHANGE THIS: Space around title (top/bottom, left/right) */
-    background-color: #0a1929;
+    background-color: var(--bg-primary);
     /* CHANGE THIS: Background color of title section */
     position: relative;
-    z-index: 1;
+    z-index: var(--z-content);
 }
 
 .page-header h1 {
-    font-size: 3rem;
+    font-size: 4rem;
     /* CHANGE THIS: Title size */
     font-weight: 700;
     /* CHANGE THIS: Title boldness (100-900) */
-    color: #60a5fa;
+    color: var(--accent-blue);
     /* CHANGE THIS: Title text color */
     margin: 0;
 }
 
 .page-header img {
     max-width: 700px;
+    width: 100%;
     height: auto;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: var(--accent-orange);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    color: var(--accent-orange);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+p {
+    margin-bottom: 1rem; /* ADDED: Consistent paragraph spacing */
+    max-width: 800px; /* ADDED: Optimal reading width */
 }
 
 .page-game img {
     max-width: 800px;
+    width: 100%;
     height: auto;
-    border: 3px double #fb923c;
+    border: var(--border-width) double var(--accent-orange);
     /* border-top: 5px solid red;
     border-bottom: 5px dashed blue;
     border-left: 3px double green;
     border-right: 3px groove orange; */
-    border-radius: 10px;
+    border-radius: var(--border-radius);
 }
 
 video {
     max-width: 800px;
-    border: 3px double #fb923c;
-    border-radius: 10px;
+    /* width: 100%; */
+    /* height: auto; */
+    border: var(--border-width) double var(--accent-orange);
+    border-radius: var(--border-radius);
 }
 
 code {
-    background-color: #1e3a5f; /* Box background color behind the code */
-    color: #fb923c; /* Text color of the code */
-    padding: 2px 6px; /* Space inside the box (top/bottom, left/right) */
-    border-radius: 4px; /* Rounded corners on the box */
-    font-family: 'Courier New', monospace; /* Monospace font (all letters same width, like real code editors) */
+    background-color: var(--bg-secondary);
+    color: var(--accent-orange);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
 }
 
 pre {
-    background-color: #1e3a5f; /* Background for multi-line code blocks */
-    color: #f8fafc; /* Text color */
-    padding: 1rem; /* Space around the code */
-    border-radius: 10px; /* Rounded corners */
-    overflow-x: auto; /* Adds scroll bar if code is too wide */
-    border: 2px solid #fb923c; /* Border around the block */
-    max-height: 500px; /* Limits height */
-    overflow-y: auto; /* Adds vertical scroll if too tall */
-    font-size: 0.9rem; /* Change text size (smaller = 0.8rem, bigger = 1.1rem) */
-    /* resize: both; /* Lets user drag corner to resize! */
+    background-color: var(--bg-secondary);
+    color: var(--text-light);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    overflow-x: auto;
+    border: 2px solid var(--accent-orange);
+    max-height: 500px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    margin: 1rem 0;
 }
 
 pre code {
@@ -238,18 +311,28 @@ pre code {
     padding: 0;
 }
 
+details {
+    margin: 1rem 0; /* ADDED: Spacing */
+}
+
 summary {
     cursor: pointer;
     font-weight: bold;
-    color: #fb923c;
+    color: var(--accent-orange);
     padding: 0.5rem;
-    background-color: #1e3a5f;
+    background-color: var(--bg-secondary);
     border-radius: 5px;
     margin-bottom: 0.5rem;
+    transition: background-color 0.3s ease;
 }
 
 summary:hover {
-    background-color: #2057cd;
+    background-color: var(--hov-blue);
+}
+
+summary:focus {
+    outline: 2px solid var(--accent-orange); /* ADDED: Accessibility */
+    outline-offset: 2px;
 }
 
 /* Hide the original text and show custom text */
@@ -263,13 +346,15 @@ details[open] summary::before {
 
 .content-row {
     display: flex;
-    gap: 2rem; /* Space between video and text */
+    gap: var(--gap-lg); /* Space between video and text */
     align-items: flex-start; /* Align to top */
-    margin: 0rem 0;
+    margin: 2rem 0;
+    flex-wrap: wrap;
 }
 
 .text-beside {
     flex: 1; /* Text takes remaining space */
+    min-width: 300px;
 }
 
 /* ========================================
@@ -285,6 +370,7 @@ details[open] summary::before {
 }
 .grai1 img {
     max-width: 400px; /* Overrides max-width from the parent */
+    width: 100%;
 }
 
 .grai2 {
@@ -296,22 +382,33 @@ details[open] summary::before {
 }
 .grai2 img {
     max-width: 400px; /* Overrides max-width from the parent */
+    width: 100%;
 }
 
 .grai3 {
     position: absolute;
     left: 50%; /*Center of screen*/
-    transform: translateX(-50%); /*Shift back by half of image width*/
-    top: 650px;
+    transform: translateX(10%); /*Shift back by half of image width*/
+    top: 760px;
     margin-left: -180px; /*Offset*/
+}
+
+.grai3 img {
+    max-width: 700px; /* ADDED: Consistent sizing */
+    width: 100%;
 }
 
 .grai4 {
     position: absolute;
     left: 50%; /*Center of screen*/
-    transform: translateX(-50%); /*Shift back by half of image width*/
-    top: 770px;
+    transform: translateX(-30%); /*Shift back by half of image width*/
+    top: 860px;
     margin-left: 180px; /*Offset*/
+}
+
+.grai4 img {
+    max-width: 1000px; /* ADDED: Consistent sizing */
+    width: 120%;
 }
 
 /* ========================================
@@ -328,6 +425,7 @@ details[open] summary::before {
 }
 .rivi1 img {
     max-width: 400px; /* Overrides max-width from the parent */
+    width: 100%;
 }
 
 .rivi2 {
@@ -339,6 +437,7 @@ details[open] summary::before {
 }
 .rivi2 img {
     max-width: 400px; /* Overrides max-width from the parent */
+    width: 100%;
 }
 
 /*Videos*/
@@ -376,6 +475,7 @@ details[open] summary::before {
 }
 .rayi1 img {
     max-width: 400px; /* Overrides max-width from the parent */
+    width: 100%;
 }
 
 .rayi2 {
@@ -387,6 +487,19 @@ details[open] summary::before {
 }
 .rayi2 img {
     max-width: 400px; /* Overrides max-width from the parent */
+    width: 100%;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 /* ========================================
@@ -396,12 +509,12 @@ details[open] summary::before {
 .projects-container {
     padding: 2rem;
     /* CHANGE THIS: Space around the entire grid */
-    max-width: 1400px;
+    max-width: var(--max-width-container);
     /* CHANGE THIS: Maximum width of the grid container */
     margin: 0 auto;
     /* Centers the container */
     position: relative;
-    z-index: 1;
+    z-index: var(--z-content);
     padding-bottom: 4rem;
 }
 
@@ -413,6 +526,7 @@ details[open] summary::before {
     gap: 1.5rem;
     /* CHANGE THIS: Space between project cards */
     margin-bottom: 4rem;
+    align-items: center;
 }
 
 /* ========================================
@@ -420,25 +534,17 @@ details[open] summary::before {
            ======================================== */
 
 .project-card {
-    background-color: #1e3a5f;
-    /* CHANGE THIS: Card background color */
-    border-radius: 10px;
-    /* CHANGE THIS: Rounded corners (higher = more round) */
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius);
     overflow: hidden;
-    /* Keeps content inside the rounded corners */
     cursor: pointer;
-    /* Changes cursor to hand pointer on hover */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Smooth animation */
     text-decoration: none;
-    /* Removes underline from the link */
     color: inherit;
-    /* Uses the body text color */
     display: flex;
     flex-direction: column;
-    /* Stacks image and title vertically */
-    aspect-ratio: 1 / 1;
-    /* Makes the card a perfect square */
+    height: 400px; /* CHANGE: Fixed height instead of aspect-ratio */
+    width: 100%;
 }
 
 .project-card:hover {
@@ -448,28 +554,31 @@ details[open] summary::before {
     /* Shadow effect on hover */
 }
 
+.project-card:focus {
+    outline: 2px solid var(--accent-orange); /* ADDED: Keyboard focus */
+    outline-offset: 2px;
+}
+
 .project-image {
     width: 100%;
-    /* Image takes full width of card */
-    flex: 1;
-    /* Image takes up most of the square */
+    flex: 1; /* IMPORTANT: Takes remaining space, shrinks if needed */
     object-fit: cover;
-    /* Crops image to fit without stretching */
     background-color: #16213e;
-    /* Background color if image doesn't load */
+    min-height: 0;
 }
 
 .project-title {
-    padding: 1rem 1.5rem; /* CHANGE: Less top/bottom padding */
+    padding: 0.75rem 1rem; /* CHANGE: Less top/bottom padding */
     font-size: 1.4rem; /* CHANGE THIS: Make text bigger */
     font-weight: 600;
     text-align: center;
-    background-color: #0f3460;
-    color: #f8fafc;
-    height: 50px; /* ADD THIS: Fixed height so image doesn't shrink */
+    background-color: var(--bg-accent);
+    color: var(--text-light);
+    height: 40px; /* ADD THIS: Fixed height so image doesn't shrink */
     display: flex; /* ADD THIS: For centering */
     align-items: center; /* ADD THIS: Vertically centers text */
     justify-content: center; /* ADD THIS: Horizontally centers text */
+    flex-shrink: 0;
 }
 
 /* ========================================
@@ -482,32 +591,41 @@ details[open] summary::before {
     padding: 0.5rem;
     justify-content: center;
     flex-wrap: wrap;
-    background-color: transparent; /* CHANGE: Remove background */
+    /* background-color: transparent; CHANGE: Remove background */
     /* OR just delete the background-color line */
 }
 
 .tag {
-    align-items: center;
-    background-color: #fb923c; /* Each tag has its own background */
+    background-color: var(--accent-orange); /* Each tag has its own background */
     border-radius: 7px;
-    color: #f5f2f4;
-    cursor: pointer;
+    color: var(--text-light);
+    cursor: default;
     display: inline-flex;
+    align-items: center;
     font-size: 0.75rem;
     height: 2em;
-    width: 50px;
     justify-content: center;
     line-height: 1.5;
-    margin: 0;
+    /* margin-left: 5; */
+    /* margin-right: 5; */
+    
     padding: 0px 0.75em;
-    transition: 0.2s ease-in;
-    vertical-align: middle;
+    transition: 0.2s ease;
+    /* vertical-align: middle; */
     white-space: nowrap;
+}
+
+.tag:hover {
+    transform: scale(1.05); /* ADDED: Subtle hover effect */
 }
 
 .TagBox {
     display: flex;
-    
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem; /* ADDED: Consistent spacing */
+    margin: 0.5rem 0; 
+    flex-shrink: 0;
 }
 
 /* ========================================
@@ -515,9 +633,9 @@ details[open] summary::before {
            ======================================== */
 
 .project-info-box {
-    background-color: #1e3a5f; /* CHANGE: Box background color */
-    border: 3px solid #fb923c; /* CHANGE: Border thickness and color */
-    border-radius: 10px; /* CHANGE: Rounded corners */
+    background-color: var(--bg-secondary);
+    border: var(--border-width) solid var(--accent-orange);
+    border-radius: var(--border-radius);
     padding: 1rem; /* CHANGE: Space inside box */
     margin-bottom: 2rem; /* CHANGE: Space below box */
     max-width: 600px; /* CHANGE: Fixed horizontal width */
@@ -525,7 +643,7 @@ details[open] summary::before {
 }
 
 .info-item {
-    margin-bottom: 0rem; /* CHANGE: Space between items */
+    /* margin-bottom: 0rem; CHANGE: Space between items */
     line-height: 1.6;
 }
 
@@ -535,12 +653,12 @@ details[open] summary::before {
 
 .info-label {
     font-weight: bold;
-    color: #fb923c; /* CHANGE: Label text color */
+    color: var(--accent-orange); /* CHANGE: Label text color */
     font-size: 1rem; /* CHANGE: Label text size */
 }
 
 .info-value {
-    color: #f8fafc; /* CHANGE: Value text color */
+    color: var(--text-light); /* CHANGE: Value text color */
     font-size: 1rem; /* CHANGE: Value text size */
     margin-left: 0.5rem;
 }
@@ -554,7 +672,7 @@ details[open] summary::before {
     width: 40px;
     height: 40px;
     /* CHANGE THIS: Size of the square */
-    z-index: 2000;
+    z-index: var(--z-overlay);
     /* Above everything change it  */
 }
 
@@ -566,6 +684,7 @@ details[open] summary::before {
     /* Invisible by default */
     transition: opacity 0.3s ease;
     /* Smooth fade in */
+    pointer-events: none;
 }
 
 .hover-image:hover img {
@@ -594,10 +713,10 @@ details[open] summary::before {
            ======================================== */
 
 .content-border {
-    max-width: 1200px;
+    max-width: var(--max-width-content);
     margin: 0 auto;
     position: relative;
-    padding-top: 0; /* Remove this padding */
+    /* padding-top: 0; Remove this padding */
 }
 
 .content-border::before {
@@ -608,8 +727,8 @@ details[open] summary::before {
     transform: translateX(-50%);
     width: 105%; /* Or 1200px to match border */
     height: 30px; /* Height of gap to cover */
-    background-color: #0a1929;
-    z-index: 98;
+    background-color: var(--bg-primary);
+    z-index: var(--z-border-mask);
 }
 
 .border-top {
@@ -617,10 +736,10 @@ details[open] summary::before {
     top: 80px;
     left: 50%;
     transform: translateX(-50%);
-    width: 1200px;
-    height: 3px; /* CHANGE: Give it height to cover the gap */
-    background-color: #fb923c; /* Top border as background */
-    z-index: 101; /* CHANGE: Higher than content borders TODO!!! HAVE TO TEST IF NEWEST TEST WORKS*/
+    width: var(--max-width-content);
+    height: var(--border-width); /* CHANGE: Give it height to cover the gap */
+    background-color: var(--accent-orange); /* Top border as background */
+    z-index: var(--z-border); /* CHANGE: Higher than content borders TODO!!! HAVE TO TEST IF NEWEST TEST WORKS*/
 }
 
 .border-top::before,
@@ -628,9 +747,9 @@ details[open] summary::before {
     content: '';
     position: fixed;
     top: 0;
-    width: 3px;
+    width: var(--border-width);
     height: 100vh; /* Full height sides */
-    background-color: #fb923c;
+    background-color: var(--accent-orange);
 }
 
 .border-top::before {
@@ -647,10 +766,10 @@ details[open] summary::before {
     bottom: 21px; /* CHANGE: Stick to bottom */
     left: 50%;
     transform: translateX(-50%);
-    width: 1200px;
-    height: 3px;
-    background-color: #fb923c;
-    z-index: 100;
+    width: var(--max-width-content);
+    height: var(--border-width);
+    background-color: var(--accent-orange);
+    z-index: var(--z-border);
 }
 
 /* Add a mask overlay below the bottom border */
@@ -661,13 +780,13 @@ details[open] summary::before {
     left: 0;
     width: 105%;
     height: 21px; /* CHANGE: Match bottom border position */
-    background-color: #0a1929; /* Same as body background */
-    z-index: 99; /* Below border, above content */
+    background-color: var(--bg-primary); /* Same as body background */
+    z-index: var(--z-border-cover); /* Below border, above content */
 }
 
 /* Content area */
 .border-content {
-    max-width: 1200px;
+    max-width: var(--max-width-content);
     margin: 0 auto;
     margin-top: 90px; /* Space below fixed top border */
     padding: 2rem;
@@ -680,52 +799,127 @@ details[open] summary::before {
            ======================================== */
 
 a {
-    color: #fb923c; /* Link color */
-    text-decoration: underline; /* Optional: keep/remove underline */
+    color: var(--accent-orange);
+    text-decoration: underline;
+    transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #2563eb; /* Color when hovering */
+    color: var(--accent-blue); /* Color when hovering */
+}
+
+/* ========================================
+   ACCESSIBILITY - REDUCED MOTION
+   WHY: Respects user preference for reduced animations
+   WHAT: Disables animations for users with vestibular disorders
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
 /* ========================================
            RESPONSIVE DESIGN (DIFFERENT SCREEN SIZES)
            ======================================== */
 
-/* Tablet: 2 columns (screens smaller than 1024px) */
-@media (max-width: 1024px) {
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-        /* Changes to 2 columns */
+/* Tablet: borders adjust */
+@media (max-width: 1240px) {
+    .border-top,
+    .border-bottom {
+        width: calc(100% - 40px); /* ADDED: Responsive borders */
+    }
+    
+    .border-top::before {
+        left: 20px; /* ADDED: Adjust side borders */
+    }
+    
+    .border-top::after {
+        right: 20px;
     }
 }
 
-/* Mobile: 1 column (screens smaller than 640px) */
+/* Tablet: 2 columns */
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .page-header h1 {
+        font-size: 2.5rem; /* ADDED: Smaller title */
+    }
+    
+    /* ADDED: Stack content-row on tablets */
+    .content-row {
+        flex-direction: column;
+    }
+}
+
+/* Mobile: 1 column */
 @media (max-width: 640px) {
     .projects-grid {
         grid-template-columns: 1fr;
-        /* Changes to 1 column */
     }
 
+    nav {
+        flex-direction: column; /* ADDED: Stack nav items */
+        padding: 1rem;
+    }
+    
     nav ul {
-        gap: 1rem;
-        /* Less space between buttons on mobile */
+        gap: var(--gap-sm);
+        justify-content: center; /* ADDED: Center nav links */
     }
 
     nav a {
         font-size: 1rem;
-        /* Smaller button text on mobile */
         padding: 0.4rem 0.8rem;
-        /* Smaller buttons on mobile */
+    }
+    
+    .social-links {
+        margin-top: 1rem; /* ADDED: Space above social icons */
     }
 
     .projects-container {
         padding: 1rem;
-        /* Less padding on mobile */
     }
 
     .page-header h1 {
         font-size: 2rem;
-        /* Smaller title on mobile */
+    }
+    
+    .page-header {
+        padding: 2rem 1rem; /* ADDED: Less padding on mobile */
+    }
+    
+    /* ADDED: Hide absolute positioned images on mobile */
+    .grai1, .grai2, .grai3, .grai4,
+    .rivi1, .rivi2,
+    .rayi1, .rayi2 {
+        display: none;
+    }
+    
+    /* ADDED: Reset video positioning on mobile */
+    .rivv1, .rivv2, .rivv3 {
+        left: 0;
+        transform: none;
+        margin: 1rem 0;
+    }
+    
+    .project-info-box {
+        max-width: 100%; /* ADDED: Full width on mobile */
+    }
+    
+    h2 {
+        font-size: 1.5rem; /* ADDED: Smaller headings */
+    }
+    
+    h3 {
+        font-size: 1.2rem;
     }
 }

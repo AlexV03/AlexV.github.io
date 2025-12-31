@@ -1,164 +1,212 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riverse</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Links to same CSS file -->
+    
+    <!-- SEO Meta Tags - ADDED -->
+    <meta name="description" content="Riverse - A fast-paced platformer inspired by Clustertruck, featuring time rewind mechanics. Made in Unreal Engine 5 with a team of 13.">
+    <meta name="author" content="Your Name">
+    
+    <!-- Open Graph - ADDED -->
+    <meta property="og:title" content="Riverse - Game Project">
+    <meta property="og:description" content="Fast-paced platformer with time rewind mechanics">
+    <meta property="og:image" content="Content/Images/RiverseSplashArt.jpg">
+    
+    <title>Riverse - Game Development Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 
 <body>
-    <!-- Swirls (optional, for consistency) -->
     <div class="swirl-line"></div>
     <div class="swirl-line"></div>
 
+    <!-- KEPT: Secret easter egg -->
     <div class="hover-image secret2">
-        <img src="Content/Images/ddslogo.png" alt="Hidden image">
+        <img src="Content/Images/ddslogo.png" alt="Hidden DDS logo easter egg">
     </div>
 
-    <!-- Navigation bar (copy from main page) -->
-    <nav>
+    <!-- CHANGED: Added social links for consistency -->
+    <nav aria-label="Main navigation">
         <ul>
             <li><a href="index.html">Projects</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
+        
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/yourprofile" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="social-icon"
+               aria-label="LinkedIn Profile">
+                <img src="Content/Images/linkedin-icon.png" alt="LinkedIn">
+            </a>
+            <a href="https://yourname.itch.io" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="social-icon"
+               aria-label="Itch.io Profile">
+                <img src="Content/Images/itchio-icon.png" alt="Itch.io">
+            </a>
+        </div>
     </nav>
 
-    <!-- Big header title -->
-    <!-- <div class="page-header">
-        <h1>Riverse</h1>
-    </div> -->
+    <!-- 
+    CHANGED: Removed commented code, kept image version
+    WHY: Cleaner code, image title is more visually interesting
+    -->
+    <header class="page-header">
+        <img src="Content/Images/rivtitle.png" alt="Riverse game logo">
+    </header>
 
-    <!-- Big header title -->
-    <div class="page-header">
-        <img src="Content/Images/rivtitle.png" alt="Riverse">
-    </div>
-
-    <div class="content-border">
+    <!-- CHANGED: div to main for semantic HTML -->
+    <main class="content-border">
         <div class="border-top"></div>
         <div class="border-content">
-            <!-- Your images and text go here -->
             
+            <!-- 
+            WHY: Quick reference info box
+            WHAT: Key project details at a glance
+            -->
             <div class="project-info-box">
-        <div class="info-item">
-            <span class="info-label">Project Duration:</span>
-            <span class="info-value">8 Weeks</span>
-        </div>
-        <div class="info-item">
-            <span class="info-label">Role:</span>
-            <span class="info-value">Gameplay Programming & enviroment designer</span>
-        </div>
-        <div class="info-item">
-            <span class="info-label">Team Size:</span>
-            <span class="info-value">13</span>
-        </div>
-        <div class="info-item">
-            <span class="info-label">Engine:</span>
-            <span class="info-value">Unreal Engine 5</span>
-        </div>
-    </div>
+                <div class="info-item">
+                    <span class="info-label">Project Duration:</span>
+                    <span class="info-value">8 Weeks</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Role:</span>
+                    <span class="info-value">Gameplay Programmer & Environment Designer</span>
+                    <!-- CHANGED: Fixed typo "enviroment" -->
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Team Size:</span>
+                    <span class="info-value">13</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Engine:</span>
+                    <span class="info-value">Unreal Engine 5</span>
+                </div>
+            </div>
 
-            <p><b>About:</b></p>
+            <!-- 
+            CHANGED: <b> to <h2> for semantic headings
+            WHY: Better SEO, accessibility, and document structure
+            -->
+            <h2>About</h2>
             <p>
-                Riverse is made in my first year at buas with a group of 12 people in the unreal engine game engine,<br>
-                we got certain reference games to choose from and we choosed for Cluster truck.<br>
-                We had 8 weeks the time to concept the game, work it out and to make it.<br>
-                The game is a fast past platform game where you have to reach the goal as fast as possible<br>
-                by jumping from platform to platform, abvoiding obstacles and rewinding hinders with your pocketwatch.
+                Riverse was made in my first year at BUAS with a team of 13 people in Unreal Engine 5. We were given reference games to choose from, and we chose Clustertruck.
+            </p>
+            <!-- CHANGED: Broke into separate paragraphs, fixed typos (choosed→chose, abvoiding→avoiding), capitalized BUAS, fixed game name -->
+            <p>
+                We had 8 weeks to concept the game, work it out, and create it. The game is a fast-paced platformer where you reach the goal as quickly as possible by jumping from platform to platform, avoiding obstacles, and rewinding hazards with your pocket watch.
             </p>
 
-            <br>
-
-            <p><b>Creation I made:</b></p>
+            <h2>Creation I Made</h2>
             <p>
-                In this project I created the time rewind feature. The feature has the ability to set groups of object
-                that can be rewinded, with this
-                you can look at a rewindable object then every other object in the same group will be highlighted
-                showing that those objects will be
-                rewinded back in time when you activate the rewind. I have chosen for this option so you could control
-                what to rewind, this fitted with our
-                design to give it a better player experience.
+                In this project, I created the time rewind feature. The system can group rewindable objects together. When you look at a rewindable object, every other object in the same group highlights, showing that those objects will rewind when you activate the feature.
+            </p>
+            <!-- CHANGED: Removed excessive line breaks, improved flow -->
+            <p>
+                I chose this approach to give players control over what to rewind, which aligned with our design goal of creating a better player experience.
             </p>
 
-            <br>
-
-            <!--Videos-->
-            <div class="content-row">
+            <!-- 
+            WHY: Side-by-side video and explanation
+            WHAT: Flexbox layout with video left, text right
+            CHANGED: Added figure/figcaption for semantic HTML
+            -->
+            <figure class="content-row">
                 <div class="page-game rivv1">
-                    <video controls width="400">
+                    <video controls width="400" preload="metadata" aria-label="Objects rewind test demonstration">
                         <source src="Content/Videos/DuckRewinds.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
                     </video>
+                    <!-- CHANGED: Added preload, aria-label, fallback text -->
                 </div>
 
-                <div class="text-beside">
-                    <p><b>Objects test:</b></p>
-                    <p>The PlaySnapshot function makes sures that the recorded data is applied to the object correctly.<br>
-                    it does this by using a circular buffer using indexes. It grabs a snapshot checks it with the worldtime<br>
-                    if it went far enough backwards in time then the current snapshot becomes invalid and it goes to the next<br>
-                    snapshot. It loops the index and applies the position and rotation with lerping to the object.<br>
-                    The video shows a test with many objects recording and rewinding at the same time to see if the system can<br>
-                    handle that.</p>
-                </div>
-            </div>
+                <figcaption class="text-beside">
+                    <h3>Objects Test</h3>
+                    <!-- CHANGED: <b> to <h3> -->
+                    <p>
+                        The PlaySnapshot function ensures recorded data is applied to objects correctly using a circular buffer with indexes. It grabs a snapshot, checks it against world time, and if it has gone far enough back in time, the current snapshot becomes invalid and moves to the next snapshot.
+                    </p>
+                    <!-- CHANGED: Removed line breaks, improved punctuation -->
+                    <p>
+                        It loops the index and applies the position and rotation with lerping to the object. The video shows a test with many objects recording and rewinding simultaneously to verify the system can handle the load.
+                    </p>
+                </figcaption>
+            </figure>
 
-            <br>
-
-            <div class="content-row">
+            <figure class="content-row">
                 <div class="page-game rivv2">
-                    <video controls width="400">
+                    <video controls width="400" preload="metadata" aria-label="Group rewind test demonstration">
                         <source src="Content/Videos/GroupRewind.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
                     </video>
                 </div>
 
-                <div class="text-beside">
-                    <p><b>Group test:</b></p>
-                    <p>The RecordSnapshot function records the neccesary data of that object that needs to be rewinded.<br>
-                    It does this by creating a local snapshot, giving it all the values it needs and then applying it to<br>
-                    the snapshots buffer. it then increases the index and if needed loops it.<br>
-                    The video to the side shows a test where 2 groups of rewindable objecs are shown. You aim at a object<br>
-                    in that group and then when you rewind, all those objects will rewind back in time.<br>
-                    without the other group being rewinded.</p>
-                </div>
-            </div>
+                <figcaption class="text-beside">
+                    <h3>Group Test</h3>
+                    <p>
+                        The RecordSnapshot function records the necessary data from objects that need to be rewound. It creates a local snapshot, assigns all required values, and applies it to the snapshots buffer. It then increases the index and loops it if needed.
+                    </p>
+                    <!-- CHANGED: Fixed typo "neccesary" -->
+                    <p>
+                        The video shows a test with two groups of rewindable objects. You aim at an object in that group, and when you rewind, all objects in that group rewind without affecting the other group.
+                    </p>
+                </figcaption>
+            </figure>
 
-            <br>
-
-            <div class="content-row">
+            <figure class="content-row">
                 <div class="page-game rivv3">
-                    <video controls width="400">
+                    <video controls width="400" preload="metadata" aria-label="In-game rewind demonstration">
                         <source src="Content/Videos/RewindInProject.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
                     </video>
                 </div>
 
-                <div class="text-beside">
-                    <p><b>In the game:</b></p>
-                    <p>The video shows how it looks in the game with highliting a group that can be rewinded.</p>
-                </div>
-            </div>
+                <figcaption class="text-beside">
+                    <h3>In the Game</h3>
+                    <p>
+                        The video shows how the rewind feature looks in the game, with highlighting of groups that can be rewound.
+                    </p>
+                    <!-- CHANGED: Fixed typo "highliting" -->
+                </figcaption>
+            </figure>
 
-            <br>
-
-            <p><b>My thoughts:</b></p>
+            <h2>My Thoughts</h2>
             <p>
-                Making this feature in unreal engine was a fun challenge to do. I hadn't used c++ in ureal engine a lot before so it<br>
-                figuring out how to use it was very interesting and i learned a lot from it. 
+                Creating this feature in Unreal Engine was a fun challenge. I hadn't used C++ in Unreal Engine much before, so figuring out how to implement it was very interesting, and I learned a lot from the experience.
             </p>
+            <!-- CHANGED: Fixed incomplete sentence structure -->
 
-            <br>
+            <!-- CHANGED: Added rel security attribute -->
+            <p>
+                <a href="https://buas.itch.io/team-bludhaven" 
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                    Play Riverse on Itch.io
+                </a>
+            </p>
+            <!-- CHANGED: Better call-to-action text -->
 
-            <a href="https://buas.itch.io/team-bludhaven" target="_blank">Itch.io page of Riverse</a>
-
-            <!--Images-->
-
+            <!-- 
+            WHY: Additional visual content
+            WHAT: Absolutely positioned image (styled in CSS)
+            NOTE: Only shows on larger screens (hidden on mobile via CSS)
+            -->
             <div class="page-game rivi1">
-                <img src="Content/Images/M3LevelRiv.PNG" alt="T1">
+                <img src="Content/Images/M3LevelRiv.PNG" 
+                     alt="Riverse level 3 environment design"
+                     loading="lazy">
+                <!-- CHANGED: Better alt text -->
             </div>
 
         </div>
         <div class="border-bottom"></div>
-    </div>
+    </main>
 
 </body>
-
 </html>

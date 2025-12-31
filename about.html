@@ -6,17 +6,46 @@
     <link rel="stylesheet" href="styles.css"> <!-- Links to same CSS file -->
 </head>
 <body>
-    <!-- Swirls (optional, for consistency) -->
     <div class="swirl-line"></div>
     <div class="swirl-line"></div>
 
-    <!-- Navigation bar (copy from main page) -->
-    <nav>
-        <ul>
-            <li><a href="index.html">Projects</a></li>
+    <!-- KEPT: Secret easter egg -->
+    <div class="hover-image secret2">
+        <img src="Content/Images/ddslogo.png" alt="Hidden DDS logo easter egg">
+    </div>
+
+    <!-- CHANGED: Added social links for consistency -->
+    <nav class="main-nav" aria-label="Main navigation">
+        <ul class="nav-links">
+            <li><a href="index.html" aria-current="page">Projects</a></li>
+            <!-- CHANGED: href to index.html and added aria-current -->
             <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
+
+        <!-- 
+        WHY: Social media links for external profiles
+        WHAT: Icon links to LinkedIn and Itch.io
+        CHANGED: Added aria-label and rel security
+        -->
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/yourprofile" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="social-icon"
+               aria-label="LinkedIn Profile">
+                <img src="Content/Images/linkedin-icon.png" alt="LinkedIn">
+                <!-- CHANGED: Use actual LinkedIn icon -->
+            </a>
+            <a href="https://yourname.itch.io" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="social-icon"
+               aria-label="Itch.io Profile">
+                <img src="Content/Images/itchio-icon.png" alt="Itch.io">
+                <!-- CHANGED: Use actual Itch.io icon -->
+            </a>
+        </div>
     </nav>
 
     <!-- Big header title -->

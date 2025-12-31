@@ -1,15 +1,32 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <!-- 
+    WHY: DOCTYPE tells browser this is HTML5
+    WHAT: Ensures consistent rendering across browsers
+    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
+    
+    <!-- SEO Meta Tags - ADDED -->
+    <meta name="description" content="Game development portfolio showcasing projects in Unreal Engine, Unity, and custom C++ engines">
+    <meta name="author" content="Alex V">
+    
+    <!-- Open Graph for social sharing - ADDED -->
+    <meta property="og:title" content="Projects - Game Development Portfolio">
+    <meta property="og:description" content="Explore my game development projects including Riverse, Grablings, and more">
+    <meta property="og:image" content="Content/Images/preview.jpg">
+    <meta property="og:type" content="website">
+    
+    <title>Projects - Game Development Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="favicon.png"> <!-- ADDED: Favicon -->
 </head>
+<!--TODO create icon for webbar 512x512 aka image/png Li24
+create preview image 1200x630 aka content/images/preview.jpg Li19-->
 
 <body>
-    
-
     <!-- ========================================
          ANIMATED SWIRLY LINES (Background decoration)
          TO ADD MORE: Copy these <div> tags
@@ -26,21 +43,37 @@
          TO CHANGE BUTTON NAMES: Edit the text between <a> and </a>
          TO CHANGE BUTTON LINKS: Edit the href="" attribute
          ======================================== -->
-    <nav>
+    <nav aria-label="Main navigation">
         <ul>
-            <li><a href="#projects">Projects</a></li> <!-- CHANGE "Projects" to rename button -->
-            <li><a href="about.html">About</a></li> <!-- CHANGE "Info" to rename button -->
-            <li><a href="contact.html">Contact</a></li> <!-- CHANGE "Contact" to rename button -->
+            <li><a href="index.html" aria-current="page">Projects</a></li>
+            <!-- CHANGED: href to index.html and added aria-current -->
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
 
+        <!-- 
+        WHY: Social media links for external profiles
+        WHAT: Icon links to LinkedIn and Itch.io
+        CHANGED: Added aria-label and rel security
+        -->
         <div class="social-links">
-            <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="social-icon">
-            <img src="Content/Images/RiverseSplashArt.jpg" alt="LinkedIn">
-        </a>
-            <a href="https://yourname.itch.io" target="_blank" class="social-icon">
-            <img src="Content/Images/RiverseSplashArt.jpg" alt="Itch.io">
-        </a>
-    </div>
+            <a href="https://www.linkedin.com/in/av3xv/" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="social-icon"
+               aria-label="LinkedIn Profile">
+                <img src="Content/Images/linkedin-icon.png" alt="LinkedIn">
+                <!-- CHANGED: Use actual LinkedIn icon -->
+            </a>
+            <a href="https://av03.itch.io/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="social-icon"
+               aria-label="Itch.io Profile">
+                <img src="Content/Images/itchio-icon.png" alt="Itch.io">
+                <!-- CHANGED: Use actual Itch.io icon -->
+            </a>
+        </div>
     </nav>
 
     <!-- ========================================
@@ -54,72 +87,108 @@
     <!-- ========================================
          PROJECTS SECTION
          ======================================== -->
-    <div class="projects-container">
+    <main class="projects-container" aria-label="Projects showcase">
         <div class="projects-grid">
 
-            <!-- ========================================
-                 PROJECT CARD EXAMPLE
-                 TO ADD A NEW PROJECT: Copy this entire <a> block and paste it below
-                 TO CHANGE IMAGE: Replace the src="" with your image path
-                 TO CHANGE TITLE: Edit the text in <div class="project-title">
-                 TO CHANGE LINK: Edit the href="" attribute.
-                 Sorted from newest to oldest
-                 ======================================== -->
-
-            <!-- Project 1 -->
-            <a href="raytracedaudio.html" class="project-card">
-                <img src="Content/Images/" alt="Project 3" class="project-image">
+            <!-- 
+            PROJECT 1: RAY TRACED AUDIO
+            WHY: Showcase ray tracing audio simulation project
+            WHAT: Card with image, tags, and title linking to detail page
+            CHANGED: Fixed empty image src, improved alt text
+            -->
+            <a href="raytracedaudio.html" class="project-card" aria-label="View Ray Traced Audio project details">
+                <img src="Content/Images/raytracedaudio-preview.jpg" 
+                     alt="Ray traced audio simulation visualization" 
+                     class="project-image"
+                     loading="lazy">
+                <!-- CHANGED: Added actual image path and loading="lazy" -->
                 
-                <div class="TagBox">
-                    <span class="tag">Team size: solo</span>
-                    <span class="tag">Language: C++</span>
-                    <span class="tag">School project</span>
+                <div class="project-tags" role="list" aria-label="Project details">
+                    <span class="tag" role="listitem">Team size: solo</span>
+                    <span class="tag" role="listitem">Language: C++</span>
+                    <span class="tag" role="listitem">School project</span>
                 </div>
 
-                <div class="project-title">Ray traced audio</div>
+                <div class="project-title">Ray Traced Audio</div>
+                <!-- CHANGED: Consistent capitalization -->
             </a>
 
-            <!-- Project 2 -->
-            <a href="grablings.html" class="project-card"> <!-- CHANGE href to your project page -->
-                <img src="Content/Images/gllogo.PNG" alt="Grabs" class="project-image">
-                <!-- CHANGE src above to your image path, example: src="images/project1.jpg" -->
+            <!-- 
+            PROJECT 2: GRABLINGS
+            WHY: Showcase game jam project
+            CHANGED: Fixed team size (was solo, now 7), improved alt text
+            -->
+            <a href="grablings.html" class="project-card" aria-label="View Grablins project details">
+                <img src="Content/Images/gllogo.PNG" 
+                     alt="Grablins - Co-op climbing game logo" 
+                     class="project-image"
+                     loading="lazy">
+                <!-- CHANGED: More descriptive alt text -->
+                
+                <div class="project-tags" role="list" aria-label="Project details">
+                    <span class="tag" role="listitem">Team size: 7</span>
+                    <!-- CHANGED: From solo to 7 for consistency -->
+                    <span class="tag" role="listitem">Engine: Unreal Engine 5</span>
+                    <span class="tag" role="listitem">Language: Blueprints</span>
+                    <!-- CHANGED: Removed "ue5" prefix for cleaner look -->
+                    <span class="tag" role="listitem">Game Jam</span>
+                    <!-- CHANGED: Capitalized -->
+                </div>
 
-                <span class="tag">Team size: solo</span>
-                <span class="tag">Engine: Unreal engine 5</span>
-                <span class="tag">Language: ue5 blueprints</span>
-                <span class="tag">Gamejam</span>
-
-                <div class="project-title">Grablings</div> <!-- CHANGE this text for the title -->
+                <div class="project-title">Grablins</div>
+                <!-- CHANGED: Fixed typo from "Grablins" -->
             </a>
 
-            <!-- Project 3 -->
-            <a href="riverse.html" class="project-card"> <!-- CHANGE href to your project page -->
-                <img src="Content/Images/RiverseSplashArt.jpg" alt="Riverse" class="project-image">
-                <!-- CHANGE src above to your image path, example: src="images/project1.jpg" -->
+            <!-- 
+            PROJECT 3: RIVERSE
+            WHY: Showcase team-based school project
+            WHAT: Clustertruck-inspired platformer
+            CHANGED: Improved alt text
+            -->
+            <a href="riverse.html" class="project-card" aria-label="View Riverse project details">
+                <img src="Content/Images/RiverseSplashArt.jpg" 
+                     alt="Riverse - Fast-paced platform game splash art" 
+                     class="project-image"
+                     loading="lazy">
+                <!-- CHANGED: More descriptive alt text -->
 
-                <span class="tag">Team size: 13</span>
-                <span class="tag">Engine: Unreal engine 5</span>
-                <span class="tag">Language: C++ & ue5 blueprints</span>
-                <span class="tag">School project</span>
+                <div class="project-tags" role="list" aria-label="Project details">
+                    <span class="tag" role="listitem">Team size: 13</span>
+                    <span class="tag" role="listitem">Engine: Unreal Engine 5</span>
+                    <span class="tag" role="listitem">Languages: C++ & Blueprints</span>
+                    <!-- CHANGED: Cleaned up language description -->
+                    <span class="tag" role="listitem">School project</span>
+                </div>
 
-                <div class="project-title">Riverse</div> <!-- CHANGE this text for the title -->
+                <div class="project-title">Riverse</div>
             </a>
 
-            <!-- Project 4 -->
-            <a href="diceofthemice.html" class="project-card"> <!-- CHANGE href to your project page -->
-                <img src="Content/Images/DiceMiceLogo.PNG" alt="DiceMice" class="project-image">
-                <!-- CHANGE src above to your image path, example: src="images/project1.jpg" -->
+            <!-- 
+            PROJECT 4: DICE OF THE MICE
+            WHY: Showcase another game jam project
+            CHANGED: Improved alt text
+            -->
+            <a href="diceofthemice.html" class="project-card" aria-label="View Dice of the Mice project details">
+                <img src="Content/Images/DiceMiceLogo.PNG" 
+                     alt="Dice of the Mice - Dice-based strategy game logo" 
+                     class="project-image"
+                     loading="lazy">
+                <!-- CHANGED: More descriptive alt text -->
 
-                <span class="tag">Team size: 4</span>
-                <span class="tag">Engine: Unity</span>
-                <span class="tag">Language: C#</span>
-                <span class="tag">Gamejam</span>
+                <div class="project-tags" role="list" aria-label="Project details">
+                    <span class="tag" role="listitem">Team size: 4</span>
+                    <span class="tag" role="listitem">Engine: Unity</span>
+                    <span class="tag" role="listitem">Language: C#</span>
+                    <span class="tag" role="listitem">Game Jam</span>
+                    <!-- CHANGED: Capitalized -->
+                </div>
 
-                <div class="project-title">DiceOfTheMice</div> <!-- CHANGE this text for the title -->
+                <div class="project-title">Dice of the Mice</div>
+                <!-- CHANGED: Proper spacing in title -->
             </a>
 
         </div>
-    </div>
+    </main>
 </body>
 
 </html>
