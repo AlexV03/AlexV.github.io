@@ -21,7 +21,7 @@
     --gap-lg: 2rem;
     
     /* Z-index scale - WHY: Prevents z-index chaos */
-    --z-background: 1;
+    --z-background: 0;
     --z-content: 10;
     --z-nav: 100;
     --z-border-mask: 98;
@@ -183,8 +183,8 @@ body {
 
 .social-icon {
     display: block;
-    width: 30px; /* CHANGE: Icon size */
-    height: 30px;
+    width: 35px; /* CHANGE: Icon size */
+    height: 35px;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
@@ -712,7 +712,7 @@ details[open] summary::before {
 .content-border::before {
     content: '';
     position: fixed;
-    top: 50px; /* Below nav bar, adjust as needed */
+    top: 60px; /* Below nav bar, adjust as needed */
     left: 50%;
     transform: translateX(-50%);
     width: 105%; /* Or 1200px to match border */
@@ -723,7 +723,7 @@ details[open] summary::before {
 
 .border-top {
     position: fixed;
-    top: 80px;
+    top: 90px;
     left: 50%;
     transform: translateX(-50%);
     width: var(--max-width-content);
