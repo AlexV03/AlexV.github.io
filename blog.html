@@ -13,13 +13,12 @@
     <meta property="og:description" content="Blogs about projects">
     <meta property="og:image" content="Content/Images/gllogo.PNG">
     
+    <link href="Content/highlight/styles/atom-one-dark.min.css" rel="stylesheet" />
+    
     <title>Blog page</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="favicon.png">
 </head>
-
-
-<!--TURN INTO BLOG LINK-->
 
 <body>
     <div class="swirl-line"></div>
@@ -56,26 +55,329 @@
         </div>
     </nav>
 
-    <p>
-        I really enjoyed participating in this game jam and had a lot of fun brainstorming what kind of game we could make and then creating it. I had a talented and great team, and I think we made a fun little local co-op game in the time we had.
-    </p>
-    
-    <h2>Connect</h2>
-        <p>
-            <a href="https://www.linkedin.com/in/av3xv/" 
-                target="_blank" 
-                rel="noopener noreferrer">
-                Linkedin
-            </a>
+    <!-- 
+    CHANGED: Removed commented code, kept image version
+    WHY: Cleaner code, image title is more visually interesting
+    -->
+    <div class="page-header">
+        <h1>Ray traced audio</h1> <!-- CHANGE this text for your title -->
+    </div>
+
+    <!-- CHANGED: div to main for semantic HTML -->
+    <main class="content-border">
+        <div class="border-top"></div>
+        <div class="border-content">
+
+            <!-- 
+            CHANGED: <b> to <h2> for semantic headings
+            WHY: Better SEO, accessibility, and document structure
+            -->
+            <h3>About</h3>
+            <p>
+                I will be talking about my implementation of ray traced audio in c++. This is my second year project at BUAS.
+                We had to choose a topic and i found audio a interesting topic. I saw a video about someone implementing
+                ray traced audio in his own engine and i started looking and couldnt find much about ray traced audio,
+                i found it a nice experience and challenge to try it out.
+            </p>
+
+            <figure class="content-row">
+                <div class="project-info-box">
+            
+                <img src="Content/Images/wav-sound-format.png" 
+                     alt="Riverse level 3 environment design"
+                     loading="lazy">
+                </div>
+
+                <figcaption class="text-beside">
+                    <h3>The audio file</h3>
+                    <!-- CHANGED: <b> to <h3> -->
+                    <p>
+                        ...wab
+                    </p>
+                </figcaption>
+            </figure>
+
+            <figure class="content-row">
+                <div class="page-game rivv1">
+                    <video controls width="400" preload="metadata" aria-label="Panning">
+                        <source src="Content/Videos/Panning.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <figcaption class="text-beside">
+                    <h3>Panning</h3>
+                    <p>
+                        ...
+                    </p>
+                </figcaption>
+            </figure>
+
+            <details open>
+                <summary></summary>
+                <pre><code class="language-cpp">
+DSP: echo, reverb + reverb zone, attenuation, panning, 
+                </code></pre>
+            </details>
+
+            <!-- 
+            WHY: Side-by-side video and explanation
+            WHAT: Flexbox layout with video left, text right
+            CHANGED: Added figure/figcaption for semantic HTML
+            -->
+            <figure class="content-row">
+                <div class="page-game rivv1">
+                    <video controls width="400" preload="metadata" aria-label="Objects rewind test demonstration">
+                        <source src="Content/Videos/DuckRewinds.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- CHANGED: Added preload, aria-label, fallback text -->
+                </div>
+
+                <figcaption class="text-beside">
+                    <h3>Occlusion</h3>
+                    <!-- CHANGED: <b> to <h3> -->
+                    <p>
+                        ...
+                    </p>
+                </figcaption>
+            </figure>
+
+            <figure class="content-row">
+                <div class="page-game rivv1">
+                    <video controls width="400" preload="metadata" aria-label="Objects rewind test demonstration">
+                        <source src="Content/Videos/DuckRewinds.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- CHANGED: Added preload, aria-label, fallback text -->
+                </div>
+
+                <figcaption class="text-beside">
+                    <h3>Reverb</h3>
+                    <!-- CHANGED: <b> to <h3> -->
+                    <p>
+                        ...
+                    </p>
+                </figcaption>
+            </figure>
+
+            <details open>
+                <summary></summary>
+                <pre><code class="language-cpp">
+DSP: echo, reverb + reverb zone, attenuation, panning, 
+                </code></pre>
+            </details>
+
+            <figure class="content-row">
+                <div class="page-game rivv1">
+                    <video controls width="400" preload="metadata" aria-label="Objects rewind test demonstration">
+                        <source src="Content/Videos/DuckRewinds.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- CHANGED: Added preload, aria-label, fallback text -->
+                </div>
+
+                <figcaption class="text-beside">
+                    <h3>Echo</h3>
+                    <!-- CHANGED: <b> to <h3> -->
+                    <p>
+                        ...
+                    </p>
+                </figcaption>
+            </figure>
+
+            <details open>
+                <summary></summary>
+                <pre><code class="language-cpp">
+void AudioEngine::CalculateEcho(AudioSourceComponent& _asc, float& _leftOut, float& _rightOut, float& _leftDry, float& _rightDry)
+{
+	float maxEchoLevel = 0.0f;
+
+	float delayInMS = (_asc.sRay->totalDistance * 1000) / 343;
+	delayInMS *= 6.0f;//temp
+	delayInMS = std::clamp(delayInMS, 30.0f, 5000.0f);//Clamp between 30 and 5000 MS
+
+	//Add return if MS is lower then certain threshold.
+
+	dSamples = static_cast<int>((delayInMS / 1000.0f) * 44100);
+	eBufSiz = dSamples * 2;
+
+	//Sometimes out of bounds: TODO find way to dynamically change it without itnerference of the function
+	//Also causes slight jitter/distortion when resizing. TODO: find how to fix
+	if (echoBuffer.size() != eBufSiz)
+	{
+		echoBuffer.resize(eBufSiz, 0.0f);
+		echoWritePos = 0;
+	}
+
+	//Echo
+	int readIdx = echoWritePos * 2;
+	float leftEcho = echoBuffer[readIdx];
+	float rightEcho = echoBuffer[readIdx + 1];
+
+	//Track maximum echo level to determine when tail is finished
+	float echoLevel = std::abs(leftEcho) + std::abs(rightEcho);
+	if (echoLevel > maxEchoLevel)
+		maxEchoLevel = echoLevel;
+
+	_leftOut = (_leftDry * DRY_MIX) + (leftEcho * WET_MIX);
+	_rightOut = (_rightDry * DRY_MIX) + (rightEcho * WET_MIX);
+
+	echoBuffer[readIdx] = echoDecay * (leftEcho + _leftDry);
+	echoBuffer[readIdx + 1] = echoDecay * (rightEcho + _rightDry);
+
+	echoWritePos = (echoWritePos + 1) % dSamples;
+
+	//if echo is below threshold stop audio
+	if (maxEchoLevel < ECHO_SILENCE_THRESHOLD)
+		_asc.hasEchoTail = false;
+}
+                </code></pre>
+            </details>
+
+            <figure class="content-row">
+                <div class="page-game rivv1">
+                    <video controls width="400" preload="metadata" aria-label="Objects rewind test demonstration">
+                        <source src="Content/Videos/DuckRewinds.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- CHANGED: Added preload, aria-label, fallback text -->
+                </div>
+
+                <figcaption class="text-beside">
+                    <h3>Ray tracing</h3>
+                    <!-- CHANGED: <b> to <h3> -->
+                    <p>
+                        ...
+                    </p>
+                </figcaption>
+            </figure>
+
+            <details open>
+                <summary></summary>
+                <pre><code class="language-cpp">
+void AudioSourceSystem::Update()
+{
+	if (audioManager->HasListener())
+	{
+		glm::vec3 listenerPosition = audioManager->GetListener().position;
+
+		for (auto& [id, source] : audioManager->GetAudioSources())
+		{
+			if (source.state == AudioState::Playing)
+			{
+				SoundRay sRay(glm::vec3(0.0f), glm::vec3(0.0f), 0.0f);
+				float invNumRays = 1.0f / source.rayAmount;
+
+				for (int i = 0; i < source.rayAmount; i++)
+				{
+					SoundRay ray(source.position, CalculateFibonacciSphere(source.rayAmount, i, 1.0f), 0.0f);
+
+					float lr = audioManager->GetListener().listenerRadius;
+					Trace(ray, 0, listenerPosition, lr);
+
+					if (ray.reachedListener)
+					{
+						sRay.energy += ray.energy;
+						sRay.lowFrequency += ray.lowFrequency;
+						sRay.midFrequency += ray.midFrequency;
+						sRay.highFrequency += ray.highFrequency;
+						sRay.totalDistance += ray.totalDistance;
+					}
+				}
+
+				sRay.energy *= invNumRays;
+				sRay.lowFrequency *= invNumRays;
+				sRay.midFrequency *= invNumRays;
+				sRay.highFrequency *= invNumRays;
+				sRay.totalDistance *= invNumRays;
+				source.sRay = new SoundRay(sRay);
+			}
+		}
+	}
+}
+
+void AudioSourceSystem::Trace(SoundRay& _sRay, int _depth, const glm::vec3& _listenerPos, const float& _listenerRadius)
+{
+	if (_depth == _sRay.reflectAmount || _sRay.energy < 0.2f)//Make variable of 0.2(its energy threshold when to end ray)
+		return;
+	tinybvh::bvhvec3 bvhO(_sRay.origin.x, _sRay.origin.y, _sRay.origin.z);
+	tinybvh::bvhvec3 bvhD(_sRay.direction.x, _sRay.direction.y, _sRay.direction.z);
+	tinybvh::Ray tbRay(bvhO, bvhD, _sRay.distance);
+	tbRay.hit.t = 1e30f;
+	bvh.Intersect(tbRay);
+
+	if (tbRay.hit.t > 100000.0f)
+	{
+		_sRay.distance = tbRay.hit.t;
+	}
+	int primIdx = tbRay.hit.prim;
+	int objIDx = GetIDFromTriangleIdx(primIdx);
+
+	//Loop through all objects with meshTag to check their unique ID. Probably better way to do this. For it's fine.
+	for (auto& aMesh : audioManager->GetAudioMeshes())
+	{
+		if (objIDx == aMesh.meshTag.ID)
+		{
+
+		}
+	}
+
+	_sRay.distance = tbRay.hit.t;
+	_sRay.totalDistance += tbRay.hit.t;
+
+	glm::vec3 prevIntersectionPoint = _sRay.origin;
+	glm::vec3 intersectionPoint = _sRay.origin + _sRay.distance * _sRay.direction;
+	pointss.push_back(intersectionPoint);
+	float ilDis = glm::distance(GetNearestPointOnLineSegment(_listenerPos, intersectionPoint, prevIntersectionPoint), _listenerPos);
+	if (ilDis < _listenerRadius)//Check if ray has hit player
+	{
+		_sRay.reachedListener = true;
+		return;
+	}
+
+	//Calculate reflection
+	glm::vec3 reflection = _sRay.direction - 2.0f * normals[primIdx] * glm::dot(_sRay.direction, normals[primIdx]);
+
+	_sRay.origin = intersectionPoint + reflection * EPSILON;
+	_sRay.direction = reflection;
+
+	Trace(_sRay, _depth + 1, _listenerPos, _listenerRadius);
+}
+                </code></pre>
+            </details>
+
+            <h3>Conclusion</h3>
+            <p>
+                Creating this feature in Unreal Engined a lot from the experience.
+                https://en.wikipedia.org/wiki/WAV
+            </p>
 
             <br>
 
-            <a href="https://av03.itch.io/" 
-                target="_blank" 
-                rel="noopener noreferrer">
-                Itch.io
-            </a>
-        </p>
+            <h4>References</h4>
+            <p>
+                https://en.wikipedia.org/wiki/WAV
+                http://soundfile.sapp.org/doc/WaveFormat/
+            </p>
 
+            <!-- 
+            WHY: Additional visual content
+            WHAT: Absolutely positioned image (styled in CSS)
+            NOTE: Only shows on larger screens (hidden on mobile via CSS)
+            IMAGES DONT RESIZE WITH SCREEMN!!!!!!!!!!
+            -->
+            <!-- <div class="page-game rivi1"> -->
+                <!-- <img src="Content/Images/M3LevelRiv.PNG"  -->
+                     <!-- alt="Riverse level 3 environment design" -->
+                     <!-- loading="lazy"> -->
+                <!-- CHANGED: Better alt text -->
+            <!-- </div> -->
+
+        </div>
+        <div class="border-bottom"></div>
+    </main>
+    <script src="Content/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 </body>
 </html>

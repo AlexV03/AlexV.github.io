@@ -249,6 +249,13 @@ h3 {
     margin-bottom: 0.75rem;
 }
 
+h4 {
+    font-size: 1rem;
+    color: var(--accent-orange);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
 p {
     margin-bottom: 1rem; /* ADDED: Consistent paragraph spacing */
     max-width: 800px; /* ADDED: Optimal reading width */
@@ -275,8 +282,8 @@ video {
 }
 
 code {
-    background-color: var(--bg-secondary);
-    color: var(--accent-orange);
+    /* background-color: var(--bg-secondary); */
+    /* color: var(--accent-orange); */
     padding: 2px 6px;
     border-radius: 4px;
     font-family: 'Courier New', monospace;
@@ -285,7 +292,8 @@ code {
 
 pre {
     background-color: var(--bg-secondary);
-    color: var(--text-light);
+    /* color: var(--text-light); */
+    color: inherit;
     padding: 1rem;
     border-radius: var(--border-radius);
     overflow-x: auto;
@@ -299,6 +307,7 @@ pre {
 pre code {
     background-color: transparent; /* Removes the code background inside pre (prevents double background) */
     padding: 0;
+    color: inherit;
 }
 
 details {
@@ -337,7 +346,7 @@ details[open] summary::before {
 .content-row {
     display: flex;
     gap: var(--gap-lg); /* Space between video and text */
-    align-items: flex-start; /* Align to top */
+    /* align-items: center; Align to top */
     margin: 2rem 0;
     flex-wrap: wrap;
 }
@@ -490,6 +499,22 @@ details[open] summary::before {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
+}
+
+/* ========================================
+           RAY TRACED AUDIO BLOG IMAGES
+           ======================================== */
+
+.raybi1 {
+    position: absolute;
+    left: 50%; /*Center of screen*/
+    transform: translateX(-50%); /*Shift back by half of image width*/
+    top: 0px;
+    margin-left: 300px; /*Offset*/
+}
+.raybi1 img {
+    max-width: 400px; /* Overrides max-width from the parent */
+    width: 100%;
 }
 
 /* ========================================
