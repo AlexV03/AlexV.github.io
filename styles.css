@@ -363,7 +363,7 @@ details[open] summary::before {
 .grai1 {
     position: absolute;
     left: 50%; /*Center of screen*/
-    transform: translateX(-50%); /*Shift back by half of image width*/
+    transform: translateX(-25%); /*Shift back by half of image width*/
     top: 0px;
     margin-left: 350px; /*Offset*/
 }
@@ -375,7 +375,7 @@ details[open] summary::before {
 .grai2 {
     position: absolute;
     left: 50%; /*Center of screen*/
-    transform: translateX(-50%); /*Shift back by half of image width*/
+    transform: translateX(-25%); /*Shift back by half of image width*/
     top: 350px;
     margin-left: 350px; /*Offset*/
 }
@@ -388,7 +388,7 @@ details[open] summary::before {
     position: absolute;
     left: 50%; /*Center of screen*/
     transform: translateX(10%); /*Shift back by half of image width*/
-    top: 760px;
+    top: 730px;
     margin-left: -180px; /*Offset*/
 }
 
@@ -401,11 +401,37 @@ details[open] summary::before {
     position: absolute;
     left: 50%; /*Center of screen*/
     transform: translateX(-30%); /*Shift back by half of image width*/
-    top: 860px;
+    top: 830px;
     margin-left: 180px; /*Offset*/
 }
 
 .grai4 img {
+    max-width: 1000px; /* ADDED: Consistent sizing */
+    width: 120%;
+}
+
+.grai5 {
+    position: absolute;
+    left: 50%; /*Center of screen*/
+    transform: translateX(-180%); /*Shift back by half of image width*/
+    top: 790px;
+    margin-left: 180px; /*Offset*/
+}
+
+.grai5 img {
+    max-width: 1000px; /* ADDED: Consistent sizing */
+    width: 100%;
+}
+
+.grai6 {
+    position: absolute;
+    left: 50%; /*Center of screen*/
+    transform: translateX(-30%); /*Shift back by half of image width*/
+    top: 985px;
+    margin-left: 180px; /*Offset*/
+}
+
+.grai6 img {
     max-width: 1000px; /* ADDED: Consistent sizing */
     width: 120%;
 }
@@ -514,6 +540,18 @@ details[open] summary::before {
 }
 .raybi1 img {
     max-width: 400px; /* Overrides max-width from the parent */
+    width: 100%;
+}
+
+.raybi2 {
+    position: absolute;
+    left: 40%; /*Center of screen*/
+    transform: translateX(-10%); /*Shift back by half of image width*/
+    top: -90px;
+    margin-left: 350px; /*Offset*/
+}
+.raybi2 img {
+    max-width: 700px; /* Overrides max-width from the parent */
     width: 100%;
 }
 
@@ -778,7 +816,7 @@ details[open] summary::before {
 /* Bottom border - FIXED at bottom of viewport */
 .border-bottom {
     position: fixed; /* CHANGE: Make it fixed */
-    bottom: 21px; /* CHANGE: Stick to bottom */
+    bottom: 7px; /* CHANGE: Stick to bottom */
     left: 50%;
     transform: translateX(-50%);
     width: var(--max-width-content);

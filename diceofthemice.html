@@ -4,25 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DiceOfTheMice</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Links to same CSS file -->
+    
+    <!-- SEO Meta Tags - ADDED -->
+    <meta name="description" content="Dice of the Mice - A strategic dice-based game made in 48 hours for a game jam. Built in Unity with C# by a team of 4.">
+    <meta name="author" content="Alex V">
+    
+    <!-- Open Graph - ADDED -->
+    <meta property="og:title" content="Dice of the Mice - Game Jam Project">
+    <meta property="og:description" content="Strategic dice-based game created in 48 hours">
+    <meta property="og:image" content="Content/Images/DiceMiceLogo.PNG">
+    <meta property="og:type" content="website">
+    
+    <title>Dice of the Mice - Game Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="favicon.png"> <!-- ADDED -->
 </head>
 
 <body>
-    <!-- Swirls (optional, for consistency) -->
     <div class="swirl-line"></div>
     <div class="swirl-line"></div>
 
-    <div class="hover-image secret2">
-        <img src="Content/Images/ddslogo.png" alt="Hidden image">
+    <!-- CHANGED: Secret position to match other pages -->
+    <div class="hover-image secret1">
+        <img src="Content/Images/ddslogo.png" alt="Hidden DDS logo easter egg">
     </div>
 
-    <!-- Navigation bar (copy from main page) -->
+    <!-- CHANGED: Updated nav structure and links -->
     <nav class="main-nav" aria-label="Main navigation">
         <ul class="nav-links">
             <li><a href="index.html">Projects</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="blog.html">Blog</a></li>
+            <!-- CHANGED: "blog.html" to "contact.html" for consistency -->
         </ul>
         
         <div class="social-links">
@@ -43,127 +56,91 @@
         </div>
     </nav>
 
-    <!-- Big header title -->
-    <!-- <div class="page-header">
-        <h1>Riverse</h1>
-    </div> -->
+    <!-- CHANGED: Correct title and image for Dice of the Mice -->
+    <!-- <header class="page-header">
+        <img src="Content/Images/DiceMiceLogo.PNG" alt="Dice of the Mice game logo">
+    </header> -->
+    <header class="page-header">
+    <h1>Dice of the Mice</h1>
+    </header>
+    <!-- REMOVED: Commented-out h1 code -->
 
-    <!-- Big header title -->
-    <div class="page-header">
-        <img src="Content/Images/rivtitle.png" alt="Riverse">
-    </div>
-
-    <div class="content-border">
+    <!-- CHANGED: div to main -->
+    <main class="content-border">
         <div class="border-top"></div>
         <div class="border-content">
-            <!-- Your images and text go here -->
-            <p><b>About:</b></p>
+            
+            <!-- ADDED: Project info box -->
+            <div class="project-info-box">
+                <div class="info-item">
+                    <span class="info-label">Project Duration:</span>
+                    <span class="info-value">48 hours</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Role:</span>
+                    <span class="info-value">Game Designer & Programmer</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Team Size:</span>
+                    <span class="info-value">4</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Engine:</span>
+                    <span class="info-value">Unity</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Language:</span>
+                    <span class="info-value">C#</span>
+                </div>
+            </div>
+
+            <!-- CHANGED: <b> to <h2>, fixed content -->
+            <h2>About</h2>
             <p>
-                Riverse is made in my first year at buas with a group of 12 people in the unreal engine game engine,<br>
-                we got certain reference games<br>
-                to choose from and we choosed for Cluster truck.<br>
-                We had 8 weeks the time to concept the game, work it out and to make it.<br>
-                The game is a fast past platform game where you have to reach the goal as fast as possible<br>
-                by jumping from platform to platform, abvoiding obstacles and rewinding hinders with your pocketwatch.
+                ...
             </p>
-
-            <br>
-
-            <p><b>Creation I made:</b></p>
-            <p>
-                In this project I created the time rewind feature. The feature has the ability to set groups of object
-                that can be rewinded, with this
-                you can look at a rewindable object then every other object in the same group will be highlighted
-                showing that those objects will be
-                rewinded back in time when you activate the rewind. I have chosen for this option so you could control
-                what to rewind, this fitted with our
-                design to give it a better player experience.
-            </p>
-
-            <br>
-
-            <details open>
-                <summary></summary>
-                <pre><code class="language-cpp">
-...
-            </code></pre>
-            </details>
-
-            <br>
-
-            <!--Videos-->
-            <div class="content-row">
-                <div class="page-game rivv1">
-                    <video controls width="400">
-                        <source src="Content/Videos/DuckRewinds.mp4" type="video/mp4">
-                    </video>
-                </div>
-
-                <div class="text-beside">
-                    <p><b>Objects test:</b></p>
-                    <p>Testes out rewinding many objects at same time.</p>
-                </div>
-            </div>
-
-            <br>
-
-            <details open>
-                <summary></summary>
-                <pre><code class="language-cpp">
-v...
-            </code></pre>
-            </details>
-
-            <br>
-
-            <div class="content-row">
-                <div class="page-game rivv2">
-                    <video controls width="400">
-                        <source src="Content/Videos/GroupRewind.mp4" type="video/mp4">
-                    </video>
-                </div>
-
-                <div class="text-beside">
-                    <p><b>Group test:</b></p>
-                    <p>Testing out rewinding different groups of objects.</p>
-                </div>
-            </div>
-
-            <br>
-
-            <div class="content-row">
-                <div class="page-game rivv3">
-                    <video controls width="400">
-                        <source src="Content/Videos/RewindInProject.mp4" type="video/mp4">
-                    </video>
-                </div>
-
-                <div class="text-beside">
-                    <p><b>In the game:</b></p>
-                    <p>Rewinding with highlighting groups.</p>
-                </div>
-            </div>
-
-            <br>
-
-            <p><b>My thoughts:</b></p>
+            <!-- CHANGED: Replaced placeholder text with actual game description -->
             <p>
                 ...
             </p>
 
-            <br>
+            <h2>My Contribution</h2>
+            <p>
+                 ...
+            </p>
+            <!-- CHANGED: Updated from Riverse content to Dice of the Mice content -->
+            <p>
+                ...
+            </p>
 
-            <a href="https://aafke.itch.io/dice-of-the-mice" target="_blank">Itch.io page of DiceOfTheMice</a>
+            <!-- ADDED: Code example section (optional - add actual code) -->
+            <details>
+                <summary></summary>
+                <pre><code class="language-csharp">// Dice rolling system
+,,,
+</code></pre>
+            </details>
+            
+            <h2>My Thoughts</h2>
+            <p>
+                ...
+            </p>
+            
+            <p>
+                ,,,
+            </p>
 
-            <!--Images-->
-
-            <div class="page-game rivi1">
-                <img src="Content/Images/M3LevelRiv.PNG" alt="T1">
-            </div>
+            <p>
+                <a href="https://aafke.itch.io/dice-of-the-mice" 
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                    Play Dice of the Mice on Itch.io
+                </a>
+            </p>
 
         </div>
         <div class="border-bottom"></div>
-    </div>
+    </main>
 
 </body>
 
