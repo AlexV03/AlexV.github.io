@@ -3,15 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RayTracedAudio</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Links to same CSS file -->
+    
+    <!-- SEO Meta Tags - ADDED -->
+    <meta name="description" content="My blogs">
+    <meta name="author" content="Alex V">
+    
+    <!-- Open Graph - ADDED -->
+    <meta property="og:title" content="Blogs">
+    <meta property="og:description" content="Blogs about projects">
+    <meta property="og:image" content="Content/Images/gllogo.PNG">
+    
+    <link href="Content/highlight/styles/atom-one-dark.min.css" rel="stylesheet" />
+    
+    <title>Blog page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
+
 <body>
-    <!-- Swirls (optional, for consistency) -->
     <div class="swirl-line"></div>
     <div class="swirl-line"></div>
 
-    <!-- Navigation bar (copy from main page) -->
+    <!-- ADDED: Secret easter egg for consistency -->
+    <div class="hover-image secret3">
+        <img src="Content/Images/ddslogo.png" alt="Hidden DDS logo easter egg">
+    </div>
+
+    <!-- CHANGED: Added social links -->
     <nav class="main-nav" aria-label="Main navigation">
         <ul class="nav-links">
             <li><a href="index.html">Projects</a></li>
@@ -37,52 +55,431 @@
         </div>
     </nav>
 
-    <!-- Big header title -->
+    <!-- 
+    CHANGED: Removed commented code, kept image version
+    WHY: Cleaner code, image title is more visually interesting
+    -->
     <div class="page-header">
-        <img src="Content/Images/grablingstitle.png" alt="Grablings">
+        <h1>Ray traced audio</h1> <!-- CHANGE this text for your title -->
     </div>
 
-    <div class="content-border">
+    <!-- CHANGED: div to main for semantic HTML -->
+    <main class="content-border">
         <div class="border-top"></div>
         <div class="border-content">
-            <!-- Your images and text go here -->
-            <p><b>About:</b></p>
-            <p>...
+            <!-- 
+            CHANGED: <b> to <h2> for semantic headings
+            WHY: Better SEO, accessibility, and document structure
+            -->
+            <h3>About</h3>
+            <p>
+                I will be talking about my implementation of ray traced audio in c++. This is my second year project at BUAS.
+                We had to choose a topic and i found audio a interesting topic. I saw a video about someone implementing
+                ray traced audio in his own engine and i started looking and couldnt find much about ray traced audio,
+                so i thought i will give it a try and have nice experience and challenge.
+            </p>
+
+            <figure class="content-row">
+                <div class="project-info-box">
+            
+                <img src="Content/Images/wav-sound-format.png" 
+                     alt="Wav file format"
+                     loading="lazy">
+                </div>
+
+                <figcaption class="text-beside">
+                    <h3>The audio file</h3>
+                    <!-- CHANGED: <b> to <h3> -->
+                    <p>
+                        I will be using the WAV file for this project. I am using this because WAV files are uncompressed and with that easy to modify,
+                        without risking to lose quality. With the first part of the WAV file reader, We open the wav file by loading it in a hexadecimal format.
+                        and making the WAVE variables where the data will be stored.
+                    </p>
+
+                <pre><code class="language-cpp">
+std::ifstream wavfile(_filePath, std::ios::binary);
+
+if (wavfile.is_open())
+{
+	// Read the WAV header
+	char chunk_ID[4];              //  4  riff_mark[4];
+	uint32_t chunk_size;           //  4  file_size;
+	char format[4];                //  4  wave_str[4];
+
+	char sub_chunk1_ID[4];         //  4  fmt_str[4];
+	uint32_t sub_chunk1_size;      //  4  pcm_bit_num;
+	uint16_t audio_format;         //  2  pcm_encode;
+	uint16_t num_channels;         //  2  sound_channel;
+	uint32_t sample_rate;          //  4  pcm_sample_freq;
+	uint32_t byte_rate;            //  4  byte_freq;
+	uint16_t block_align;          //  2  block_align;
+	uint16_t bits_per_sample;      //  2  sample_bits;
+	char sub_chunk2_ID[4];		   //  4  data_str[4];
+	uint32_t sub_chunk2_size = 0;  //  4  sound_size;
+                </code></pre>
+
+                </figcaption>
+            </figure>
+
+            <p>
+                We can then read the wav file's chunk ID to check if the file is of type RIFF and then read the chunk_size that stores the size of the file
+                and format. And then we read the format that should store the name WAVE, we
+                can then check if it's a WAVE file. Together they check if the WAVE file is correct.
+            </p>
+
+                <pre><code class="language-cpp">
+wavfile.read(chunk_ID, 4);
+
+if (std::string(chunk_ID, 4) == "RIFF")
+{
+    wavfile.read(reinterpret_cast<char*>(&chunk_size), 4);
+    wavfile.read(reinterpret_cast<char*>(&format), 4);
+
+    if (std::string(format, 4) == "WAVE")
+                </code></pre>
+
+            <p>
+                When having read through the whole file we can then use sub_chunk2_size to get the number of samples to use later to resize the vector
+                to store the audio samples.
+            </p>
+
+            <pre><code class="language-cpp">
+std::vector<int16_t> audio_data(sub_chunk2_size / sizeof(int16_t));
+wavfile.read(reinterpret_cast<char*>(audio_data.data()), sub_chunk2_size);
+wavfile.close();  // Close audio file
+            </code></pre>
+
+            <figure class="content-row">
+                <div class="page-game rivv1">
+                    <video controls width="400" preload="metadata" aria-label="Panning">
+                        <source src="Content/Videos/Panning.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <figcaption class="text-beside">
+                    <h3>Stereo Panning</h3>
+                    <p>
+                        Stereo panning allowes the listener to determine of where a sound is coming from.
+                        For this I used a simple algorithm that calculates the direction and rotation between the listener and the audio source.
+                        This way it calculates a panning value thats between -1,0,1. -1 means sound is on your left 0 in the center 1 sound is coming from
+                        the right. this is being used to asjust the volume of the left and right channels, with this you create the effect that it is
+                        directional.
+                    </p>
+                </figcaption>
+            </figure>
+
+                <pre><code class="language-cpp">
+glm::vec3 dir = audiosourcePosition - listenerPosition;
+
+glm::vec3 norDir = glm::normalize(dir);
+glm::vec3 norRight = glm::normalize(glm::cross(listenerForward, glm::vec3(0, 1, 0)));
+
+float pan = glm::dot(norDir, norRight);
+
+float angle = (pan + 1.0f) * PIs * 0.25;
+_left = cosf(angle);
+_right = sinf(angle);
+                </code></pre>
+
+            <!-- 
+            WHY: Side-by-side video and explanation
+            WHAT: Flexbox layout with video left, text right
+            CHANGED: Added figure/figcaption for semantic HTML
+            -->
+            <figure class="content-row">
+                <div class="page-game rivv1">
+                    <video controls width="400" preload="metadata" aria-label="Occlusion of sound">
+                        <source src="Content/Videos/Occlusion.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- CHANGED: Added preload, aria-label, fallback text -->
+                </div>
+
+                <figcaption class="text-beside">
+                    <h3>Occlusion</h3>
+                    <!-- CHANGED: <b> to <h3> -->
+                    <p>
+                        ...
+                    </p>
+                </figcaption>
+            </figure>
+
+            <details open>
+                <summary></summary>
+                <pre><code class="language-cpp">
+DSP: echo, reverb + reverb zone, attenuation, panning, 
+                </code></pre>
+            </details>
+
+            <figure class="content-row">
+                <div class="page-game rivv1">
+                    <video controls width="400" preload="metadata" aria-label="Echo in sound">
+                        <source src="Content/Videos/Echo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- CHANGED: Added preload, aria-label, fallback text -->
+                </div>
+
+                <figcaption class="text-beside">
+                    <h3>Echo</h3>
+                    <!-- CHANGED: <b> to <h3> -->
+                    <p>
+                        ...
+                    </p>
+                </figcaption>
+            </figure>
+
+            <details open>
+                <summary></summary>
+                <pre><code class="language-cpp">
+void AudioEngine::CalculateEcho(AudioSourceComponent& _asc, float& _leftOut, float& _rightOut, float _leftDry, float _rightDry)
+{
+	float delayInMS = (_asc.sRay->totalDistance * 1000) / 343;//343 speed of sound in air 20 degrees
+
+	delayInMS = std::clamp(delayInMS, 30.0f, 5000.0f);//Clamp between 30 and 5000 MS
+
+	//Low pass filter for smoother changes
+	float smoothess = 0.85f;
+	_asc.currentDelay = smoothess * _asc.currentDelay + (1.0f - smoothess) * delayInMS;
+
+	//dSamples = static_cast<int>((delayInMS / 1000.0f) * 44100);
+	int tdSamples = static_cast<int>((_asc.currentDelay * 0.001f) * 44100);
+	int tBufSize = tdSamples * 2;
+
+	if (_asc.echoBuffer.empty() || _asc.echoBuffer.size() != tBufSize)
+	{
+		float sizeDif = std::abs(static_cast<int>(_asc.echoBuffer.size()) - tBufSize);
+		if (_asc.echoBuffer.empty() || sizeDif / _asc.echoBuffer.size() > 0.1f)//Resize if difference is more than 10%
+		{
+			_asc.echoBuffer.resize(tBufSize, 0.0f);
+			_asc.echoWritePos = 0;
+			_asc.echoDelaySamples = tdSamples;
+		}
+	}
+
+	if (_asc.echoBuffer.empty())
+	{
+		_leftOut = _leftDry;
+		_rightOut = _rightDry;
+		return;
+	}
+
+	//Echo
+	int readIdx = _asc.echoWritePos * 2;
+	float leftEcho = _asc.echoBuffer[readIdx];
+	float rightEcho = _asc.echoBuffer[readIdx + 1];
+
+	//Calculate echo decay
+	float decay = 0.4f;
+	float distance = glm::clamp(_asc.sRay->totalDistance * 0.01f, 0.0f, 1.0f);//0.01f is like sort of distance how big area is.
+	float echoDecay = decay * (1.0f - distance * 0.3f);
+
+	_leftOut = (_leftDry * DRY_MIX) + (leftEcho * WET_MIX);
+	_rightOut = (_rightDry * DRY_MIX) + (rightEcho * WET_MIX);
+
+	_asc.echoBuffer[readIdx] = _leftDry + (leftEcho * echoDecay);
+	_asc.echoBuffer[readIdx + 1] = _rightDry + (rightEcho * echoDecay);
+
+	_asc.echoWritePos = (_asc.echoWritePos + 1) % _asc.echoDelaySamples;
+
+	//if echo is below threshold stop audio
+	float totalEcho = std::abs(leftEcho) + std::abs(rightEcho);
+	if (totalEcho < ECHO_SILENCE_THRESHOLD)
+		_asc.hasEchoTail = false;
+}
+                </code></pre>
+            </details>
+
+            <details open>
+                <summary></summary>
+                <pre><code class="language-cpp">
+void AudioSourceSystem::Update()
+{
+	if (audioManager->HasListener())
+	{
+		glm::vec3 listenerPosition = audioManager->GetListener().position;
+
+		for (auto& [id, source] : audioManager->GetAudioSources())
+		{
+			if (source.state == AudioState::Playing)
+			{
+				SoundRay sRay(glm::vec3(0.0f), glm::vec3(0.0f), 0.0f);
+				float invNumRays = 1.0f / source.rayAmount;
+				int transAmount = 0;
+				bool occlued = false;
+				for (int i = 0; i < source.rayAmount; i++)
+				{
+					SoundRay ray(source.position, CalculateFibonacciSphere(source.rayAmount, i, 1.0f), 0.0f);
+					float lr = audioManager->GetListener().listenerRadius;
+					std::vector<SoundRay> transmittedRays;
+					Trace(ray, 0, listenerPosition, lr, transmittedRays, RayType::Original);
+
+					if (ray.reachedListener)
+					{
+						sRay.energy += ray.energy;
+						sRay.totalDistance += ray.totalDistance;
+						if (sRay.hasDirectPath)
+							occlued = true;
+					}
+
+					for (SoundRay& transRay : transmittedRays)
+					{
+						std::vector<SoundRay> nestedTrans;
+						Trace(transRay, 0, listenerPosition, lr, nestedTrans, RayType::Transmitted);
+						if (transRay.reachedListener)
+						{
+							if (!ray.reachedListener)
+							{
+								transAmount++;
+								sRay.energy += transRay.energy;
+							}
+							sRay.totalDistance += transRay.totalDistance;
+						}
+					}
+				}
+
+				glm::vec3 dirToListener = listenerPosition - source.position;
+				SoundRay occlusionRay(source.position, dirToListener, 0.0f);
+				OcclusionTrace(occlusionRay, listenerPosition, audioManager->GetListener().listenerRadius);
+
+				sRay.totalDistance *= invNumRays;
+
+				invNumRays = 1.0f / (source.rayAmount + transAmount);
+				sRay.energy *= invNumRays;
+				sRay.alpha = occlusionRay.alpha;
+				source.sRay = new SoundRay(sRay);
+			}
+		}
+	}
+}
+
+void AudioSourceSystem::Trace(SoundRay& _sRay, int _depth, const glm::vec3& _listenerPos, const float& _listenerRadius, std::vector<SoundRay>& transmittedRays, RayType _rt)
+{
+	if (_depth == _sRay.reflectAmount || _sRay.energy < 0.005f)
+		return;
+
+	//Create the tinybvh ray
+	tinybvh::bvhvec3 bvhO(_sRay.origin.x, _sRay.origin.y, _sRay.origin.z);
+	tinybvh::bvhvec3 bvhD(_sRay.direction.x, _sRay.direction.y, _sRay.direction.z);
+	tinybvh::Ray tbRay(bvhO, bvhD, _sRay.distance);
+	tbRay.hit.t = 500000;
+	if (audioManager->GetAudioMeshes().size() > 0)
+		tlas.Intersect(tbRay);
+
+	_sRay.distance = tbRay.hit.t;
+	_sRay.totalDistance += tbRay.hit.t;
+
+	//Calculate intersection point
+	glm::vec3 prevIntersectionPoint = _sRay.origin;
+	glm::vec3 intersectionPoint = _sRay.origin + _sRay.distance * _sRay.direction;
+
+	//Calculate distance from point on ray line and player position
+	glm::vec3 pointline = GetNearestPointOnLineSegment(_listenerPos, intersectionPoint, prevIntersectionPoint);
+	
+	float ilDis = glm::distance(pointline, _listenerPos);
+	if (ilDis < _listenerRadius)//Check if ray has hit player
+	{
+		_sRay.reachedListener = true;
+		if (_rt == RayType::Original)
+		{
+			if (_depth == 0)
+				_sRay.hasDirectPath = true;
+		}
+		return;
+	}
+
+	//Return if the ray nothing hits
+	if (tbRay.hit.t > 100000.0f)
+	{
+		_sRay.distance = tbRay.hit.t;
+		return;
+	}
+
+	//Get object ID from primitive index from tinyBVH
+	int primIdx = tbRay.hit.prim;
+	int objIdx = 0;
+	if (startEndTriangles.size() > 0)
+		objIdx = GetIDFromTriangleIdx(primIdx);
+
+	//Dot product inside outside
+	float dotP = glm::dot(_sRay.direction, normals[primIdx]);
+
+	//Hit from inside
+	if (dotP > 0)
+	{
+		_sRay.origin = intersectionPoint + _sRay.direction * EPSILON;//Inside distance == thickness
+		Trace(_sRay, _depth, _listenerPos, _listenerRadius, transmittedRays, _rt);
+		return;
+	}
+	else//Hit from outside
+	{
+		SoundMaterial soundM;
+
+		//Loop through all objects with meshTag to check their unique ID.
+		for (auto& aMesh : audioManager->GetAudioMeshes())//Make to array later maybe
+		{
+			if (objIdx == aMesh.meshTag.ID)
+			{
+				soundM = aMesh.soundMaterial;
+
+				if (_sRay.transmissionAmount > 0 && _sRay.energy > 0.005f)
+				{
+					SoundRay transmittedRay = CreateTransmissionSoundRay(_sRay, intersectionPoint, soundM);
+
+					if (transmittedRay.energy > 0.1f)
+						transmittedRays.push_back(transmittedRay);
+				}
+				_sRay.energy *= (1.0f - soundM.absorpValue);
+				break;
+			}
+		}
+	}
+
+	//Calculate reflection
+	if (normals.size() > 0)
+	{
+		glm::vec3 reflection = _sRay.direction - 2.0f * normals[primIdx] * glm::dot(_sRay.direction, normals[primIdx]);
+
+		_sRay.origin = intersectionPoint + reflection * EPSILON;
+		_sRay.direction = reflection;
+	}
+
+	Trace(_sRay, _depth + 1, _listenerPos, _listenerRadius, transmittedRays, _rt);
+}
+                </code></pre>
+            </details>
+
+            <h3>Conclusion</h3>
+            <p>
+                ...
             </p>
 
             <br>
 
-            <p><b>Creations I made:</b></p>
-            <p>...
+            <h4>References</h4>
+            <p>
+                https://en.wikipedia.org/wiki/WAV<br>
+                https://learncplusplus.org/learn-how-to-read-the-wav-waveform-audio-file-format-in-c/
             </p>
 
-            <br>
-
-            <p><b>My thoughts:</b></p>
-            <p>...
-            </p>
-
-            <br>
-
-            <a href="https://aegulli.itch.io/grablins" target="_blank">Itch.io page of Grablings</a>
-
-            <div class="page-game i1">
-                <img src="Content/Images/Tower1.png" alt="T1">
-            </div>
-            <div class="page-game i2">
-                <img src="Content/Images/Tower2.png" alt="T2">
-            </div>
-
-            <div class="page-game i3">
-                <img src="Content/Images/UiNodesP1.PNG" alt="Ui1">
-            </div>
-            <div class="page-game i4">
-                <img src="Content/Images/UiNodesP2.PNG" alt="Ui2">
-            </div>
+            <!-- 
+            WHY: Additional visual content
+            WHAT: Absolutely positioned image (styled in CSS)
+            NOTE: Only shows on larger screens (hidden on mobile via CSS)
+            IMAGES DONT RESIZE WITH SCREEMN!!!!!!!!!!
+            -->
+            <!-- <div class="page-game rivi1"> -->
+                <!-- <img src="Content/Images/M3LevelRiv.PNG"  -->
+                     <!-- alt="Riverse level 3 environment design" -->
+                     <!-- loading="lazy"> -->
+                <!-- CHANGED: Better alt text -->
+            <!-- </div> -->
 
         </div>
         <div class="border-bottom"></div>
-    </div>
-    
+    </main>
+    <script src="Content/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 </body>
 </html>
