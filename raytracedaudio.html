@@ -200,17 +200,54 @@ _right = sinf(angle);
                     <h3>Occlusion</h3>
                     <!-- CHANGED: <b> to <h3> -->
                     <p>
-                        ...
+                        To have more realistic audio I added occlusion to the DSP(Digital signal processor) chain.
+                        This reduces the audio volume and applies a low pass filter to create the muffeld effect when their is a object
+                        in between the listener and the audio source.
+                        This works by shooting rays towards the listener and checking if they collided with the environment. If a ray collides
+                        with a object it will get the objects alpha factor and uses that later for the low pass filter.
                     </p>
                 </figcaption>
             </figure>
 
-            <details open>
-                <summary></summary>
+            <figure class="content-row">
                 <pre><code class="language-cpp">
-DSP: echo, reverb + reverb zone, attenuation, panning, 
+glm::vec3 dirToListener = listenerPosition - source.position;
+SoundRay occlusionRay(source.position, dirToListener, 0.0f);
+OcclusionTrace(occlusionRay, listenerPosition, audioManager->GetListener().listenerRadius);
+
+if (hitGeometry)
+{
+	// Get material properties and set absorption
+	int primIdx = tbRay.hit.prim;
+	int objIDx = GetIDFromTriangleIdx(primIdx);
+
+	for (auto& aMesh : audioManager->GetAudioMeshes())
+	{
+		if (objIDx == aMesh.meshTag.ID)
+		{
+			_sRay.alpha = aMesh.soundMaterial.absorpValue;
+			break;
+		}
+	}
+
+	return;
+}
+
+//Low pass filter for left sample
+prevLeft = alpha * dryLeft + (1.0f - alpha) * prevLeft;
                 </code></pre>
-            </details>
+
+                <figcaption class="text-beside">
+                    <p>
+                        I am using a first order IIR(Infinte Impulse Response) low pass filter also known as a one pole filter.
+                        The low pass filter smooths high frequency changes, the output is created by using a alpha with the current sample and the previoous
+                        sample. The alpha is the factor for how much smoothing is applied to the audio. Normally the alpha is caluclated based on the
+                        cutoff frequency but for my case it is a single value that the user can define for each object.
+                        This works by giving a object a custom soundmaterial that stores a alpha value, when creating that material you define it a
+                        value that fits for the object, with this you can be very specific on how much occlusion happens for each material type.
+                    </p>
+                </figcaption>
+            </figure>
 
             <figure class="content-row">
                 <div class="page-game rivv1">
@@ -225,150 +262,149 @@ DSP: echo, reverb + reverb zone, attenuation, panning,
                     <h3>Echo</h3>
                     <!-- CHANGED: <b> to <h3> -->
                     <p>
-                        ...
+                        To add some more realism I implened echo's into the DSP chain. Echos are created using a circular buffer delay line with a
+                        distance based decay. For this you need a extra buffer for the echo and a read/write index.
                     </p>
                 </figcaption>
             </figure>
 
-            <details open>
-                <summary></summary>
+            <figure class="content-row">
                 <pre><code class="language-cpp">
-void AudioEngine::CalculateEcho(AudioSourceComponent& _asc, float& _leftOut, float& _rightOut, float _leftDry, float _rightDry)
-{
-	float delayInMS = (_asc.sRay->totalDistance * 1000) / 343;//343 speed of sound in air 20 degrees
-
-	delayInMS = std::clamp(delayInMS, 30.0f, 5000.0f);//Clamp between 30 and 5000 MS
-
-	//Low pass filter for smoother changes
-	float smoothess = 0.85f;
-	_asc.currentDelay = smoothess * _asc.currentDelay + (1.0f - smoothess) * delayInMS;
-
-	//dSamples = static_cast<int>((delayInMS / 1000.0f) * 44100);
-	int tdSamples = static_cast<int>((_asc.currentDelay * 0.001f) * 44100);
-	int tBufSize = tdSamples * 2;
-
-	if (_asc.echoBuffer.empty() || _asc.echoBuffer.size() != tBufSize)
-	{
-		float sizeDif = std::abs(static_cast<int>(_asc.echoBuffer.size()) - tBufSize);
-		if (_asc.echoBuffer.empty() || sizeDif / _asc.echoBuffer.size() > 0.1f)//Resize if difference is more than 10%
-		{
-			_asc.echoBuffer.resize(tBufSize, 0.0f);
-			_asc.echoWritePos = 0;
-			_asc.echoDelaySamples = tdSamples;
-		}
-	}
-
-	if (_asc.echoBuffer.empty())
-	{
-		_leftOut = _leftDry;
-		_rightOut = _rightDry;
-		return;
-	}
+    //343 speed of sound in air 20 degreess
+	float delayInMS = (ray.totalDistance * 1000) / 343;
 
 	//Echo
-	int readIdx = _asc.echoWritePos * 2;
-	float leftEcho = _asc.echoBuffer[readIdx];
-	float rightEcho = _asc.echoBuffer[readIdx + 1];
+	int readIdx = audioSource.echoWritePos * 2;
+	float leftEcho = audioSource.echoBuffer[readIdx];
+	float rightEcho = audioSource.echoBuffer[readIdx + 1];
+                </code></pre>
 
-	//Calculate echo decay
+                <figcaption class="text-beside">
+                    <p>
+                        In the first part of echo I get the reading position and getting the previous sample of the echobuffer.
+                        This is later used again with the current sample and a decay. 
+                    </p>
+                </figcaption>
+            </figure>
+
+            <figure class="content-row">
+                <pre><code class="language-cpp">
 	float decay = 0.4f;
-	float distance = glm::clamp(_asc.sRay->totalDistance * 0.01f, 0.0f, 1.0f);//0.01f is like sort of distance how big area is.
+	float distance = glm::clamp(ray.totalDistance * 0.01f, 0.0f, 1.0f);
 	float echoDecay = decay * (1.0f - distance * 0.3f);
+                </code></pre>
 
+                <figcaption class="text-beside">
+                    <p>
+                        The second part calculates the decay of the echo. This is done with a default decay factor and applying it to
+                        the distance the ray has traveled, this results in a decay factor thats based on how far the sound ray has traveled.
+                    </p>
+                </figcaption>
+            </figure>
+
+            <figure class="content-row">
+                <pre><code class="language-cpp">
 	_leftOut = (_leftDry * DRY_MIX) + (leftEcho * WET_MIX);
 	_rightOut = (_rightDry * DRY_MIX) + (rightEcho * WET_MIX);
 
-	_asc.echoBuffer[readIdx] = _leftDry + (leftEcho * echoDecay);
-	_asc.echoBuffer[readIdx + 1] = _rightDry + (rightEcho * echoDecay);
+	audioSource.echoBuffer[readIdx] = _leftDry + (leftEcho * echoDecay);
+	audioSource.echoBuffer[readIdx + 1] = _rightDry + (rightEcho * echoDecay);
 
-	_asc.echoWritePos = (_asc.echoWritePos + 1) % _asc.echoDelaySamples;
+	audioSource.echoWritePos = (audioSource.echoWritePos + 1) % audioSource.echoDelaySamples;
+                </code></pre>
 
-	//if echo is below threshold stop audio
-	float totalEcho = std::abs(leftEcho) + std::abs(rightEcho);
-	if (totalEcho < ECHO_SILENCE_THRESHOLD)
-		_asc.hasEchoTail = false;
+                <figcaption class="text-beside">
+                    <p>
+                        The third and last part is the circular buffer part. This adds a echo sample with a dry and wet factor to the output buffer.
+                        Then a new sample based on the output sample and a decayed echo sampleis are stored in the echo buffer. As last the write position
+                        is to the next position. The dry factor determines how much of the orginal audio is passed to the output.
+                        Wet factor determines how much of the echo is passed to the output. 
+                    </p>
+                </figcaption>
+            </figure>
+
+            <figure class="content-row">
+                <figcaption class="text-beside">
+                    <h3>Ray tracing</h3>
+                    <p>
+                        Then the ray tracing part of the audio. Every frame a x amount of rays are shot from the audio source in a spherical direction
+                        calculated with a fibonaccisphere formula. This goes through the tracing logic and eventually if the sound ray has reached the
+                        listener it will add its energy and distance traveld to a new ray.
+                    </p>
+                </figcaption>
+
+                <pre><code class="language-cpp">
+for (int i = 0; i < source.rayAmount; i++)
+{
+	SoundRay ray(source.position, CalculateFibonacciSphere(source.rayAmount, i, 1.0f), 0.0f);
+	// ... tracing logic
+
+	if (ray.reachedListener)
+	{
+		sRay.energy += ray.energy;
+		sRay.totalDistance += ray.totalDistance;
+	}
+                </code></pre>
+            </figure>
+
+            <figure class="content-row">
+                <pre><code class="language-cpp">
+    for (SoundRay& transRay : transmittedRays)
+    {
+	std::vector<SoundRay> nestedTrans;
+	Trace(transRay, 0, listenerPosition, lr, nestedTrans, RayType::Transmitted);
+	if (transRay.reachedListener)
+	{
+		if (!ray.reachedListener)
+		{
+			transAmount++;
+			sRay.energy += transRay.energy;
+		}
+	sRay.totalDistance += transRay.totalDistance;
+	}
+    }
 }
                 </code></pre>
-            </details>
 
-            <details open>
-                <summary></summary>
+                <figcaption class="text-beside">
+                    <h4>Transmission</h4>
+                    <p>
+                        with the rays, each ray when it hits a object it will also create a new transmission ray with reduced energy.
+                        The reduction of the sound energy is like reallive where when sound hits a object a part of it goes trough the object,
+                        part of it reflects and a part of it gets absorpt. this ray goes through the object
+                        to increase realism for when a sound is behind a object.
+                    </p>
+                </figcaption>
+            </figure>
+
+            <figure class="content-row">
                 <pre><code class="language-cpp">
-void AudioSourceSystem::Update()
-{
-	if (audioManager->HasListener())
-	{
-		glm::vec3 listenerPosition = audioManager->GetListener().position;
+float invNumRays = 1.0f / source.rayAmount;
+sRay.totalDistance *= invNumRays;
+invNumRays = 1.0f / (source.rayAmount + transAmount);
+sRay.energy *= invNumRays;
+                </code></pre>
 
-		for (auto& [id, source] : audioManager->GetAudioSources())
-		{
-			if (source.state == AudioState::Playing)
-			{
-				SoundRay sRay(glm::vec3(0.0f), glm::vec3(0.0f), 0.0f);
-				float invNumRays = 1.0f / source.rayAmount;
-				int transAmount = 0;
-				bool occlued = false;
-				for (int i = 0; i < source.rayAmount; i++)
-				{
-					SoundRay ray(source.position, CalculateFibonacciSphere(source.rayAmount, i, 1.0f), 0.0f);
-					float lr = audioManager->GetListener().listenerRadius;
-					std::vector<SoundRay> transmittedRays;
-					Trace(ray, 0, listenerPosition, lr, transmittedRays, RayType::Original);
+                <figcaption class="text-beside">
+                    <p>
+                        eventually when the tracing is done the average of all the values are taken and supplied to a single ray that gets stored,
+                        so later it can be used to calculated the different DSP chain effects.
+                    </p>
+                </figcaption>
+            </figure>
 
-					if (ray.reachedListener)
-					{
-						sRay.energy += ray.energy;
-						sRay.totalDistance += ray.totalDistance;
-						if (sRay.hasDirectPath)
-							occlued = true;
-					}
+            <figure class="content-row">
+                <figcaption class="text-beside">
+                    <p>
+                        For the intersection of the rays with the enviroment I am using TinyBVH(make into link) by Jacco Bikker.
+                        this gets me the data to calculate the intersection point of where the sound ray collides with a object.`
+                        With the intersection point and the starting point i can then calculate a point on that line to check, how far
+                        the listener is from the ray, this makes it able to detect the listener.
+                    </p>
+                </figcaption>
 
-					for (SoundRay& transRay : transmittedRays)
-					{
-						std::vector<SoundRay> nestedTrans;
-						Trace(transRay, 0, listenerPosition, lr, nestedTrans, RayType::Transmitted);
-						if (transRay.reachedListener)
-						{
-							if (!ray.reachedListener)
-							{
-								transAmount++;
-								sRay.energy += transRay.energy;
-							}
-							sRay.totalDistance += transRay.totalDistance;
-						}
-					}
-				}
-
-				glm::vec3 dirToListener = listenerPosition - source.position;
-				SoundRay occlusionRay(source.position, dirToListener, 0.0f);
-				OcclusionTrace(occlusionRay, listenerPosition, audioManager->GetListener().listenerRadius);
-
-				sRay.totalDistance *= invNumRays;
-
-				invNumRays = 1.0f / (source.rayAmount + transAmount);
-				sRay.energy *= invNumRays;
-				sRay.alpha = occlusionRay.alpha;
-				source.sRay = new SoundRay(sRay);
-			}
-		}
-	}
-}
-
-void AudioSourceSystem::Trace(SoundRay& _sRay, int _depth, const glm::vec3& _listenerPos, const float& _listenerRadius, std::vector<SoundRay>& transmittedRays, RayType _rt)
-{
-	if (_depth == _sRay.reflectAmount || _sRay.energy < 0.005f)
-		return;
-
-	//Create the tinybvh ray
-	tinybvh::bvhvec3 bvhO(_sRay.origin.x, _sRay.origin.y, _sRay.origin.z);
-	tinybvh::bvhvec3 bvhD(_sRay.direction.x, _sRay.direction.y, _sRay.direction.z);
-	tinybvh::Ray tbRay(bvhO, bvhD, _sRay.distance);
-	tbRay.hit.t = 500000;
-	if (audioManager->GetAudioMeshes().size() > 0)
-		tlas.Intersect(tbRay);
-
-	_sRay.distance = tbRay.hit.t;
-	_sRay.totalDistance += tbRay.hit.t;
+                <pre><code class="language-cpp">
+// ... intersection logic
 
 	//Calculate intersection point
 	glm::vec3 prevIntersectionPoint = _sRay.origin;
@@ -381,100 +417,77 @@ void AudioSourceSystem::Trace(SoundRay& _sRay, int _depth, const glm::vec3& _lis
 	if (ilDis < _listenerRadius)//Check if ray has hit player
 	{
 		_sRay.reachedListener = true;
-		if (_rt == RayType::Original)
-		{
 			if (_depth == 0)
 				_sRay.hasDirectPath = true;
-		}
 		return;
 	}
+                </code></pre>
+            </figure>
 
-	//Return if the ray nothing hits
-	if (tbRay.hit.t > 100000.0f)
+            <figure class="content-row">
+                <figcaption class="text-beside">
+                    <p>
+                        The next part is if the sound rays did not reach the player directly find the object it hitted and getting its sound material.
+                        after that it checks if the sound ray can still go trough objects if so than a new ray is created.
+                    </p>
+                </figcaption>
+
+                <pre><code class="language-cpp">
+// ... getting object material logic
+
+	if (_sRay.transmissionAmount > 0 && _sRay.energy > 0.005f)
 	{
-		_sRay.distance = tbRay.hit.t;
-		return;
+		SoundRay transmittedRay = CreateTransmissionSoundRay(_sRay, intersectionPoint, soundM);
+
+	    if (transmittedRay.energy > 0.1f)
+		transmittedRays.push_back(transmittedRay);
 	}
+                </code></pre>
+            </figure>
 
-	//Get object ID from primitive index from tinyBVH
-	int primIdx = tbRay.hit.prim;
-	int objIdx = 0;
-	if (startEndTriangles.size() > 0)
-		objIdx = GetIDFromTriangleIdx(primIdx);
+            <figure class="content-row">
+                <figcaption class="text-beside">
+                    <p>
+                        the rays energy gets reduced depending on the absorption value of the material.
+                        The ray then calcualts a reflection that is used to shoot a new ray again by calling the Trace function again.
+                        With this you have a recursive behavior so long the sound ray has enough energy.
+                    </p>
+                </figcaption>
 
-	//Dot product inside outside
-	float dotP = glm::dot(_sRay.direction, normals[primIdx]);
-
-	//Hit from inside
-	if (dotP > 0)
-	{
-		_sRay.origin = intersectionPoint + _sRay.direction * EPSILON;//Inside distance == thickness
-		Trace(_sRay, _depth, _listenerPos, _listenerRadius, transmittedRays, _rt);
-		return;
-	}
-	else//Hit from outside
-	{
-		SoundMaterial soundM;
-
-		//Loop through all objects with meshTag to check their unique ID.
-		for (auto& aMesh : audioManager->GetAudioMeshes())//Make to array later maybe
-		{
-			if (objIdx == aMesh.meshTag.ID)
-			{
-				soundM = aMesh.soundMaterial;
-
-				if (_sRay.transmissionAmount > 0 && _sRay.energy > 0.005f)
-				{
-					SoundRay transmittedRay = CreateTransmissionSoundRay(_sRay, intersectionPoint, soundM);
-
-					if (transmittedRay.energy > 0.1f)
-						transmittedRays.push_back(transmittedRay);
-				}
-				_sRay.energy *= (1.0f - soundM.absorpValue);
-				break;
-			}
-		}
-	}
+                <pre><code class="language-cpp">
+_sRay.energy *= (1.0f - soundM.absorpValue);
 
 	//Calculate reflection
-	if (normals.size() > 0)
-	{
-		glm::vec3 reflection = _sRay.direction - 2.0f * normals[primIdx] * glm::dot(_sRay.direction, normals[primIdx]);
+	glm::vec3 reflection = _sRay.direction - 2.0f * normals[primIdx] * glm::dot(_sRay.direction, normals[primIdx]);
 
-		_sRay.origin = intersectionPoint + reflection * EPSILON;
-		_sRay.direction = reflection;
-	}
+	_sRay.origin = intersectionPoint + reflection * EPSILON;
+	_sRay.direction = reflection;
 
 	Trace(_sRay, _depth + 1, _listenerPos, _listenerRadius, transmittedRays, _rt);
-}
                 </code></pre>
-            </details>
+            </figure>
 
             <h3>Conclusion</h3>
             <p>
-                ...
+                These are currently the features implemented into my ray traced audio tool. Altough not everything is implemented yet In the future
+                I plan to add more features and also improve the performance and user friendlyniss, to make it a proper tool that can be used in any project.
+                I learned a lot from this project, mainly about how sound works and how it can be applied into programming. and hope you also learned something
+                about it. Thank you for reading my blog.
+                ps did you found the ducky :)
             </p>
 
             <br>
 
             <h4>References</h4>
             <p>
+                MAEK INTO linkies
                 https://en.wikipedia.org/wiki/WAV<br>
                 https://learncplusplus.org/learn-how-to-read-the-wav-waveform-audio-file-format-in-c/
+                https://hackaudio.com/tutorial-courses/learn-audio-programming-table-of-contents/digital-signal-processing/echo-effects/feed-back-echo/
+                A good website to look up absoroption values for different materials:
+                https://www.acoustic-supplies.com/absorption-coefficient-chart/
+                https://jacco.ompf2.com/2025/01/24/tinybvh-manual-basic-use/
             </p>
-
-            <!-- 
-            WHY: Additional visual content
-            WHAT: Absolutely positioned image (styled in CSS)
-            NOTE: Only shows on larger screens (hidden on mobile via CSS)
-            IMAGES DONT RESIZE WITH SCREEMN!!!!!!!!!!
-            -->
-            <!-- <div class="page-game rivi1"> -->
-                <!-- <img src="Content/Images/M3LevelRiv.PNG"  -->
-                     <!-- alt="Riverse level 3 environment design" -->
-                     <!-- loading="lazy"> -->
-                <!-- CHANGED: Better alt text -->
-            <!-- </div> -->
 
         </div>
         <div class="border-bottom"></div>
