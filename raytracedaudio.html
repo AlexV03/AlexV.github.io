@@ -73,15 +73,14 @@
             -->
             <h3>About</h3>
             <p>
-                This blog post goes over my implentation of a ray traced audio system in C++ for my second year project at BUAS.
+                This blog post goes over my implementation of a ray traced audio system in C++ for my second year project at BUAS.
                 Normally in games audio typically uses pre-baked reverb zones, echo zones and occlusion zones, which don't accurately
                 respond to the dynamic environment. With ray traced audio you can get a more physically accurate approach by
-                simulation sound rays through the envionment using geometric acoustics. My system works by shooting rays from
-                audio sources into the scene, reflecting of surfaces, transmit through objects, and eventually reaches the listener.
+                simulation sound rays through the environment using geometric acoustics. My system works by shooting rays from
+                audio sources into the scene, reflecting off surfaces, transmitting through objects, and eventually reaching the listener.
                 The data that is then collected, is used for the DSP (Digital Signal Processor) chain that applies different effects like
                 occlusion, echoes and attenation. My goal was to create a ray traced audio system that automatically adepts to any environment
                 without manual setup.
-
             </p>
 
             <figure class="content-row">
@@ -97,7 +96,7 @@
                     <p>
                         I will be using the WAV file format for this project. I am using this because WAV files store uncompressed PCM(Pulse Code Modulation)
                         audio data. This makes it so its easy to read audio samples and apply DSP effects without the risk of losing quality.
-                        A WAV file consits of a header that describes the audio format, followed by the raw sample data. The header contains all kinds of
+                        A WAV file consists of a header that describes the audio format, followed by the raw sample data. The header contains all kinds of
                         information like sample rate, number of channels and bit depth.
                     </p>
 
@@ -341,7 +340,7 @@ output = alpha × input + (1 - alpha) × previous_output
                         For the ray tracing part I cast rays from each audio source to simulate how sound propagates through the environment.
                         Each frame, I shoot multiple rays in different directions using a Fibonacci sphere (more on that later), trace their paths
                         and as the bounch around the world and accumulate the energy and distance traveled by rays that reach the listener.
-
+                        <br>
                         Fibonacci sphere:
                         To make sure the rays are all evenly distributed on a sphere I am using the Fibonacci sphere algorithm. This creates
                         a nearly uniform spherical distribution without clutering on the poles.
@@ -518,7 +517,7 @@ _sRay.energy *= (1.0f - soundM.absorpValue);
                 I plan to add more features and also improve the performance and user friendliness to make it a proper tool that can be used in any project.
                 I learned a lot from this project, mainly about how sound works and how it can be applied in programming, and I hope you also learned something
                 about it. Thank you for reading my blog.
-                ps did you found the ducky :)
+                PS. did you find the ducky :)
             </p>
 
             <br>
