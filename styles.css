@@ -560,6 +560,13 @@ details[open] summary::before {
     width: 100%;
 }
 
+.rayv1 {
+    position: relative;
+    margin: 0rem auto;
+    left: 50%; /*Center of screen*/
+    transform: translateX(-50%); /*Shift back by half of image width*/
+}
+
 /* ========================================
            PROJECTS GRID LAYOUT
            ======================================== */
