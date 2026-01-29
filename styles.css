@@ -1035,7 +1035,7 @@ a:hover {
 .floating-image {
     position: absolute;
     z-index: var(--z-content); /* Above background, below text */
-    opacity: 0.3; /* CHANGE: Transparency (0.0 = invisible, 1.0 = solid) */
+    opacity: 1.0; /* CHANGE: Transparency (0.0 = invisible, 1.0 = solid) */
     pointer-events: none; /* Can't click on it */
     transition: opacity 0.3s ease;
 }
@@ -1051,10 +1051,10 @@ a:hover {
 
 /* Position first floating image */
 .floating-image-1 {
-    top: 100px; /* CHANGE: Distance from top */
-    right: 50px; /* CHANGE: Distance from right */
+    top: 90px; /* CHANGE: Distance from top */
+    right: 150px; /* CHANGE: Distance from right */
     width: 200px; /* CHANGE: Image width */
-    transform: rotate(15deg); /* CHANGE: Rotation angle */
+    transform: rotate(0deg); /* CHANGE: Rotation angle */
 }
 
 /* Position second floating image */

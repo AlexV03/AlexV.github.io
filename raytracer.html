@@ -259,10 +259,10 @@ float3 PointLight::CalculatePointLight(const LightData& _lightData, float3 _norm
             <figcaption class="text-beside">
                 <h3>Post processing</h3>
                   <p>
-                    With the code block below, the post processing is applied to the screen. This is done by binding the frame buffers
-                    and copying the screen to a texture. After that, the shader is bound and for each effect, values are set to indicate
-                    whether they should be applied or how strong the effect is. Then the same process is repeated but for effects that
-                    are applied to the screen.
+                    With the code block below, post processing is applied. First the original screen is copied to a texture.
+                    Then the color grading shader is applied (brightness, contrast, saturation, gamma correction), rendering the result to a second framebuffer.
+                    Second, the color graded result is used as input for the screen effect shader (vignette,  chromaticAberration, bloom),
+                    which renders the output directly to the screen.
                   </p>
             </figcaption>
 
@@ -432,7 +432,15 @@ void main()
                 <figcaption class="text-beside">
                     <h3>Materials</h3>
                     <p>
-                        trace.
+                        Within the Trace function, the values of each material type are calculated. This is then used to calculate the
+                        different material types: transparent, reflective, emissive, and colour. The code block below shows an example of one
+                        of the functions to calculate such a value. This one is to get the albedo value from the texture.
+                        For this, I am using mipmaps for each texture; these are precalculated at the creation of a mesh.
+                        I loop through each mipmap level, getting its distance threshold for the current and next mipmap level, then a check to see
+                        if the distance(distance from camera to the surface) is less than or equal to the next mipmap levels threshold. If so,
+                        then it does a trilinear interpolation between the current and next mipmap levels based on how close the distance is to the
+                        threshold. This makes the texture smoothly change between mipmap levels. For the last mipmap level, both thresholds are set
+                        to the same value to prefend indexing out of bounds.
                     </p>
                 </figcaption>
 
@@ -460,10 +468,8 @@ float3 Material::GetAlbedo(float _distance, float _u, float _v) const
 			}
 
 			if (_distance <= mipMapLevelDistance)
-				return texture->TrilinearInterpolation(_u, _v, i, mipMapLevelDistance, prefMipMapLevelDistance, _distance);// * albedo;
+				return texture->TrilinearInterpolation(_u, _v, i, mipMapLevelDistance, prefMipMapLevelDistance, _distance);
 		}
-
-		return texture->GetTexel(_u, _v);
 	}
 
 	return albedo;
@@ -494,7 +500,7 @@ float3 Material::GetAlbedo(float _distance, float _u, float _v) const
                 I liked how this project went, I learned a lot about ray tracing, how different materials are caluclated, how you could apply
                 post processing effects, different types of lights but also the techniques behind it, how you could optimize it,
                 how to make it faster, and much more. What I didnt like very much was the performance it wasnt that good of a perforance on
-                a big window, so maybe later in time I would retry to make a ray tracing scene and see if i can make it for a full width and height
+                a big window, so maybe later in time I would retry to make a ray tracing scene and see if I can make it for a full width and height
                 of the screen.
             </p>
 
