@@ -83,15 +83,11 @@
                 </div>
             </div>
 
-            <!-- 
-            CHANGED: <b> to <h2> for semantic headings
-            WHY: Better SEO, accessibility, and document structure
-            -->
             <h2>About</h2>
             <p>
                 Riverse was made in my first year at BUAS with a team of 13 people in Unreal Engine 5. We were given reference games to choose from, and we chose Clustertruck.
             </p>
-            <!-- CHANGED: Broke into separate paragraphs, fixed typos (choosed→chose, abvoiding→avoiding), capitalized BUAS, fixed game name -->
+
             <p>
                 We had 8 weeks to concept the game, work it out, and create it. The game is a fast-paced platformer where you reach the goal as quickly as possible by jumping from platform to platform, avoiding obstacles, and rewinding hazards with your pocket watch.
             </p>
@@ -100,32 +96,24 @@
             <p>
                 In this project, I created the time rewind feature. The system can group rewindable objects together. When you look at a rewindable object, every other object in the same group highlights, showing that those objects will rewind when you activate the feature.
             </p>
-            <!-- CHANGED: Removed excessive line breaks, improved flow -->
+            
             <p>
                 I chose this approach to give players control over what to rewind, which aligned with our design goal of creating a better player experience.
             </p>
 
-            <!-- 
-            WHY: Side-by-side video and explanation
-            WHAT: Flexbox layout with video left, text right
-            CHANGED: Added figure/figcaption for semantic HTML
-            -->
             <figure class="content-row">
                 <div class="page-game rivv1">
                     <video controls width="400" preload="metadata" aria-label="Objects rewind test demonstration">
                         <source src="Content/Videos/DuckRewinds.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                    <!-- CHANGED: Added preload, aria-label, fallback text -->
                 </div>
 
                 <figcaption class="text-beside">
                     <h3>Objects Test</h3>
-                    <!-- CHANGED: <b> to <h3> -->
                     <p>
                         The PlaySnapshot function ensures recorded data is applied to objects correctly using a circular buffer with indexes. It grabs a snapshot, checks it against world time, and if it has gone far enough back in time, the current snapshot becomes invalid and moves to the next snapshot.
                     </p>
-                    <!-- CHANGED: Removed line breaks, improved punctuation -->
                     <p>
                         It loops the index and applies the position and rotation with lerping to the object. The video shows a test with many objects recording and rewinding simultaneously to verify the system can handle the load.
                     </p>
@@ -145,7 +133,6 @@
                     <p>
                         The RecordSnapshot function records the necessary data from objects that need to be rewound. It creates a local snapshot, assigns all required values, and applies it to the snapshots buffer. It then increases the index and loops it if needed.
                     </p>
-                    <!-- CHANGED: Fixed typo "neccesary" -->
                     <p>
                         The video shows a test with two groups of rewindable objects. You aim at an object in that group, and when you rewind, all objects in that group rewind without affecting the other group.
                     </p>
@@ -165,7 +152,6 @@
                     <p>
                         The video shows how the rewind feature looks in the game, with highlighting of groups that can be rewound.
                     </p>
-                    <!-- CHANGED: Fixed typo "highliting" -->
                 </figcaption>
             </figure>
 
@@ -173,9 +159,6 @@
             <p>
                 Creating this feature in Unreal Engine was a fun challenge. I hadn't used C++ in Unreal Engine much before, so figuring out how to implement it was very interesting, and I learned a lot from the experience.
             </p>
-            <!-- CHANGED: Fixed incomplete sentence structure -->
-
-            <!-- CHANGED: Added rel security attribute -->
             <p>
                 <a href="https://buas.itch.io/team-bludhaven" 
                    target="_blank" 
@@ -183,18 +166,10 @@
                     Play Riverse on Itch.io
                 </a>
             </p>
-            <!-- CHANGED: Better call-to-action text -->
-
-            <!-- 
-            WHY: Additional visual content
-            WHAT: Absolutely positioned image (styled in CSS)
-            NOTE: Only shows on larger screens (hidden on mobile via CSS)
-            -->
             <div class="page-game rivi1">
                 <img src="Content/Images/M3LevelRiv.PNG" 
                      alt="Riverse level 3 environment design"
                      loading="lazy">
-                <!-- CHANGED: Better alt text -->
             </div>
 
         </div>
