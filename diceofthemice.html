@@ -5,11 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO Meta Tags - ADDED -->
     <meta name="description" content="Dice of the Mice - A strategic dice-based game made in 48 hours for a game jam. Built in Unity with C# by a team of 4.">
     <meta name="author" content="Alex V">
     
-    <!-- Open Graph - ADDED -->
     <meta property="og:title" content="Dice of the Mice - Game Jam Project">
     <meta property="og:description" content="Strategic dice-based game created in 48 hours">
     <meta property="og:image" content="Content/Images/DiceMiceLogo.PNG">
@@ -17,25 +15,22 @@
     
     <title>Dice of the Mice - Game Project</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="favicon.png"> <!-- ADDED -->
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 
 <body>
     <div class="swirl-line"></div>
     <div class="swirl-line"></div>
 
-    <!-- CHANGED: Secret position to match other pages -->
     <div class="hover-image secret1">
         <img src="Content/Images/ddslogo.png" alt="Hidden DDS logo easter egg">
     </div>
 
-    <!-- CHANGED: Updated nav structure and links -->
     <nav class="main-nav" aria-label="Main navigation">
         <ul class="nav-links">
             <li><a href="index.html">Projects</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="blog.html">Blogs</a></li>
-            <!-- CHANGED: "blog.html" to "contact.html" for consistency -->
         </ul>
         
         <div class="social-links">
@@ -56,21 +51,14 @@
         </div>
     </nav>
 
-    <!-- CHANGED: Correct title and image for Dice of the Mice -->
-    <!-- <header class="page-header">
-        <img src="Content/Images/DiceMiceLogo.PNG" alt="Dice of the Mice game logo">
-    </header> -->
     <header class="page-header">
     <h1>Dice of the Mice</h1>
     </header>
-    <!-- REMOVED: Commented-out h1 code -->
 
-    <!-- CHANGED: div to main -->
     <main class="content-border">
         <div class="border-top"></div>
         <div class="border-content">
             
-            <!-- ADDED: Project info box -->
             <div class="project-info-box">
                 <div class="info-item">
                     <span class="info-label">Project Duration:</span>
@@ -98,31 +86,44 @@
                 </div>
             </div>
 
-            <h2>About</h2>
-            <p>
-                Dice of the mice was made during the GMTK Game jam in 2022. The theme of the jam was Dice.
-                We made a turn based action game, you throw the dice and with that you can move or attack.
-                When it's the enemies turn they can also throw a dice and move or attack.
-            </p>
+            <figure class="content-row">
+                <figcaption class="text-beside">
+                    <h2>About</h2>
+                    <p>
+                        Dice of the mice was made during the GMTK Game jam in 2022. The theme of the jam was Dice.
+                        We made a turn based action game, you throw the dice and with that you can move or attack.
+                        When it's the enemies turn they can also throw a dice and move or attack.
+                    </p>
+                </figcaption>
 
-            <h2>What I made</h2>
-            <p>
-                I made the turn based system for the game. Each turn the player throws the dice and based on the points the player rolls, the player
-                can decide to either move or attack, each action cost a different amount of dice points. The same is for the enemies, each can roll the dice
-                and move around or attack the player.
-            </p>
+                <div class="page-game diceI1">
+                <img src="Content/Images/DiceMice1.PNG" 
+                     alt="DiceScene1"
+                     loading="lazy">
+            </div>
+            </figure>
 
-            <!-- <details>
-                <summary></summary>
-                <pre><code class="language-csharp">// Dice rolling system
-,,,
-</code></pre>
-            </details> -->
+            <figure class="content-row">
+                <figcaption class="text-beside">
+                    <h2>What I made</h2>
+                    <p>
+                        I made the turn based system for the game. Each turn the player throws the dice and based on the points the player rolls, the player
+                        can decide to either move or attack, each action cost a different amount of dice points. The same is for the enemies, each can roll the dice
+                        and move around or attack the player.
+                    </p>
+                </figcaption>
+
+                <div class="page-game diceI2">
+                <img src="Content/Images/DiceMice2.PNG" 
+                     alt="DiceScene2"
+                     loading="lazy">
+            </div>
+            </figure>
             
             <h2>My Thoughts</h2>
             <p>
-                This was the first game jam I have joined, it was a fun and chaotic experience and really enjoyed it to make a game in 48 hours.
-                I will probably join a future game jam again.
+                This was the first game jam I have joined together with some friends, it was a fun and chaotic experience and really enjoyed it to make
+                a game in 48 hours. I will probably join a future game jam again.
             </p>
 
             <p>

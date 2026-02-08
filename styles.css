@@ -637,6 +637,34 @@ details[open] summary::before {
 }
 
 /* ========================================
+           Dice of the mice
+           ======================================== */
+
+.diceI1 {
+    position: relative;
+    left: 0%; /*Center of screen*/
+    transform: translateX(0%); /*Shift back by half of image width*/
+    top: 15px;
+    
+}
+.diceI1 img {
+    max-width: 380px; /* Overrides max-width from the parent */
+    width: 100%;
+}
+
+.diceI2 {
+    position: relative;
+    left: 0%; /*Center of screen*/
+    transform: translateX(0%); /*Shift back by half of image width*/
+    top: 20px;
+    
+}
+.diceI2 img {
+    max-width: 380px; /* Overrides max-width from the parent */
+    width: 100%;
+}
+
+/* ========================================
            PROJECTS GRID LAYOUT
            ======================================== */
 
