@@ -597,6 +597,46 @@ details[open] summary::before {
 }
 
 /* ========================================
+           Fatal facade
+           ======================================== */
+
+.fatI1 {
+    position: relative;
+    left: 0%; /*Center of screen*/
+    transform: translateX(-10%); /*Shift back by half of image width*/
+    top: -175px;
+    
+}
+.fatI1 img {
+    max-width: 380px; /* Overrides max-width from the parent */
+    width: 100%;
+}
+
+.fatI2 {
+    position: relative;
+    left: 10%; /*Center of screen*/
+    transform: translateX(-10%); /*Shift back by half of image width*/
+    top: -60px;
+    
+}
+.fatI2 img {
+    max-width: 380px; /* Overrides max-width from the parent */
+    width: 100%;
+}
+
+.fatI3 {
+    position: relative;
+    left: 25%; /*Center of screen*/
+    transform: translateX(-10%); /*Shift back by half of image width*/
+    top: -60px;
+    
+}
+.fatI3 img {
+    max-width: 380px; /* Overrides max-width from the parent */
+    width: 100%;
+}
+
+/* ========================================
            PROJECTS GRID LAYOUT
            ======================================== */
 
@@ -1063,6 +1103,15 @@ a:hover {
     left: 780px; /* CHANGE: Distance from left */
     width: 150px; /* CHANGE: Image width */
     transform: rotate(-10deg); /* CHANGE: Rotation angle */
+}
+
+/* For fatal facade*/
+.floating-image-3 {
+    bottom: 50px; /* CHANGE: Distance from bottom */
+    left: 70px; /* CHANGE: Distance from left */
+    width: 50px; /* CHANGE: Image width */
+    scale: 100px;
+    transform: rotate(0deg); /* CHANGE: Rotation angle */
 }
 
 .progress-container {
