@@ -449,14 +449,14 @@ details[open] summary::before {
 /*Images*/
 .rivi1 {
     position: absolute;
-    left: 50%; /*Center of screen*/
+    left: 40%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
     top: 30px;
-    margin-left: 387px; /*Offset*/
+    margin-left: 390px; /*Offset*/
 }
 .rivi1 img {
     max-width: 400px; /* Overrides max-width from the parent */
-    width: 100%;
+    width: 130%;
 }
 
 .rivi2 {
@@ -491,6 +491,58 @@ details[open] summary::before {
     margin: 0rem auto;
     left: 18%; /*Center of screen*/
     transform: translateX(-50%); /*Shift back by half of image width*/
+}
+
+
+.modal-toggle {
+    display: none;
+}
+
+/* Thumbnail styling */
+.thumbnail {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    max-width: 500px;
+}
+
+.thumbnail:hover {
+    opacity: 0.8;
+}
+
+/* Modal overlay - hidden by default */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+}
+
+/* Show modal when checkbox is checked */
+.modal-toggle:checked + .modal-overlay {
+    display: flex;
+}
+
+/* The enlarged image */
+.modal-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+/* Close area */
+.modal-close {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
 
 /* ========================================
@@ -777,8 +829,27 @@ details[open] summary::before {
     white-space: nowrap;
 }
 
+.tag-team-size {
+    background-color: var(--accent-orange);
+}
+.tag-engine {
+    background-color: #1c81b7;
+}
+.tag-language {
+    background-color: #1daa90;
+}
+.tag-role {
+    background-color: #8c134c;
+}
+.tag-project {
+    background-color: #0a8937;
+}
+.tag-time {
+    background-color: #ca4c1a;
+}
+
 .tag:hover {
-    transform: scale(1.05); /* ADDED: Subtle hover effect */
+    transform: scale(1.05);
 }
 
 .TagBox {

@@ -24,12 +24,10 @@
     <div class="swirl-line"></div>
     <div class="swirl-line"></div>
 
-    <!-- ADDED: Secret easter egg for consistency -->
     <div class="hover-image secret3">
         <img src="Content/Images/ddslogo.png" alt="Hidden DDS logo easter egg">
     </div>
 
-    <!-- CHANGED: Added social links -->
     <nav class="main-nav" aria-label="Main navigation">
         <ul class="nav-links">
             <li><a href="index.html">Projects</a></li>
@@ -55,22 +53,13 @@
         </div>
     </nav>
 
-    <!-- 
-    CHANGED: Removed commented code, kept image version
-    WHY: Cleaner code, image title is more visually interesting
-    -->
     <div class="page-header">
-        <h1>Ray traced audio</h1> <!-- CHANGE this text for your title -->
+        <h1>Ray traced audio</h1>
     </div>
 
-    <!-- CHANGED: div to main for semantic HTML -->
     <main class="content-border">
         <div class="border-top"></div>
         <div class="border-content">
-            <!-- 
-            CHANGED: <b> to <h2> for semantic headings
-            WHY: Better SEO, accessibility, and document structure
-            -->
             <h3>About</h3>
             <p>
                 This blog post goes over my implementation of a ray traced audio system in C++ for my second year project at BUAS.
@@ -86,10 +75,33 @@
             <figure class="content-row">
                 <div class="project-info-box">
             
-                <img src="Content/Images/wav-sound-format.png" 
+                <!-- <img src="Content/Images/wav-sound-format.png" 
                      alt="Wav file format"
-                     loading="lazy">
+                     loading="lazy"> -->
+
+
+                    <label for="modal-wav">
+    <img src="Content/Images/wav-sound-format.png" 
+         alt="Wav file format"
+         loading="lazy"
+         class="thumbnail"
+         style="max-width: 600px;">
+</label>
+
+<!-- Checkbox (hidden) -->
+<input type="checkbox" id="modal-wav" class="modal-toggle">
+
+<!-- Modal overlay -->
+<div class="modal-overlay">
+    <label for="modal-wav" class="modal-close"></label>
+    <img src="Content/Images/wav-sound-format.png" 
+         alt="Wav file format" 
+         class="modal-image">
+</div>
+
                 </div>
+
+                
 
                 <figcaption class="text-beside">
                     <h3>The audio file</h3>
@@ -188,23 +200,16 @@ _left = cosf(angle);
 _right = sinf(angle);
                 </code></pre>
 
-            <!-- 
-            WHY: Side-by-side video and explanation
-            WHAT: Flexbox layout with video left, text right
-            CHANGED: Added figure/figcaption for semantic HTML
-            -->
             <figure class="content-row">
                 <div class="page-game rivv1">
                     <video controls width="400" preload="metadata" aria-label="Occlusion of sound">
                         <source src="Content/Videos/Occlusion.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                    <!-- CHANGED: Added preload, aria-label, fallback text -->
                 </div>
 
                 <figcaption class="text-beside">
                     <h3>Occlusion</h3>
-                    <!-- CHANGED: <b> to <h3> -->
                     <p>
                         To have more realistic audio I added occlusion to the DSP(Digital Signal Processor) chain.
                         When sound travels through obstacles, high frequencies are absorbed more than low frequencies, this is why
@@ -264,12 +269,10 @@ output = alpha × input + (1 - alpha) × previous_output
                         <source src="Content/Videos/Echo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                    <!-- CHANGED: Added preload, aria-label, fallback text -->
                 </div>
 
                 <figcaption class="text-beside">
                     <h3>Echo</h3>
-                    <!-- CHANGED: <b> to <h3> -->
                     <p>
                         Echoes occur when sound reflects off distant surfaces and returns to the listener after a delay. To add more realism
                         I implemented the echo effect into my DSP chain using a feedback delay line using a circular buffer, where the delay time

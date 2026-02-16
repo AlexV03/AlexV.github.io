@@ -64,19 +64,26 @@
             <div class="project-info-box">
                 <div class="info-item">
                     <span class="info-label">Project Duration:</span>
-                    <span class="info-value">8 Weeks</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Role:</span>
-                    <span class="info-value">Programmer</span>
+                    <span class="info-value">8 weeks</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Team Size:</span>
                     <span class="info-value">Solo</span>
                 </div>
                 <div class="info-item">
+                    <span class="info-label">Language:</span>
+                    <span class="info-value">C++</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Role:</span>
+                    <span class="info-value">Gameplay Programmer</span>
+                </div>
+                <div class="info-item">
                     <span class="info-label">Date:</span>
                     <span class="info-value">February 2025</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">School project</span>
                 </div>
             </div>
 
@@ -110,7 +117,7 @@
                 </figcaption>
             </figure>
 
-            <details open>
+            <details close>
             <summary></summary>
             <pre><code class="language-cpp">
 float3 Renderer::Trace(Ray& ray, int depth, int _x, int _y, int _frame)
@@ -177,20 +184,60 @@ float3 Renderer::Trace(Ray& ray, int depth, int _x, int _y, int _frame)
                     </p>
                 </figcaption>
 
-                <div class="page-game raytI2">
-                <img src="Content/Images/AreaLight.PNG" 
+                <!-- <div class="page-game raytI2"> -->
+                <!-- <img src="Content/Images/AreaLight.PNG" 
                      alt="Different materials"
-                     loading="lazy">
-            </div>
+                     loading="lazy"> -->
+                    <!-- </div> -->
 
-            <div class="page-game raytI2">
+                    <label for="modal-area">
+    <img src="Content/Images/AreaLight.PNG" 
+         alt="Wav file format"
+         loading="lazy"
+         class="thumbnail"
+         style="max-width: 300px;">
+</label>
+
+<!-- Checkbox (hidden) -->
+<input type="checkbox" id="modal-area" class="modal-toggle">
+
+<!-- Modal overlay -->
+<div class="modal-overlay">
+    <label for="modal-area" class="modal-close"></label>
+    <img src="Content/Images/AreaLight.PNG" 
+         alt="Wav file format" 
+         class="modal-image">
+</div>
+
+
+            <!-- <div class="page-game raytI2">
                 <img src="Content/Images/SpotLight.PNG" 
                      alt="Different materials"
                      loading="lazy">
-            </div>
+            </div> -->
+
+            <label for="modal-spot">
+    <img src="Content/Images/SpotLight.PNG" 
+         alt="Wav file format"
+         loading="lazy"
+         class="thumbnail"
+         style="max-width: 300px;">
+</label>
+
+<!-- Checkbox (hidden) -->
+<input type="checkbox" id="modal-spot" class="modal-toggle">
+
+<!-- Modal overlay -->
+<div class="modal-overlay">
+    <label for="modal-spot" class="modal-close"></label>
+    <img src="Content/Images/SpotLight.PNG" 
+         alt="Wav file format" 
+         class="modal-image">
+</div>
+
             </figure>
 
-            <details open>
+            <details close>
             <summary></summary>
             <pre><code class="language-cpp">
 float3 PointLight::CalculatePointLight(const LightData& _lightData, float3 _normal, float3 _objectPosition, Scene& _scene, float3 _rayDir, std::vector<float3>& _vertices, std::vector<float3>& _normals, tinybvh::Intersection _bvhHit)//add indicator visual to see where light is
@@ -266,7 +313,7 @@ float3 PointLight::CalculatePointLight(const LightData& _lightData, float3 _norm
                   </p>
             </figcaption>
 
-                <details open>
+                <details close>
                 <summary></summary>
                 <pre><code class="language-cpp">
 void Renderer::ApplyPostProcessing()
@@ -343,7 +390,7 @@ void Renderer::ApplyPostProcessing()
                     </p>
                 </figcaption>
 
-                <details open>
+                <details close>
                 <summary></summary>
                 <pre><code class="language-cpp">
 //Screen
@@ -381,7 +428,7 @@ void main()
             </code></pre>
             </details>
             
-            <details open>
+            <details close>
             <summary></summary>
             <pre><code class="language-cpp">
 //Colors
@@ -444,7 +491,7 @@ void main()
                     </p>
                 </figcaption>
 
-                <details open>
+                <details close>
                 <summary></summary>
             <pre><code class="language-cpp">
 float3 Material::GetAlbedo(float _distance, float _u, float _v) const
@@ -478,21 +525,80 @@ float3 Material::GetAlbedo(float _distance, float _u, float _v) const
             </details>
 
             <figure class="content-row">
-            <div class="page-game raytI1">
+            <!-- <div class="page-game raytI1">
                 <img src="Content/Images/Materials.PNG" 
                      alt="Different materials"
                      loading="lazy">
-            </div>
-            <div class="page-game raytI1">
+            </div> -->
+
+            <label for="modal-mat">
+    <img src="Content/Images/Materials.PNG" 
+         alt="Wav file format"
+         loading="lazy"
+         class="thumbnail"
+         style="max-width: 350px;">
+</label>
+
+<!-- Checkbox (hidden) -->
+<input type="checkbox" id="modal-mat" class="modal-toggle">
+
+<!-- Modal overlay -->
+<div class="modal-overlay">
+    <label for="modal-mat" class="modal-close"></label>
+    <img src="Content/Images/Materials.PNG" 
+         alt="Wav file format" 
+         class="modal-image">
+</div>
+
+            <!-- <div class="page-game raytI1">
                 <img src="Content/Images/EmissiveDuck.PNG" 
                      alt="Different materials"
                      loading="lazy">
-            </div>
-            <div class="page-game raytI1">
+            </div> -->
+
+            <label for="modal-emis">
+    <img src="Content/Images/EmissiveDuck.PNG" 
+         alt="Wav file format"
+         loading="lazy"
+         class="thumbnail"
+         style="max-width: 600px;">
+</label>
+
+<!-- Checkbox (hidden) -->
+<input type="checkbox" id="modal-emis" class="modal-toggle">
+
+<!-- Modal overlay -->
+<div class="modal-overlay">
+    <label for="modal-emis" class="modal-close"></label>
+    <img src="Content/Images/EmissiveDuck.PNG" 
+         alt="Wav file format" 
+         class="modal-image">
+</div>
+
+            <!-- <div class="page-game raytI1">
                 <img src="Content/Images/EmissiveDuck2.PNG" 
                      alt="Different materials"
                      loading="lazy">
-            </div>
+            </div> -->
+
+            <label for="modal-emis2">
+    <img src="Content/Images/EmissiveDuck2.PNG" 
+         alt="Wav file format"
+         loading="lazy"
+         class="thumbnail"
+         style="max-width: 600px;">
+</label>
+
+<!-- Checkbox (hidden) -->
+<input type="checkbox" id="modal-emis2" class="modal-toggle">
+
+<!-- Modal overlay -->
+<div class="modal-overlay">
+    <label for="modal-emis2" class="modal-close"></label>
+    <img src="Content/Images/EmissiveDuck2.PNG" 
+         alt="Wav file format" 
+         class="modal-image">
+</div>
             </figure>
 
             <h2>My Thoughts</h2>
