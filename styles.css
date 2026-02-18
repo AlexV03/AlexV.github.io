@@ -45,7 +45,8 @@
 
 body {
     /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
-    font-family: cursive;
+    /* font-family: cursive; */
+    font-family: Georgia, 'Times New Roman', Times, serif;
     background-color: var(--bg-primary);
     /* CHANGE THIS: Main page background color */
     color: var(--text-muted);

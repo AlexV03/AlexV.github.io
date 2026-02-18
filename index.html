@@ -48,7 +48,7 @@ create preview image 1200x630 aka content/images/preview.jpg Li19-->
             <li><a href="index.html" aria-current="page">Projects</a></li>
             <!-- CHANGED: href to index.html and added aria-current -->
             <li><a href="about.html">About</a></li>
-            <li><a href="blog.html">Blogs</a></li>
+            <!-- <li><a href="blog.html">Blogs</a></li> -->
         </ul>
 
         <!-- 
@@ -63,7 +63,6 @@ create preview image 1200x630 aka content/images/preview.jpg Li19-->
                class="social-icon"
                aria-label="LinkedIn Profile">
                 <img src="Content/Images/LinkedinIcon.svg" alt="LinkedIn">
-                <!-- CHANGED: Use actual LinkedIn icon -->
             </a>
             <a href="https://av03.itch.io/"
                target="_blank"
@@ -71,17 +70,21 @@ create preview image 1200x630 aka content/images/preview.jpg Li19-->
                class="social-icon"
                aria-label="Itch.io Profile">
                 <img src="Content/Images/ItchIcon.svg" alt="Itch.io">
-                <!-- CHANGED: Use actual Itch.io icon -->
             </a>
         </div>
     </nav>
 
-    <!-- ========================================
-         PAGE TITLE (Between top bar and projects)
-         TO CHANGE TITLE: Edit the text in <h1>
-         ======================================== -->
     <div class="page-header">
-        <h1>Projects</h1> <!-- CHANGE this text for your title -->
+        <h1>About me</h1>
+    </div>
+
+    <p style="text-align: center; translate: 50%;">
+        Hi! I'm Alex, I am a programmer mainly focused on gameplay programming. I have a interest in many other things, mainly with 3d modeling and drawing.
+        Have been programming for some time now and making art in my free time.
+    </p>
+
+    <div class="page-header">
+        <h1>Projects</h1>
     </div>
 
     <!-- ========================================
@@ -106,6 +109,23 @@ create preview image 1200x630 aka content/images/preview.jpg Li19-->
                 </div>
 
                 <div class="project-title">Riverse</div>
+            </a>
+
+            <a href="raytracedaudio.html" class="project-card" aria-label="View ray traced audio project details">
+                <img src="Content/Images/AudioImage.png" 
+                     alt="Audio - Ray traced" 
+                     class="project-image"
+                     loading="lazy">
+                
+                <div class="project-tags" role="list" aria-label="Project details">
+                    <span class="tag tag-team-size" role="listitem">Team size: solo</span>
+                    <span class="tag tag-language" role="listitem">C++</span>
+                    <span class="tag tag-role" role="listitem">Gameplay programmer</span>
+                    <span class="tag tag-project" role="listitem">School project</span>
+                    <span class="tag tag-time" role="listitem">8 weeks</span>
+                </div>
+
+                <div class="project-title">Ray traced audio</div>
             </a>
 
             <a href="FatalFacade.html" class="project-card" aria-label="Ray traced school project">
