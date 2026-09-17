@@ -1,114 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags - ADDED -->
-    <meta name="description" content="Riverse - A fast-paced platformer inspired by Clustertruck, featuring time rewind mechanics. Made in Unreal Engine 5 with a team of 13.">
-    <meta name="author" content="Your Name">
-    
-    <!-- Open Graph - ADDED -->
+
+    <meta name="description"
+        content="Riverse - A fast-paced platformer inspired by Clustertruck, featuring time rewind mechanics. Made in Unreal Engine 5 with a team of 13.">
+    <meta name="author" content="Alex V">
+
+    <!-- Tags for social media. preview links -->
     <meta property="og:title" content="Riverse - Game Project">
     <meta property="og:description" content="Fast-paced platformer with time rewind mechanics">
     <meta property="og:image" content="Content/Images/RiverseSplashArt.jpg">
-    
+    <meta property="og:type" content="website">
+    <!---->
+
     <title>Riverse - Game Development Project</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/jpg" href="RiverseSplashArt.jpg">
 </head>
 
 <body>
-    <div class="swirl-line"></div>
-    <div class="swirl-line"></div>
+    <!-- Swirly circles-->
+    <div class="swirl" aria-hidden="true"></div>
+    <div class="swirl swirl--blue" aria-hidden="true"></div>
+    <div class="swirl swirl--orange" aria-hidden="true"></div>
 
     <div class="hover-image secret2">
-        <img src="Content/Images/ddslogo.png" alt="Hidden DDS logo easter egg">
+        <img src="Content/Images/ddslogo.png" alt="">
     </div>
 
     <nav class="main-nav" aria-label="Main navigation">
         <ul class="nav-links">
-            <li><a href="index.html">Projects</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="blog.html">Blogs</a></li>
+            <li><a href="index.html" class="nav-link" aria-current="page">Projects</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
         </ul>
-        
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/av3xv/" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               class="social-icon"
-               aria-label="LinkedIn Profile">
-                <img src="Content/Images/LinkedinIcon.svg" alt="LinkedIn">
+
+        <ul class="social-links">
+        <li>
+            <a href="https://www.linkedin.com/in/av3xv/" target="_blank" rel="noopener noreferrer"
+            class="social-icon" aria-label="LinkedIn profile (opens in new tab)">
+            <img src="Content/Images/LinkedinIcon.svg" alt="">
             </a>
-            <a href="https://av03.itch.io/" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               class="social-icon"
-               aria-label="Itch.io Profile">
-                <img src="Content/Images/ItchIcon.svg" alt="Itch.io">
+        </li>
+        <li>
+            <a href="https://av03.itch.io/" target="_blank" rel="noopener noreferrer"
+            class="social-icon" aria-label="Itch.io profile (opens in new tab)">
+            <img src="Content/Images/ItchIcon.svg" alt="">
             </a>
-        </div>
+        </li>
+        </ul>
     </nav>
 
     <header class="page-header">
         <img src="Content/Images/rivtitle.png" alt="Riverse game logo">
     </header>
-    <main class="content-border">
-        <div class="border-top"></div>
+
+    <main>
         <div class="border-content">
-            
-            <div class="project-info-box">
-                <div class="info-item">
+
+            <ul class="project-info-box">
+                <li class="info-item">
                     <span class="info-label">Project Duration:</span>
                     <span class="info-value">8 weeks</span>
-                </div>
-                <div class="info-item">
+                </li>
+                <li class="info-item">
                     <span class="info-label">Team Size:</span>
                     <span class="info-value">13</span>
-                </div>
-                <div class="info-item">
+                </li>
+                <li class="info-item">
                     <span class="info-label">Engine:</span>
                     <span class="info-value">Unreal Engine 5</span>
-                </div>
-                <div class="info-item">
+                </li>
+                <li class="info-item">
                     <span class="info-label">Language:</span>
                     <span class="info-value">C++ & Blueprints</span>
-                </div>
-                <div class="info-item">
+                </li>
+                <li class="info-item">
                     <span class="info-label">Role:</span>
                     <span class="info-value">Gameplay Programmer</span>
-                </div>
-                <div class="info-item">
+                </li>
+                <li class="info-item">
                     <span class="info-label">Date:</span>
                     <span class="info-value">May 2025</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Gamejam</span>
-                </div>
-            </div>
+                </li>
+                <li class="info-item">
+                    <span class="info-label">School project</span>
+                </li>
+            </ul>
 
             <h2>About</h2>
             <p>
-                Riverse was made in my first year at BUAS with a team of 13 people in Unreal Engine 5. We were given reference games to choose from, and we chose Clustertruck.
+                Riverse was made in my first year at BUAS with a team of 13 people in Unreal Engine 5. We were given
+                reference games to choose from, and we chose Clustertruck.
             </p>
 
             <p>
-                We had 8 weeks to concept the game, work it out, and create it. The game is a fast-paced platformer where you reach the goal as quickly as possible by jumping from platform to platform, avoiding obstacles, and rewinding hazards with your pocket watch.
+                We had 8 weeks to concept the game, work it out, and create it. The game is a fast-paced platformer
+                where you reach the goal as quickly as possible by jumping from platform to platform, avoiding
+                obstacles, and rewinding hazards with your pocket watch.
             </p>
 
             <h2>Creation I Made</h2>
             <p>
-                In this project, I created the time rewind feature. The system can group rewindable objects together. When you look at a rewindable object, every other object in the same group highlights, showing that those objects will rewind when you activate the feature.
+                In this project, I created the time rewind feature. The system can group rewindable objects together.
+                When you look at a rewindable object, every other object in the same group highlights, showing that
+                those objects will rewind when you activate the feature.
             </p>
-            
+
             <p>
-                I chose this approach to give players control over what to rewind, which aligned with our design goal of creating a better player experience.
+                I chose this approach to give players control over what to rewind, which aligned with our design goal of
+                creating a better player experience.
             </p>
 
             <figure class="content-row">
                 <div class="page-game rivv1">
-                    <video controls width="400" preload="metadata" aria-label="Objects rewind test demonstration" autoplay loop muted>
+                    <video controls width="400" preload="metadata" aria-label="Objects rewind test demonstration"
+                        autoplay loop muted>
                         <source src="Content/Videos/DuckRewinds.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -117,17 +126,22 @@
                 <figcaption class="text-beside">
                     <h3>Objects Test</h3>
                     <p>
-                        The PlaySnapshot function ensures recorded data is applied to objects correctly using a circular buffer with indexes. It grabs a snapshot, checks it against world time, and if it has gone far enough back in time, the current snapshot becomes invalid and moves to the next snapshot.
+                        The PlaySnapshot function ensures recorded data is applied to objects correctly using a circular
+                        buffer with indexes. It grabs a snapshot, checks it against world time, and if it has gone far
+                        enough back in time, the current snapshot becomes invalid and moves to the next snapshot.
                     </p>
                     <p>
-                        It loops the index and applies the position and rotation with lerping to the object. The video shows a test with many objects recording and rewinding simultaneously to verify the system can handle the load.
+                        It loops the index and applies the position and rotation with lerping to the object. The video
+                        shows a test with many objects recording and rewinding simultaneously to verify the system can
+                        handle the load.
                     </p>
                 </figcaption>
             </figure>
 
             <figure class="content-row">
                 <div class="page-game rivv2">
-                    <video controls width="400" preload="metadata" aria-label="Group rewind test demonstration" autoplay loop muted>
+                    <video controls width="400" preload="metadata" aria-label="Group rewind test demonstration" autoplay
+                        loop muted>
                         <source src="Content/Videos/GroupRewind.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -136,18 +150,22 @@
                 <figcaption class="text-beside">
                     <h3>Group Test</h3>
                     <p>
-                        The RecordSnapshot function records the necessary data from objects that need to be rewound. It creates a local snapshot, assigns all required values, and applies it to the snapshots buffer. It then increases the index and loops it if needed.
+                        The RecordSnapshot function records the necessary data from objects that need to be rewound. It
+                        creates a local snapshot, assigns all required values, and applies it to the snapshots buffer.
+                        It then increases the index and loops it if needed.
                     </p>
                     <p>
-                        The video shows a test with two groups of rewindable objects. You aim at an object in that group, and when you rewind, all objects in that group rewind without affecting the other group.
+                        The video shows a test with two groups of rewindable objects. You aim at an object in that
+                        group, and when you rewind, all objects in that group rewind without affecting the other group.
                     </p>
                 </figcaption>
             </figure>
 
             <figure class="content-row">
                 <div class="page-game rivv3">
-                    <video controls width="400" preload="metadata" aria-label="In-game rewind demonstration" autoplay loop muted>
-                        <source src="Content/Videos/RewindInProject.mp4" type="video/mp4">
+                    <video controls width="400" preload="metadata" aria-label="In-game rewind demonstration" autoplay
+                        loop muted>
+                        <source src="Content/Videos/RewindProject.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -155,19 +173,20 @@
                 <figcaption class="text-beside">
                     <h3>In the Game</h3>
                     <p>
-                        The video shows how the rewind feature looks in the game, with highlighting of groups that can be rewound.
+                        The video shows how the rewind feature looks in the game, with highlighting of groups that can
+                        be rewound.
                     </p>
                 </figcaption>
             </figure>
 
             <h2>My Thoughts</h2>
             <p>
-                Creating this feature in Unreal Engine was a fun challenge. I hadn't used C++ in Unreal Engine much before, so figuring out how to implement it was very interesting, and I learned a lot from the experience.
+                Creating this feature in Unreal Engine was a fun challenge. I hadn't used C++ in Unreal Engine much
+                before, so figuring out how to implement it was very interesting, and I learned a lot from the
+                experience.
             </p>
             <p>
-                <a href="https://buas.itch.io/team-bludhaven" 
-                   target="_blank" 
-                   rel="noopener noreferrer">
+                <a href="https://buas.itch.io/team-bludhaven" target="_blank" rel="noopener noreferrer">
                     Play Riverse on Itch.io
                 </a>
             </p>
@@ -178,27 +197,22 @@
             </div> -->
 
             <label for="modal-m3l">
-    <img src="Content/Images/M3LevelRiv.PNG" 
-         alt="Wav file format"
-         loading="lazy"
-         class="thumbnail"
-         style="max-width: 600px;">
-</label>
+                <img src="Content/Images/M3LevelRiv.PNG" alt="Wav file format" loading="lazy" class="thumbnail"
+                    style="max-width: 600px;">
+            </label>
 
-<!-- Checkbox (hidden) -->
-<input type="checkbox" id="modal-m3l" class="modal-toggle">
+            <!-- Checkbox (hidden) -->
+            <input type="checkbox" id="modal-m3l" class="modal-toggle">
 
-<!-- Modal overlay -->
-<div class="modal-overlay">
-    <label for="modal-m3l" class="modal-close"></label>
-    <img src="Content/Images/M3LevelRiv.PNG" 
-         alt="Wav file format" 
-         class="modal-image">
-</div>
+            <!-- Modal overlay -->
+            <div class="modal-overlay">
+                <label for="modal-m3l" class="modal-close"></label>
+                <img src="Content/Images/M3LevelRiv.PNG" alt="Wav file format" class="modal-image">
+            </div>
 
         </div>
-        <div class="border-bottom"></div>
     </main>
 
 </body>
+
 </html>

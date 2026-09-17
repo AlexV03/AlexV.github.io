@@ -2,89 +2,74 @@
 <html lang="en">
 
 <head>
-    <!-- 
-    WHY: DOCTYPE tells browser this is HTML5
-    WHAT: Ensures consistent rendering across browsers
-    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags - ADDED -->
-    <meta name="description" content="Game development portfolio showcasing projects in Unreal Engine, Unity, and custom C++ engines">
+
+    <meta name="description"
+        content="Game development portfolio showcasing projects in Unreal Engine, Unity, and custom C++ engines">
     <meta name="author" content="Alex V">
-    
-    <!-- Open Graph for social sharing - ADDED -->
+
+    <!-- Tags for social media. preview links -->
     <meta property="og:title" content="Projects - Game Development Portfolio">
-    <meta property="og:description" content="Explore my game development projects including Riverse, Grablings, and more">
-    <meta property="og:image" content="Content/Images/preview.jpg">
+    <meta property="og:description"
+        content="Explore my game development projects including Riverse, Grablings, and more">
+    <meta property="og:image" content="Content/Images/EmissiveDuck.PNG">
     <meta property="og:type" content="website">
-    
+    <!---->
+
     <title>Projects - Game Development Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="favicon.png"> <!-- ADDED: Favicon -->
+    <link rel="icon" type="image/png" href="EmissiveDuck.PNG">
+    <!-- <link rel="icon" type="image/png" href="favicon.png"> -->
 </head>
-<!--TODO create icon for webbar 512x512 aka image/png Li24
-create preview image 1200x630 aka content/images/preview.jpg Li19-->
 
 <body>
-    <!-- ========================================
-         ANIMATED SWIRLY LINES (Background decoration)
-         TO ADD MORE: Copy these <div> tags
-         ======================================== -->
-    <div class="swirl-line"></div>
-    <div class="swirl-line"></div>
+    <!-- Swirly circles-->
+    <div class="swirl" aria-hidden="true"></div>
+    <div class="swirl swirl--blue" aria-hidden="true"></div>
+    <div class="swirl swirl--orange" aria-hidden="true"></div>
 
     <div class="hover-image secret1">
-        <img src="Content/Images/ddslogo.png" alt="Hidden image">
+        <img src="Content/Images/ddslogo.png" alt="">
     </div>
 
     <!-- ========================================
          NAVIGATION BAR (TOP BAR)
-         TO CHANGE BUTTON NAMES: Edit the text between <a> and </a>
-         TO CHANGE BUTTON LINKS: Edit the href="" attribute
          ======================================== -->
     <nav class="main-nav" aria-label="Main navigation">
         <ul class="nav-links">
-            <li><a href="index.html" aria-current="page">Projects</a></li>
-            <!-- CHANGED: href to index.html and added aria-current -->
-            <li><a href="about.html">About</a></li>
-            <!-- <li><a href="blog.html">Blogs</a></li> -->
+            <li><a href="index.html" class="nav-link" aria-current="page">Projects</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
         </ul>
 
-        <!-- 
-        WHY: Social media links for external profiles
-        WHAT: Icon links to LinkedIn and Itch.io
-        CHANGED: Added aria-label and rel security
-        -->
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/av3xv/" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               class="social-icon"
-               aria-label="LinkedIn Profile">
-                <img src="Content/Images/LinkedinIcon.svg" alt="LinkedIn">
+        <ul class="social-links">
+        <li>
+            <a href="https://www.linkedin.com/in/av3xv/" target="_blank" rel="noopener noreferrer"
+            class="social-icon" aria-label="LinkedIn profile (opens in new tab)">
+            <img src="Content/Images/LinkedinIcon.svg" alt="">
             </a>
-            <a href="https://av03.itch.io/"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="social-icon"
-               aria-label="Itch.io Profile">
-                <img src="Content/Images/ItchIcon.svg" alt="Itch.io">
+        </li>
+        <li>
+            <a href="https://av03.itch.io/" target="_blank" rel="noopener noreferrer"
+            class="social-icon" aria-label="Itch.io profile (opens in new tab)">
+            <img src="Content/Images/ItchIcon.svg" alt="">
             </a>
-        </div>
+        </li>
+        </ul>
     </nav>
 
     <div class="page-header">
-        <h1>About me</h1>
+        <h1 class="page-title">About me</h1>
     </div>
 
-    <p style="text-align: center; translate: 50%;">
-        Hi! I'm Alex, I am a programmer mainly focused on gameplay programming. I have a interest in many other things, mainly with 3d modeling and drawing.
+    <p class="text-center-screen">
+        Hi! I'm Alex, I am a programmer mainly focused on gameplay programming. I have a interest in many other things,
+        mainly with 3d modeling and drawing.
         Have been programming for some time now and making art in my free time.
     </p>
 
     <div class="page-header">
-        <h1>Projects</h1>
+        <h1 class="page-title">Projects</h1>
     </div>
 
     <!-- ========================================
@@ -94,111 +79,93 @@ create preview image 1200x630 aka content/images/preview.jpg Li19-->
         <div class="projects-grid">
 
             <a href="riverse.html" class="project-card" aria-label="View Riverse project details">
-                <img src="Content/Images/RiverseSplashArt.jpg" 
-                     alt="Riverse - Fast-paced platform game splash art" 
-                     class="project-image"
-                     loading="lazy">
+                <img src="Content/Images/RiverseSplashArt.jpg" alt="Riverse - Fast-paced platform game splash art"
+                    class="project-image" loading="lazy">
 
-                <div class="project-tags" role="list" aria-label="Project details">
-                    <span class="tag tag-team-size" role="listitem">Team size: 13</span>
-                    <span class="tag tag-engine" role="listitem">Unreal Engine 5</span>
-                    <span class="tag tag-language" role="listitem">C++ & Blueprints</span>
-                    <span class="tag tag-role" role="listitem">Gameplay programmer</span>
-                    <span class="tag tag-project" role="listitem">School project</span>
-                    <span class="tag tag-time" role="listitem">8 weeks</span>
-                </div>
+                <ul class="project-tags">
+                    <li class="tag tag-team-size">Team size: 13</li>
+                    <li class="tag tag-engine">Unreal Engine 5</li>
+                    <li class="tag tag-language">C++ & Blueprints</li>
+                    <li class="tag tag-role">Gameplay programmer</li>
+                    <li class="tag tag-project">School project</li>
+                    <li class="tag tag-time">8 weeks</li>
+                </ul>
 
                 <div class="project-title">Riverse</div>
             </a>
 
             <a href="raytracedaudio.html" class="project-card" aria-label="View ray traced audio project details">
-                <img src="Content/Images/AudioImage.png" 
-                     alt="Audio - Ray traced" 
-                     class="project-image"
-                     loading="lazy">
-                
-                <div class="project-tags" role="list" aria-label="Project details">
-                    <span class="tag tag-team-size" role="listitem">Team size: solo</span>
-                    <span class="tag tag-language" role="listitem">C++</span>
-                    <span class="tag tag-role" role="listitem">Gameplay programmer</span>
-                    <span class="tag tag-project" role="listitem">School project</span>
-                    <span class="tag tag-time" role="listitem">8 weeks</span>
-                </div>
+                <img src="Content/Images/AudioImage.png" alt="Audio - Ray traced" class="project-image" loading="lazy">
+
+                <ul class="project-tags">
+                    <li class="tag tag-team-size">Team size: solo</li>
+                    <li class="tag tag-language">C++</li>
+                    <li class="tag tag-role">Gameplay programmer</li>
+                    <li class="tag tag-project">School project</li>
+                    <li class="tag tag-time">8 weeks</li>
+                </ul>
 
                 <div class="project-title">Ray traced audio</div>
             </a>
 
-            <a href="FatalFacade.html" class="project-card" aria-label="Ray traced school project">
-                <img src="Content/Images/FFgj.png" 
-                     alt="Chess ray tracer" 
-                     class="project-image"
-                     loading="lazy">
+            <a href="FatalFacade.html" class="project-card" aria-label="View Fatal Façade project details">
+                <img src="Content/Images/FFgj.png" alt="Fatal Façade - Game jam project" class="project-image"
+                    loading="lazy">
 
-                <div class="project-tags" role="list" aria-label="Project details">
-                    <span class="tag tag-team-size" role="listitem">Team size: 15</span>
-                    <span class="tag tag-engine" role="listitem">Unreal Engine 5</span>
-                    <span class="tag tag-language" role="listitem">blueprints</span>
-                    <span class="tag tag-role" role="listitem">Programmer</span>
-                    <span class="tag tag-project" role="listitem">Game jam</span>
-                    <span class="tag tag-time" role="listitem">48 hours</span>
-                </div>
+                <ul class="project-tags">
+                    <li class="tag tag-team-size">Team size: 15</li>
+                    <li class="tag tag-engine">Unreal Engine 5</li>
+                    <li class="tag tag-language">Blueprints</li>
+                    <li class="tag tag-role">Programmer</li>
+                    <li class="tag tag-project">Game jam</li>
+                    <li class="tag tag-time">48 hours</li>
+                </ul>
 
                 <div class="project-title">Fatal Façade</div>
             </a>
 
             <a href="grablings.html" class="project-card" aria-label="View Grablins project details">
-                <img src="Content/Images/gllogo.PNG" 
-                     alt="Grablins - Co-op climbing game logo" 
-                     class="project-image"
-                     loading="lazy">
-                
-                <div class="project-tags" role="list" aria-label="Project details">
-                    <span class="tag tag-team-size" role="listitem">Team size: 7</span>
-                    <span class="tag tag-engine" role="listitem">Unreal Engine 5</span>
-                    <span class="tag tag-language" role="listitem">Blueprints</span>
-                    <span class="tag tag-role" role="listitem">Gameplay programmer & technical designer</span>
-                    <span class="tag tag-project" role="listitem">Game Jam</span>
-                    <span class="tag tag-time" role="listitem">48 hours</span>
-                </div>
+                <img src="Content/Images/gllogo.PNG" alt="Grablins - Co-op climbing game logo" class="project-image"
+                    loading="lazy">
+
+                <ul class="project-tags">
+                    <li class="tag tag-team-size">Team size: 7</li>
+                    <li class="tag tag-engine">Unreal Engine 5</li>
+                    <li class="tag tag-language">Blueprints</li>
+                    <li class="tag tag-role">Gameplay programmer & technical designer</li>
+                    <li class="tag tag-project">Game Jam</li>
+                    <li class="tag tag-time">48 hours</li>
+                </ul>
 
                 <div class="project-title">Grablins</div>
             </a>
 
-            <a href="raytracer.html" class="project-card" aria-label="Ray traced school project">
-                <img src="Content/Images/RayTraceChess.PNG" 
-                     alt="Chess ray tracer" 
-                     class="project-image"
-                     loading="lazy">
+            <a href="raytracer.html" class="project-card" aria-label="View Ray tracer project details">
+                <img src="Content/Images/RayTraceChess.PNG" alt="Chess ray tracer" class="project-image" loading="lazy">
 
-                <div class="project-tags" role="list" aria-label="Project details">
-                    <span class="tag tag-team-size" role="listitem">Team size: solo</span>
-                    <span class="tag tag-language" role="listitem">C++</span>
-                    <span class="tag tag-role" role="listitem">Gameplay programmer</span>
-                    <span class="tag tag-project" role="listitem">School project</span>
-                    <span class="tag tag-time" role="listitem">8 weeks</span>
-                </div>
+                <ul class="project-tags">
+                    <li class="tag tag-team-size">Team size: solo</li>
+                    <li class="tag tag-language">C++</li>
+                    <li class="tag tag-role">Gameplay programmer</li>
+                    <li class="tag tag-project">School project</li>
+                    <li class="tag tag-time">8 weeks</li>
+                </ul>
 
                 <div class="project-title">Ray tracer</div>
-
             </a>
 
-            <!-- 
-            PROJECT 4: DICE OF THE MICE
-            -->
             <a href="diceofthemice.html" class="project-card" aria-label="View Dice of the Mice project details">
-                <img src="Content/Images/DiceMiceLogo.PNG" 
-                     alt="Dice of the Mice - Dice-based strategy game logo" 
-                     class="project-image"
-                     loading="lazy">
+                <img src="Content/Images/DiceMiceLogo.PNG" alt="Dice of the Mice - Dice-based strategy game logo"
+                    class="project-image" loading="lazy">
 
-                <div class="project-tags" role="list" aria-label="Project details">
-                    <span class="tag tag-team-size" role="listitem">Team size: 4</span>
-                    <span class="tag tag-engine" role="listitem">Unity</span>
-                    <span class="tag tag-language" role="listitem">C#</span>
-                    <span class="tag tag-role" role="listitem">Gameplay programmer</span>
-                    <span class="tag tag-project" role="listitem">Game jam</span>
-                    <span class="tag tag-time" role="listitem">48 hours</span>
-                </div>
+                <ul class="project-tags">
+                    <li class="tag tag-team-size">Team size: 4</li>
+                    <li class="tag tag-engine">Unity</li>
+                    <li class="tag tag-language">C#</li>
+                    <li class="tag tag-role">Gameplay programmer</li>
+                    <li class="tag tag-project">Game jam</li>
+                    <li class="tag tag-time">48 hours</li>
+                </ul>
 
                 <div class="project-title">Dice of the Mice</div>
             </a>
