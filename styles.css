@@ -37,6 +37,14 @@
     /* Font */
     --font-primary: Georgia, 'Times New Roman', Times, serif;
     --font-code: 'Courier New', monospace;
+
+    /* Tag colors */
+    --tag-team-size: #BD9E42;
+    --tag-language: #7B9BBC;
+    --tag-engine: #BD6D26;
+    --tag-project: #958D71;
+    --tag-role: #606C77;
+    --tag-time: #7D614A;
 }
 
 /* * = all elements */
@@ -143,12 +151,6 @@ code {
   --swirl-color: var(--accent-orange);
   --swirl-size: 300px;
   --swirl-duration: 25s;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .swirl {
-    animation: none;
-  }
 }
 
 /* Animation that moves the swirl around the screen */
@@ -260,12 +262,6 @@ code {
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .social-icon {
-    transition: none;
-  }
-}
-
 /* ========================================
            PAGE TITLE (Big title above projects)
            ======================================== */
@@ -340,7 +336,6 @@ summary:hover {
 
 summary:focus {
     outline: 2px solid var(--accent-orange);
-    /* ADDED: Accessibility */
     outline-offset: 2px;
 }
 
@@ -834,13 +829,9 @@ details[open] summary::before {
 
 .projects-grid {
     display: grid;
-    /* Creates a grid layout */
-    grid-template-columns: repeat(3, 1fr);
-    /* 3 columns of equal width */
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 1.5rem;
-    /* CHANGE THIS: Space between project cards */
-    /* margin-bottom: 4rem; */
-    align-items: center;
 }
 
 /* ========================================
@@ -868,9 +859,9 @@ details[open] summary::before {
     /* Shadow effect on hover */
 }
 
-.project-card:focus {
+.project-card:focus-visible {
     outline: 2px solid var(--accent-orange);
-    outline-offset: 2px;
+    outline-offset: -3px;
 }
 
 .project-image {
@@ -884,22 +875,15 @@ details[open] summary::before {
 
 .project-title {
     padding: 0.75rem 1rem;
-    /* CHANGE: Less top/bottom padding */
     font-size: 1.4rem;
-    /* CHANGE THIS: Make text bigger */
     font-weight: 600;
     text-align: center;
     background-color: var(--bg-accent);
     color: var(--text-light);
     height: 40px;
-    /* ADD THIS: Fixed height so image doesn't shrink */
     display: flex;
-    /* ADD THIS: For centering */
     align-items: center;
-    /* ADD THIS: Vertically centers text */
     justify-content: center;
-    /* ADD THIS: Horizontally centers text */
-    /* flex-shrink: 0; */
 }
 
 /* ========================================
@@ -924,34 +908,17 @@ details[open] summary::before {
     height: 2em;
     justify-content: center;
     line-height: 1.5;
-    padding: 0px 0.75em;
+    padding: 0 0.75em;
     transition: 0.2s ease;
     white-space: nowrap;
 }
 
-.tag-team-size {
-    background-color: #BD9E42;
-}
-
-.tag-engine {
-    background-color: #BD6D26;
-}
-
-.tag-language {
-    background-color: #7B9BBC;
-}
-
-.tag-role {
-    background-color: #606C77;
-}
-
-.tag-project {
-    background-color: #958D71;
-}
-
-.tag-time {
-    background-color: #7D614A;
-}
+.tag-team-size { background-color: var(--tag-team-size); }
+.tag-engine    { background-color: var(--tag-engine); }
+.tag-language  { background-color: var(--tag-language); }
+.tag-role      { background-color: var(--tag-role); }
+.tag-project   { background-color: var(--tag-project); }
+.tag-time      { background-color: var(--tag-time); }
 
 .tag:hover {
     transform: scale(1.05);
@@ -1441,148 +1408,135 @@ a:hover {
            RESPONSIVE DESIGN (DIFFERENT SCREEN SIZES)
            ======================================== */
 
-/* Tablet: borders adjust */
-@media (max-width: 1240px) {
+/* ========================================
+   BREAKPOINTS (desktop-first, 5 standard groups)
+   Base styles above = Extra large devices (1200px+)
+   
+   max-width: 1200px  → Large devices (laptops/desktops)
+   max-width: 992px   → Medium devices (landscape tablets)
+   max-width: 768px   → Small devices (portrait tablets, large phones)
+   max-width: 600px   → Extra small devices (phones)
+   ======================================== */
 
-    .border-top,
-    .border-bottom {
-        width: calc(100% - 40px);
-        /* ADDED: Responsive borders */
-    }
+/* ======================================
+   Large devices (max-width: 1200px)
+   ====================================== */
+@media only screen and (max-width: 1200px) {
+  .border-top,
+  .border-bottom {
+    width: calc(100% - 40px);
+  }
 
-    .border-top::before {
-        left: 20px;
-        /* ADDED: Adjust side borders */
-    }
-
-    .border-top::after {
-        right: 20px;
-    }
+  .border-top::before { left: 20px; }
+  .border-top::after  { right: 20px; }
 }
 
-/* Tablet: 2 columns */
-@media (max-width: 1024px) {
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+/* ======================================
+   Medium devices (max-width: 992px)
+   ====================================== */
+@media only screen and (max-width: 992px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-    .page-header h1 {
-        font-size: 2.5rem;
-        /* ADDED: Smaller title */
-    }
+  .page-header h1 {
+    font-size: 2.5rem;
+  }
 
-    /* ADDED: Stack content-row on tablets */
-    .content-row {
-        flex-direction: column;
-    }
+  .content-row {
+    flex-direction: column;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-image-inline {
+    width: 200px;
+    height: 200px;
+  }
+
+  .contact-item {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .contact-label {
+    min-width: auto;
+  }
+
+  .floating-image {
+    display: none;
+  }
 }
 
-/* Mobile: 1 column */
-@media (max-width: 640px) {
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
-    nav {
-        flex-direction: column;
-        /* ADDED: Stack nav items */
-        padding: 1rem;
-    }
-
-    nav ul {
-        gap: var(--gap-sm);
-        justify-content: center;
-        /* ADDED: Center nav links */
-    }
-
-    nav a {
-        font-size: 1rem;
-        padding: 0.4rem 0.8rem;
-    }
-
-    .social-links {
-        margin-top: 1rem;
-        /* ADDED: Space above social icons */
-    }
-
-    .projects-container {
-        padding: 1rem;
-    }
-
-    .page-header h1 {
-        font-size: 2rem;
-    }
-
-    .page-header {
-        padding: 2rem 1rem;
-        /* ADDED: Less padding on mobile */
-    }
-
-    /* ADDED: Hide absolute positioned images on mobile */
-    .grai1,
-    .grai2,
-    .grai3,
-    .grai4,
-    .rivi1,
-    .rivi2,
-    .rayi1,
-    .rayi2 {
-        display: none;
-    }
-
-    /* ADDED: Reset video positioning on mobile */
-    .rivv1,
-    .rivv2,
-    .rivv3 {
-        left: 0;
-        transform: none;
-        margin: 1rem 0;
-    }
-
-    .project-info-box {
-        max-width: 100%;
-        /* ADDED: Full width on mobile */
-    }
-
-    h2 {
-        font-size: 1.5rem;
-        /* ADDED: Smaller headings */
-    }
-
-    h3 {
-        font-size: 1.2rem;
-    }
+/* ======================================
+   Small devices (max-width: 768px)
+   ====================================== */
+@media only screen and (max-width: 768px) {
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.2rem; }
 }
 
-@media (max-width: 768px) {
-    .section-title {
-        font-size: 2rem;
-        /* Smaller on mobile */
-        text-align: center;
-    }
+/* ======================================
+   Extra small devices (max-width: 600px)
+   ====================================== */
+@media only screen and (max-width: 600px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
 
-    .about-content {
-        flex-direction: column;
-        align-items: center;
-    }
+  .main-nav {
+    flex-direction: column;
+    padding: 1rem;
+  }
 
-    .about-image-inline {
-        width: 200px;
-        height: 200px;
-    }
+  .nav-links {
+    gap: var(--gap-sm);
+    justify-content: center;
+  }
 
-    .contact-item {
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-    }
+  .nav-link {
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+  }
 
-    .contact-label {
-        min-width: auto;
-    }
+  .social-links {
+    margin-top: 1rem;
+  }
 
-    /* Hide floating images on mobile */
-    .floating-image {
-        display: none;
-    }
+  .projects-container {
+    padding: 1rem;
+  }
+
+  .page-header {
+    padding: 2rem 1rem;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+  }
+
+  .grai1, .grai2, .grai3, .grai4,
+  .rivi1, .rivi2,
+  .rayi1, .rayi2 {
+    display: none;
+  }
+
+  .rivv1, .rivv2, .rivv3 {
+    left: 0;
+    transform: none;
+    margin: 1rem 0;
+  }
+
+  .project-info-box {
+    max-width: 100%;
+  }
 }
