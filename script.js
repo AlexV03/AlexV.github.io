@@ -1,13 +1,13 @@
-// Open: any button with data-modal-target opens the matching dialog
-document.querySelectorAll('[data-modal-target]').forEach(trigger => {
-  trigger.addEventListener('click', () => {
-    document.getElementById(trigger.dataset.modalTarget).showModal();
+const modal = document.getElementById('image-modal');
+const modalImg = modal.querySelector('.modal-image');
+
+document.querySelectorAll('.thumbnail-button').forEach(button => {
+  button.addEventListener('click', () => {
+    const thumbnail = button.querySelector('img');
+    modalImg.src = thumbnail.src;
+    modalImg.alt = thumbnail.alt;
+    modal.showModal();
   });
 });
 
-// Close: clicking the enlarged image itself closes its own dialog
-document.querySelectorAll('.modal-image').forEach(img => {
-  img.addEventListener('click', () => {
-    img.closest('dialog').close();
-  });
-});
+modalImg.addEventListener('click', () => modal.close());

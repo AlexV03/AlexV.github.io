@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <meta name="description" content="A audio ray tracer">
     <meta name="author" content="Alex V">
-    
+
     <meta property="og:title" content="Ray traced audio - Game Project">
     <meta property="og:description" content="Ray traced audio project">
     <meta property="og:image" content="Content/Images/AudioImage.png">
     <meta property="og:type" content="website">
-    
+
     <link href="Content/highlight/styles/atom-one-dark.min.css" rel="stylesheet" />
-    
+
     <title>Raytraced audio - Game Development Project</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="AudioImage.png">
@@ -37,18 +37,18 @@
         </ul>
 
         <ul class="social-links">
-        <li>
-            <a href="https://www.linkedin.com/in/av3xv/" target="_blank" rel="noopener noreferrer"
-            class="social-icon" aria-label="LinkedIn profile (opens in new tab)">
-            <img src="Content/Images/LinkedinIcon.svg" alt="">
-            </a>
-        </li>
-        <li>
-            <a href="https://av03.itch.io/" target="_blank" rel="noopener noreferrer"
-            class="social-icon" aria-label="Itch.io profile (opens in new tab)">
-            <img src="Content/Images/ItchIcon.svg" alt="">
-            </a>
-        </li>
+            <li>
+                <a href="https://www.linkedin.com/in/av3xv/" target="_blank" rel="noopener noreferrer"
+                    class="social-icon" aria-label="LinkedIn profile (opens in new tab)">
+                    <img src="Content/Images/LinkedinIcon.svg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="https://av03.itch.io/" target="_blank" rel="noopener noreferrer" class="social-icon"
+                    aria-label="Itch.io profile (opens in new tab)">
+                    <img src="Content/Images/ItchIcon.svg" alt="">
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -60,57 +60,62 @@
         <div class="border-content">
             <h3>About</h3>
             <p>
-                This blog post goes over my implementation of a ray traced audio system in C++ for my second year project at BUAS.
-                Normally in games audio typically uses pre-baked reverb zones, echo zones and occlusion zones, which don't accurately
-                respond to the dynamic environment. With ray traced audio you can get a more physically accurate approach by
-                simulation sound rays through the environment using geometric acoustics. My system works by shooting rays from
-                audio sources into the scene, reflecting off surfaces, transmitting through objects, and eventually reaching the listener.
-                The data that is then collected, is used for the DSP (Digital Signal Processor) chain that applies different effects like
-                occlusion, echoes and attenation. My goal was to create a ray traced audio system that automatically adepts to any environment
+                This blog post goes over my implementation of a ray traced audio system in C++ for my second year
+                project at BUAS.
+                Normally in games audio typically uses pre-baked reverb zones, echo zones and occlusion zones, which
+                don't accurately
+                respond to the dynamic environment. With ray traced audio you can get a more physically accurate
+                approach by
+                simulation sound rays through the environment using geometric acoustics. My system works by shooting
+                rays from
+                audio sources into the scene, reflecting off surfaces, transmitting through objects, and eventually
+                reaching the listener.
+                The data that is then collected, is used for the DSP (Digital Signal Processor) chain that applies
+                different effects like
+                occlusion, echoes and attenation. My goal was to create a ray traced audio system that automatically
+                adepts to any environment
                 without manual setup.
             </p>
 
             <figure class="content-row">
                 <div class="project-info-box">
-            
-                <!-- <img src="Content/Images/wav-sound-format.png" 
+
+                    <!-- <img src="Content/Images/wav-sound-format.png" 
                      alt="Wav file format"
                      loading="lazy"> -->
 
 
                     <label for="modal-wav">
-    <img src="Content/Images/wav-sound-format.png" 
-         alt="Wav file format"
-         loading="lazy"
-         class="thumbnail"
-         style="max-width: 600px;">
-</label>
+                        <img src="Content/Images/wav-sound-format.png" alt="Wav file format" loading="lazy"
+                            class="thumbnail" style="max-width: 600px;">
+                    </label>
 
-<!-- Checkbox (hidden) -->
-<input type="checkbox" id="modal-wav" class="modal-toggle">
+                    <!-- Checkbox (hidden) -->
+                    <input type="checkbox" id="modal-wav" class="modal-toggle">
 
-<!-- Modal overlay -->
-<div class="modal-overlay">
-    <label for="modal-wav" class="modal-close"></label>
-    <img src="Content/Images/wav-sound-format.png" 
-         alt="Wav file format" 
-         class="modal-image">
-</div>
+                    <!-- Modal overlay -->
+                    <div class="modal-overlay">
+                        <label for="modal-wav" class="modal-close"></label>
+                        <img src="Content/Images/wav-sound-format.png" alt="Wav file format" class="modal-image">
+                    </div>
 
                 </div>
 
-                
+
 
                 <figcaption class="text-beside">
                     <h3>The audio file</h3>
                     <p>
-                        I will be using the WAV file format for this project. I am using this because WAV files store uncompressed PCM(Pulse Code Modulation)
-                        audio data. This makes it so its easy to read audio samples and apply DSP effects without the risk of losing quality.
-                        A WAV file consists of a header that describes the audio format, followed by the raw sample data. The header contains all kinds of
+                        I will be using the WAV file format for this project. I am using this because WAV files store
+                        uncompressed PCM(Pulse Code Modulation)
+                        audio data. This makes it so its easy to read audio samples and apply DSP effects without the
+                        risk of losing quality.
+                        A WAV file consists of a header that describes the audio format, followed by the raw sample
+                        data. The header contains all kinds of
                         information like sample rate, number of channels and bit depth.
                     </p>
 
-                <pre><code class="language-cpp">
+                    <pre><code class="language-cpp">
 std::ifstream wavfile(_filePath, std::ios::binary);
 
 if (wavfile.is_open())
@@ -136,11 +141,12 @@ if (wavfile.is_open())
             </figure>
 
             <p>
-                We can then read the WAV file's chunk ID to check for the RIFF identifier to verify if its a valid WAV file, then read the
-                format to check if its a WAVE format. 
+                We can then read the WAV file's chunk ID to check for the RIFF identifier to verify if its a valid WAV
+                file, then read the
+                format to check if its a WAVE format.
             </p>
 
-                <pre><code class="language-cpp">
+            <pre><code class="language-cpp">
 wavfile.read(chunk_ID, 4);
 
 if (std::string(chunk_ID, 4) == "RIFF")
@@ -152,8 +158,10 @@ if (std::string(chunk_ID, 4) == "RIFF")
                 </code></pre>
 
             <p>
-                When having read through the whole file we can then use sub_chunk2_size to calculate the amount of samples. These samples are then
-                stored in a vector for real-time processing in the audio engine. Once the audio is loaded these samples are fed to the DSP chain to
+                When having read through the whole file we can then use sub_chunk2_size to calculate the amount of
+                samples. These samples are then
+                stored in a vector for real-time processing in the audio engine. Once the audio is loaded these samples
+                are fed to the DSP chain to
                 apply audio effects to them.
             </p>
 
@@ -174,18 +182,24 @@ wavfile.close();  // Close audio file
                 <figcaption class="text-beside">
                     <h3>Stereo Panning</h3>
                     <p>
-                        To create the effect of directional sound in 3D space, I implemented stereo panning based on the audio sources position
-                        relative to the listener. The function calcualtes the angle between the listeners forward direction and the direction
-                        to the sound source. This maps it to a panning value between -1 (fully left) and 1 (fully right).
-                        The implementation uses the cross product of the listener's forward vector to get the right vector, then uses a dot product
-                        to determine how far the sound is on the left or right side of the listener. The pan value is then converted to individual
-                        channels using cosine and sine, this technique is called Equal power panning. This ensures that the loudness remains constant
+                        To create the effect of directional sound in 3D space, I implemented stereo panning based on the
+                        audio sources position
+                        relative to the listener. The function calcualtes the angle between the listeners forward
+                        direction and the direction
+                        to the sound source. This maps it to a panning value between -1 (fully left) and 1 (fully
+                        right).
+                        The implementation uses the cross product of the listener's forward vector to get the right
+                        vector, then uses a dot product
+                        to determine how far the sound is on the left or right side of the listener. The pan value is
+                        then converted to individual
+                        channels using cosine and sine, this technique is called Equal power panning. This ensures that
+                        the loudness remains constant
                         as sound moves from left to right, preventing that the center sounds quieter.
                     </p>
                 </figcaption>
             </figure>
 
-                <pre><code class="language-cpp">
+            <pre><code class="language-cpp">
 glm::vec3 dir = audiosourcePosition - listenerPosition;
 
 glm::vec3 norDir = glm::normalize(dir);
@@ -210,11 +224,14 @@ _right = sinf(angle);
                     <h3>Occlusion</h3>
                     <p>
                         To have more realistic audio I added occlusion to the DSP(Digital Signal Processor) chain.
-                        When sound travels through obstacles, high frequencies are absorbed more than low frequencies, this is why
-                        sounds are muffled through walls. To simulate this effect I implented an occlusion system that shoots a direct ray
+                        When sound travels through obstacles, high frequencies are absorbed more than low frequencies,
+                        this is why
+                        sounds are muffled through walls. To simulate this effect I implented an occlusion system that
+                        shoots a direct ray
                         from sound source to the listener and applies a low pass filter when objects block the path.
-                        If the ray intersects with geometry, the ray gets the object's sound material, which contains an absorption coefficient (alpha).
-                        This value ranges from 0.0 (no absoption) to 1.0 (fully absorbed). 
+                        If the ray intersects with geometry, the ray gets the object's sound material, which contains an
+                        absorption coefficient (alpha).
+                        This value ranges from 0.0 (no absoption) to 1.0 (fully absorbed).
                     </p>
                 </figcaption>
             </figure>
@@ -249,12 +266,17 @@ output = alpha × input + (1 - alpha) × previous_output
 
                 <figcaption class="text-beside">
                     <p>
-                        I am using a first-order IIR(Infinte Impulse Response) low pass filter, also known as a one pole filter.
-                        The filter works by blending the current sample and the previous sample. The alpha value controls how much smoothing is applied.
-                        Higher values let more high frequencies through, while lower values create a stronger muffling effect.
-                        The reason I chose for a IIR filter instead of a FIR filter is that a IIR filter is more efficient than a FIR filter. This is because
+                        I am using a first-order IIR(Infinte Impulse Response) low pass filter, also known as a one pole
+                        filter.
+                        The filter works by blending the current sample and the previous sample. The alpha value
+                        controls how much smoothing is applied.
+                        Higher values let more high frequencies through, while lower values create a stronger muffling
+                        effect.
+                        The reason I chose for a IIR filter instead of a FIR filter is that a IIR filter is more
+                        efficient than a FIR filter. This is because
                         it uses less coefficients.
-                        Normally the alpha is calculated based on the cutoff frequency but for my case it is a single value that the designer
+                        Normally the alpha is calculated based on the cutoff frequency but for my case it is a single
+                        value that the designer
                         can define for each object when applying a sound material to the object.
                         Some values that apply to different materials: Concrete ~0.3, wood ~0.5, fabric ~0.7.
                     </p>
@@ -272,10 +294,13 @@ output = alpha × input + (1 - alpha) × previous_output
                 <figcaption class="text-beside">
                     <h3>Echo</h3>
                     <p>
-                        Echoes occur when sound reflects off distant surfaces and returns to the listener after a delay. To add more realism
-                        I implemented the echo effect into my DSP chain using a feedback delay line using a circular buffer, where the delay time
+                        Echoes occur when sound reflects off distant surfaces and returns to the listener after a delay.
+                        To add more realism
+                        I implemented the echo effect into my DSP chain using a feedback delay line using a circular
+                        buffer, where the delay time
                         is calculated from the distance sound travels (at 343 m/s, the speed of sound in air at 20°C).
-                        The circular buffer stores previous audio samples, and by reading the samples with a delayed position, we create a echo effect.
+                        The circular buffer stores previous audio samples, and by reading the samples with a delayed
+                        position, we create a echo effect.
                     </p>
                 </figcaption>
             </figure>
@@ -291,7 +316,8 @@ output = alpha × input + (1 - alpha) × previous_output
 
                 <figcaption class="text-beside">
                     <p>
-                        In the first part of the echo implementation, we read from the circular buffer at the current write position
+                        In the first part of the echo implementation, we read from the circular buffer at the current
+                        write position
                         (multiplied by 2 for stereo interleaving) to get the echo from previous frames.
                     </p>
                 </figcaption>
@@ -306,8 +332,10 @@ output = alpha × input + (1 - alpha) × previous_output
 
                 <figcaption class="text-beside">
                     <p>
-                        The second part calculates the decay of the echo based on distance. I calculate a decay factor that reduces echo intensity
-                        based on how far the ray has traveled, with this longer ray paths make distant echoes quieter then near ones. 
+                        The second part calculates the decay of the echo based on distance. I calculate a decay factor
+                        that reduces echo intensity
+                        based on how far the ray has traveled, with this longer ray paths make distant echoes quieter
+                        then near ones.
                     </p>
                 </figcaption>
             </figure>
@@ -325,10 +353,13 @@ output = alpha × input + (1 - alpha) × previous_output
 
                 <figcaption class="text-beside">
                     <p>
-                        The third and last part is the feedback loop. The output mixes the dry (original) signal with the wet (echo) signal using
-                        blend factors. After that we write the dry signal plus the decayed echo back into the buffer. This creates the feedback loop
+                        The third and last part is the feedback loop. The output mixes the dry (original) signal with
+                        the wet (echo) signal using
+                        blend factors. After that we write the dry signal plus the decayed echo back into the buffer.
+                        This creates the feedback loop
                         that generates multiple echoes, each quieter than the last.
-                        The write position then moves circularly, overriding the oldest samples. I do this because its memory efficient and avoids needing
+                        The write position then moves circularly, overriding the oldest samples. I do this because its
+                        memory efficient and avoids needing
                         to shift data around.
                     </p>
                 </figcaption>
@@ -338,12 +369,16 @@ output = alpha × input + (1 - alpha) × previous_output
                 <figcaption class="text-beside">
                     <h3>Ray tracing</h3>
                     <p>
-                        For the ray tracing part I cast rays from each audio source to simulate how sound propagates through the environment.
-                        Each frame, I shoot multiple rays in different directions using a Fibonacci sphere (more on that later), trace their paths
-                        and as the bounch around the world and accumulate the energy and distance traveled by rays that reach the listener.
+                        For the ray tracing part I cast rays from each audio source to simulate how sound propagates
+                        through the environment.
+                        Each frame, I shoot multiple rays in different directions using a Fibonacci sphere (more on that
+                        later), trace their paths
+                        and as the bounch around the world and accumulate the energy and distance traveled by rays that
+                        reach the listener.
                         <br>
                         Fibonacci sphere:
-                        To make sure the rays are all evenly distributed on a sphere I am using the Fibonacci sphere algorithm. This creates
+                        To make sure the rays are all evenly distributed on a sphere I am using the Fibonacci sphere
+                        algorithm. This creates
                         a nearly uniform spherical distribution without clutering on the poles.
                     </p>
                 </figcaption>
@@ -409,10 +444,14 @@ for (int i = 0; i < source.rayAmount; i++)
                 <figcaption class="text-beside">
                     <h4>Transmission</h4>
                     <p>
-                        With the rays, each ray when it hits an object will also create a new transmission ray with reduced energy.
-                        The reduction of the sound energy is like real life where when sound hits an object, a part of it goes through the object,
-                        part of it reflects, and a part of it gets absorbed. This ray goes through the object and continues tracing through the scene
-                        before potentially reaching the listener. The transmitted rays contribute to the total sound energy and distance if they reach
+                        With the rays, each ray when it hits an object will also create a new transmission ray with
+                        reduced energy.
+                        The reduction of the sound energy is like real life where when sound hits an object, a part of
+                        it goes through the object,
+                        part of it reflects, and a part of it gets absorbed. This ray goes through the object and
+                        continues tracing through the scene
+                        before potentially reaching the listener. The transmitted rays contribute to the total sound
+                        energy and distance if they reach
                         the listener. This creates a more realistic experience when sound comes from behind a wall.
                     </p>
                 </figcaption>
@@ -428,7 +467,8 @@ sRay.energy *= invNumRays;
 
                 <figcaption class="text-beside">
                     <p>
-                        Eventually when the tracing is done the average of all the values are taken and supplied to a single ray that gets stored,
+                        Eventually when the tracing is done the average of all the values are taken and supplied to a
+                        single ray that gets stored,
                         so later it can be used to calculate the different sound effects in the DSP chain.
                     </p>
                 </figcaption>
@@ -437,12 +477,17 @@ sRay.energy *= invNumRays;
             <figure class="content-row">
                 <figcaption class="text-beside">
                     <p>
-                        For the intersection of the rays with the environment I am using TinyBVH(make into link) by Jacco Bikker.
-                        This spatial acceleration structure organizes scene geometry into a tree, allowing ray intersections to be found in O(log n) time
+                        For the intersection of the rays with the environment I am using TinyBVH(make into link) by
+                        Jacco Bikker.
+                        This spatial acceleration structure organizes scene geometry into a tree, allowing ray
+                        intersections to be found in O(log n) time
                         instead of checking every triangle.
-                        This gets me the data to calculate the intersection point of where the sound ray collides with an object.
-                        With the intersection point and the starting point I can then calculate a point on that line using GetNearestPointOnLineSegment function
-                        to check how far the listener is from the ray. This makes it possible for the listener to detect the sound rays.
+                        This gets me the data to calculate the intersection point of where the sound ray collides with
+                        an object.
+                        With the intersection point and the starting point I can then calculate a point on that line
+                        using GetNearestPointOnLineSegment function
+                        to check how far the listener is from the ray. This makes it possible for the listener to detect
+                        the sound rays.
                     </p>
                 </figcaption>
 
@@ -470,8 +515,10 @@ sRay.energy *= invNumRays;
             <figure class="content-row">
                 <figcaption class="text-beside">
                     <p>
-                        When a ray intersects with geometry, it then finds the object's sound material to get its absorption value.
-                        If the ray can still go through object's a new transmitted ray is created, that will be shot through the object.
+                        When a ray intersects with geometry, it then finds the object's sound material to get its
+                        absorption value.
+                        If the ray can still go through object's a new transmitted ray is created, that will be shot
+                        through the object.
                     </p>
                 </figcaption>
 
@@ -492,9 +539,12 @@ sRay.energy *= invNumRays;
                 <figcaption class="text-beside">
                     <p>
                         The ray's energy gets reduced depending on the absorption value of the material.
-                        This means that if the absoption value is 0.2 20% of the rays energy gets absorbed by the surface and 80% reflects.
-                        The ray then calculates a reflection using a reflection formula: R = D - 2N(D·N), where D is the incident direction and N
-                        the normal of the triangle. After updating the rays origin and direction the Trace function is called again.
+                        This means that if the absoption value is 0.2 20% of the rays energy gets absorbed by the
+                        surface and 80% reflects.
+                        The ray then calculates a reflection using a reflection formula: R = D - 2N(D·N), where D is the
+                        incident direction and N
+                        the normal of the triangle. After updating the rays origin and direction the Trace function is
+                        called again.
                         With this you have a recursive behavior as long as the sound ray has enough energy.
                     </p>
                 </figcaption>
@@ -514,9 +564,12 @@ _sRay.energy *= (1.0f - soundM.absorpValue);
 
             <h3>Conclusion</h3>
             <p>
-                These are currently the features implemented into my ray traced audio tool. Although not everything is implemented yet, in the future
-                I plan to add more features and also improve the performance and user friendliness to make it a proper tool that can be used in any project.
-                I learned a lot from this project, mainly about how sound works and how it can be applied in programming, and I hope you also learned something
+                These are currently the features implemented into my ray traced audio tool. Although not everything is
+                implemented yet, in the future
+                I plan to add more features and also improve the performance and user friendliness to make it a proper
+                tool that can be used in any project.
+                I learned a lot from this project, mainly about how sound works and how it can be applied in
+                programming, and I hope you also learned something
                 about it. Thank you for reading my blog.
                 PS. did you find the ducky :)
             </p>
@@ -525,67 +578,60 @@ _sRay.energy *= (1.0f - soundM.absorpValue);
 
             <h4>References</h4>
             <p>
-            <a href="https://en.wikipedia.org/wiki/WAV" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                aria-label="Wiki WAV file">
-                WAV File Info
-            </a>
-            <br>
-            <a href="https://learncplusplus.org/learn-how-to-read-the-wav-waveform-audio-file-format-in-c/" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               aria-label="LinkedIn Profile">
-               Read WAV file
-            </a>
-                
+                <a href="https://en.wikipedia.org/wiki/WAV" target="_blank" rel="noopener noreferrer"
+                    aria-label="Wiki WAV file">
+                    WAV File Info
+                </a>
                 <br>
-
-            <a href="https://hackaudio.com/tutorial-courses/learn-audio-programming-table-of-contents/digital-signal-processing/echo-effects/feed-back-echo/" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               aria-label="LinkedIn Profile">
-               Feed back echo
-            </a>
-                
-            <br>
-            <a href="https://www.acoustic-supplies.com/absorption-coefficient-chart/" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               aria-label="LinkedIn Profile">
-               Absorption values of different materials
-            </a>
-                
-            <br>
-            <a href="https://jacco.ompf2.com/2025/01/24/tinybvh-manual-basic-use/" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               aria-label="LinkedIn Profile">
-               TinyBVH by Jacco Bikker
-            </a>
-                
-                <br>
-            <a href="https://extremelearning.com.au/evenly-distributing-points-on-a-sphere/" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               aria-label="LinkedIn Profile">
-               Fibonacci sphere
-            </a>
+                <a href="https://learncplusplus.org/learn-how-to-read-the-wav-waveform-audio-file-format-in-c/"
+                    target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                    Read WAV file
+                </a>
 
                 <br>
-            <a href="https://www.youtube.com/watch?v=u6EuAUjq92k" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               aria-label="LinkedIn Profile">
-               My inspiration for ray traced audio
-            </a>
-                
+
+                <a href="https://hackaudio.com/tutorial-courses/learn-audio-programming-table-of-contents/digital-signal-processing/echo-effects/feed-back-echo/"
+                    target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                    Feed back echo
+                </a>
+
+                <br>
+                <a href="https://www.acoustic-supplies.com/absorption-coefficient-chart/" target="_blank"
+                    rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                    Absorption values of different materials
+                </a>
+
+                <br>
+                <a href="https://jacco.ompf2.com/2025/01/24/tinybvh-manual-basic-use/" target="_blank"
+                    rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                    TinyBVH by Jacco Bikker
+                </a>
+
+                <br>
+                <a href="https://extremelearning.com.au/evenly-distributing-points-on-a-sphere/" target="_blank"
+                    rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                    Fibonacci sphere
+                </a>
+
+                <br>
+                <a href="https://www.youtube.com/watch?v=u6EuAUjq92k" target="_blank" rel="noopener noreferrer"
+                    aria-label="LinkedIn Profile">
+                    My inspiration for ray traced audio
+                </a>
+
             </p>
 
         </div>
     </main>
+
+    <!-- Placed in each page, to enable image enlarge -->
+    <dialog id="image-modal" class="modal">
+        <img class="modal-image" src="" alt="">
+    </dialog>
+
     <script src="Content/highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
     <script src="script.js"></script>
 </body>
+
 </html>

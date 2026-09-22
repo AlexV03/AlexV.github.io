@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <meta name="description" content="A raytracer rendering a chess match">
     <meta name="author" content="Alex V">
-    
+
     <meta property="og:title" content="Raytracer - Game Project">
     <meta property="og:description" content="Raytracer tracing a chess match">
     <meta property="og:image" content="Content/Images/EmissiveDuck.png">
     <meta property="og:type" content="website">
 
     <link href="Content/highlight/styles/atom-one-dark.min.css" rel="stylesheet" />
-    
+
     <title>Raytracer - Game Development Project</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="EmissiveDuck.png">
@@ -37,28 +37,28 @@
         </ul>
 
         <ul class="social-links">
-        <li>
-            <a href="https://www.linkedin.com/in/av3xv/" target="_blank" rel="noopener noreferrer"
-            class="social-icon" aria-label="LinkedIn profile (opens in new tab)">
-            <img src="Content/Images/LinkedinIcon.svg" alt="">
-            </a>
-        </li>
-        <li>
-            <a href="https://av03.itch.io/" target="_blank" rel="noopener noreferrer"
-            class="social-icon" aria-label="Itch.io profile (opens in new tab)">
-            <img src="Content/Images/ItchIcon.svg" alt="">
-            </a>
-        </li>
+            <li>
+                <a href="https://www.linkedin.com/in/av3xv/" target="_blank" rel="noopener noreferrer"
+                    class="social-icon" aria-label="LinkedIn profile (opens in new tab)">
+                    <img src="Content/Images/LinkedinIcon.svg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="https://av03.itch.io/" target="_blank" rel="noopener noreferrer" class="social-icon"
+                    aria-label="Itch.io profile (opens in new tab)">
+                    <img src="Content/Images/ItchIcon.svg" alt="">
+                </a>
+            </li>
         </ul>
     </nav>
 
-   <div class="page-header">
+    <div class="page-header">
         <h1 class="page-title">Ray tracer</h1>
     </div>
 
     <main>
         <div class="border-content">
-            
+
             <div class="project-info-box">
                 <div class="info-item">
                     <span class="info-label">Project Duration:</span>
@@ -87,13 +87,15 @@
 
             <h2>About</h2>
             <p>
-                This project was made in my first year at BUAS. We had to make a ray tracer. With different kinds of materials and post processing effects.
+                This project was made in my first year at BUAS. We had to make a ray tracer. With different kinds of
+                materials and post processing effects.
                 With this I made a chess match.
             </p>
 
             <h2>Creation I Made</h2>
             <p>
-                I made a ray tracer with different materials: texture, metalic and glass, different effects: vignette, chromatic abberation,
+                I made a ray tracer with different materials: texture, metalic and glass, different effects: vignette,
+                chromatic abberation,
                 depth of field, bloom and more and having different types of lights: pointlight, arealight, etc.
             </p>
 
@@ -116,11 +118,11 @@
             </figure>
 
             <details>
-            <summary>
-                <span class="summary-text summary-text--closed">Click to open code</span>
-                <span class="summary-text summary-text--open">Click to close code</span>
-            </summary>
-            <pre><code class="language-cpp">
+                <summary>
+                    <span class="summary-text summary-text--closed">Click to open code</span>
+                    <span class="summary-text summary-text--open">Click to close code</span>
+                </summary>
+                <pre><code class="language-cpp">
 float3 Renderer::Trace(Ray& ray, int depth, int _x, int _y, int _frame)
 {
 	if (depth == bounchReflections)
@@ -177,11 +179,16 @@ float3 Renderer::Trace(Ray& ray, int depth, int _x, int _y, int _frame)
                 <figcaption class="text-beside">
                     <h3>Lights</h3>
                     <p>
-                        For in the Trace function a caluclate different lights. A example in the code snippet is the calculation for a point light.
-                        A direction is first calculated, then to solve a issue with the shadows I am applying a shadow terminator. I am doing this
-                        because, when shadows were being cast on object on some parts of the mesh the whole triangle was covered with shadow.
-                        With the terminator, that resolves the issues and makes it a nice smooth shadow on the mesh. After that a new ray is shot
-                        for the shadows, a attenuation for light fallof, the diffuse of the light and after that a specular effect.
+                        For in the Trace function a caluclate different lights. A example in the code snippet is the
+                        calculation for a point light.
+                        A direction is first calculated, then to solve a issue with the shadows I am applying a shadow
+                        terminator. I am doing this
+                        because, when shadows were being cast on object on some parts of the mesh the whole triangle was
+                        covered with shadow.
+                        With the terminator, that resolves the issues and makes it a nice smooth shadow on the mesh.
+                        After that a new ray is shot
+                        for the shadows, a attenuation for light fallof, the diffuse of the light and after that a
+                        specular effect.
                     </p>
                 </figcaption>
 
@@ -189,61 +196,51 @@ float3 Renderer::Trace(Ray& ray, int depth, int _x, int _y, int _frame)
                 <!-- <img src="Content/Images/AreaLight.PNG" 
                      alt="Different materials"
                      loading="lazy"> -->
-                    <!-- </div> -->
+                <!-- </div> -->
 
-                    <label for="modal-area">
-    <img src="Content/Images/AreaLight.PNG" 
-         alt="Wav file format"
-         loading="lazy"
-         class="thumbnail"
-         style="max-width: 300px;">
-</label>
+                <label for="modal-area">
+                    <img src="Content/Images/AreaLight.PNG" alt="Wav file format" loading="lazy" class="thumbnail"
+                        style="max-width: 300px;">
+                </label>
 
-<!-- Checkbox (hidden) -->
-<input type="checkbox" id="modal-area" class="modal-toggle">
+                <!-- Checkbox (hidden) -->
+                <input type="checkbox" id="modal-area" class="modal-toggle">
 
-<!-- Modal overlay -->
-<div class="modal-overlay">
-    <label for="modal-area" class="modal-close"></label>
-    <img src="Content/Images/AreaLight.PNG" 
-         alt="Wav file format" 
-         class="modal-image">
-</div>
+                <!-- Modal overlay -->
+                <div class="modal-overlay">
+                    <label for="modal-area" class="modal-close"></label>
+                    <img src="Content/Images/AreaLight.PNG" alt="Wav file format" class="modal-image">
+                </div>
 
 
-            <!-- <div class="page-game raytI2">
+                <!-- <div class="page-game raytI2">
                 <img src="Content/Images/SpotLight.PNG" 
                      alt="Different materials"
                      loading="lazy">
             </div> -->
 
-            <label for="modal-spot">
-    <img src="Content/Images/SpotLight.PNG" 
-         alt="Wav file format"
-         loading="lazy"
-         class="thumbnail"
-         style="max-width: 300px;">
-</label>
+                <label for="modal-spot">
+                    <img src="Content/Images/SpotLight.PNG" alt="Wav file format" loading="lazy" class="thumbnail"
+                        style="max-width: 300px;">
+                </label>
 
-<!-- Checkbox (hidden) -->
-<input type="checkbox" id="modal-spot" class="modal-toggle">
+                <!-- Checkbox (hidden) -->
+                <input type="checkbox" id="modal-spot" class="modal-toggle">
 
-<!-- Modal overlay -->
-<div class="modal-overlay">
-    <label for="modal-spot" class="modal-close"></label>
-    <img src="Content/Images/SpotLight.PNG" 
-         alt="Wav file format" 
-         class="modal-image">
-</div>
+                <!-- Modal overlay -->
+                <div class="modal-overlay">
+                    <label for="modal-spot" class="modal-close"></label>
+                    <img src="Content/Images/SpotLight.PNG" alt="Wav file format" class="modal-image">
+                </div>
 
             </figure>
 
             <details>
-            <summary>
-                <span class="summary-text summary-text--closed">Click to open code</span>
-                <span class="summary-text summary-text--open">Click to close code</span>
-            </summary>
-            <pre><code class="language-cpp">
+                <summary>
+                    <span class="summary-text summary-text--closed">Click to open code</span>
+                    <span class="summary-text summary-text--open">Click to close code</span>
+                </summary>
+                <pre><code class="language-cpp">
 float3 PointLight::CalculatePointLight(const LightData& _lightData, float3 _normal, float3 _objectPosition, Scene& _scene, float3 _rayDir, std::vector<float3>& _vertices, std::vector<float3>& _normals, tinybvh::Intersection _bvhHit)//add indicator visual to see where light is
 {
 	float3 lightDirection = _lightData.position - _objectPosition;
@@ -309,19 +306,22 @@ float3 PointLight::CalculatePointLight(const LightData& _lightData, float3 _norm
 
             <figcaption class="text-beside">
                 <h3>Post processing</h3>
-                  <p>
-                    With the code block below, post processing is applied. First the original screen is copied to a texture.
-                    Then the color grading shader is applied (brightness, contrast, saturation, gamma correction), rendering the result to a second framebuffer.
-                    Second, the color graded result is used as input for the screen effect shader (vignette,  chromaticAberration, bloom),
+                <p>
+                    With the code block below, post processing is applied. First the original screen is copied to a
+                    texture.
+                    Then the color grading shader is applied (brightness, contrast, saturation, gamma correction),
+                    rendering the result to a second framebuffer.
+                    Second, the color graded result is used as input for the screen effect shader (vignette,
+                    chromaticAberration, bloom),
                     which renders the output directly to the screen.
-                  </p>
+                </p>
             </figcaption>
 
-                <details>
-            <summary>
-                <span class="summary-text summary-text--closed">Click to open code</span>
-                <span class="summary-text summary-text--open">Click to close code</span>
-            </summary>
+            <details>
+                <summary>
+                    <span class="summary-text summary-text--closed">Click to open code</span>
+                    <span class="summary-text summary-text--open">Click to close code</span>
+                </summary>
                 <pre><code class="language-cpp">
 void Renderer::ApplyPostProcessing()
 {
@@ -372,36 +372,51 @@ void Renderer::ApplyPostProcessing()
             </code></pre>
             </details>
 
-                <figcaption class="text-beside">
-                    <h3>Shaders</h3>
-                    <p>
-                        In the shaders is where the magic happens. There are 2 shaders: one to adjust colours and the other one for screen effects.
-                        The first code block shows how I am calculating different screen effects: Bloom, chromaticAberration, and Vignette.
-                        Bloom is a simple calculation by multiplying a colour with an intensity and adding that to the colour output.
-                        For chromaticAberration, each RGB value uses the texture together with the UVs and an offset. The separate RGB channels
-                        of the texture are then blended with the original colour at 50% strength and applied to the colour output.
-                        For Vignette, the UVs are remapped to the center the coordinate system. Using smoothstep between the vignette radius and
-                        cutoff value, a gradient is created that darkens the edges of the screen.
-                        This value is then multiplied to the colour output.
-                        How you apply each effect is also important. If you, for example, first calculate Vignette and then bloom and CA,
-                        the vignette effect wouldn't properly be shown on screen.
-                        <br><br>
-                        The second code block changes the colour the person sees. First the shader extracts the bright areas of the image to
-                        create a bloom texture that is being used for a blur pass. This is done by calculating a brightness value using the dot product
-                        of the colour and weighted colour values. If then the brightness is greater than 0.95, it outputs the colour to BrightColor,
-                        otherwise the colour is set to black. For colour grading, there is brightness, which is a simple calculation
-                        of multiplying a value with the colour. For contrast, you subtract a small value from the colour, multiply it with the contrast value,
-                        and add the small value back again. For saturation, you get a gray value using a dot product of the colour and a
-                        specified value, then you mix the gray value and the colour with the saturation value and apply it to the colour output.
-                        Together these calculations form color grading. The last effect is gamma correction, which is a simple square root of the colour.
-                    </p>
-                </figcaption>
+            <figcaption class="text-beside">
+                <h3>Shaders</h3>
+                <p>
+                    In the shaders is where the magic happens. There are 2 shaders: one to adjust colours and the other
+                    one for screen effects.
+                    The first code block shows how I am calculating different screen effects: Bloom,
+                    chromaticAberration, and Vignette.
+                    Bloom is a simple calculation by multiplying a colour with an intensity and adding that to the
+                    colour output.
+                    For chromaticAberration, each RGB value uses the texture together with the UVs and an offset. The
+                    separate RGB channels
+                    of the texture are then blended with the original colour at 50% strength and applied to the colour
+                    output.
+                    For Vignette, the UVs are remapped to the center the coordinate system. Using smoothstep between the
+                    vignette radius and
+                    cutoff value, a gradient is created that darkens the edges of the screen.
+                    This value is then multiplied to the colour output.
+                    How you apply each effect is also important. If you, for example, first calculate Vignette and then
+                    bloom and CA,
+                    the vignette effect wouldn't properly be shown on screen.
+                    <br><br>
+                    The second code block changes the colour the person sees. First the shader extracts the bright areas
+                    of the image to
+                    create a bloom texture that is being used for a blur pass. This is done by calculating a brightness
+                    value using the dot product
+                    of the colour and weighted colour values. If then the brightness is greater than 0.95, it outputs
+                    the colour to BrightColor,
+                    otherwise the colour is set to black. For colour grading, there is brightness, which is a simple
+                    calculation
+                    of multiplying a value with the colour. For contrast, you subtract a small value from the colour,
+                    multiply it with the contrast value,
+                    and add the small value back again. For saturation, you get a gray value using a dot product of the
+                    colour and a
+                    specified value, then you mix the gray value and the colour with the saturation value and apply it
+                    to the colour output.
+                    Together these calculations form color grading. The last effect is gamma correction, which is a
+                    simple square root of the colour.
+                </p>
+            </figcaption>
 
-                <details>
-            <summary>
-                <span class="summary-text summary-text--closed">Click to open code</span>
-                <span class="summary-text summary-text--open">Click to close code</span>
-            </summary>
+            <details>
+                <summary>
+                    <span class="summary-text summary-text--closed">Click to open code</span>
+                    <span class="summary-text summary-text--open">Click to close code</span>
+                </summary>
                 <pre><code class="language-cpp">
 //Screen
 void main()
@@ -437,10 +452,10 @@ void main()
 }
             </code></pre>
             </details>
-            
+
             <details close>
-            <summary></summary>
-            <pre><code class="language-cpp">
+                <summary></summary>
+                <pre><code class="language-cpp">
 //Colors
 void main()
 {
@@ -480,33 +495,39 @@ void main()
             </details>
 
             <div class="page-game raytv1">
-                    <video controls width="400" preload="metadata" aria-label="Post processing effects">
-                        <source src="Content/Videos/PostProcessing.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
+                <video controls width="400" preload="metadata" aria-label="Post processing effects">
+                    <source src="Content/Videos/PostProcessing.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
 
-                <figcaption class="text-beside">
-                    <h3>Materials</h3>
-                    <p>
-                        Within the Trace function, the values of each material type are calculated. This is then used to calculate the
-                        different material types: transparent, reflective, emissive, and colour. The code block below shows an example of one
-                        of the functions to calculate such a value. This one is to get the albedo value from the texture.
-                        For this, I am using mipmaps for each texture; these are precalculated at the creation of a mesh.
-                        I loop through each mipmap level, getting its distance threshold for the current and next mipmap level, then a check to see
-                        if the distance(distance from camera to the surface) is less than or equal to the next mipmap levels threshold. If so,
-                        then it does a trilinear interpolation between the current and next mipmap levels based on how close the distance is to the
-                        threshold. This makes the texture smoothly change between mipmap levels. For the last mipmap level, both thresholds are set
-                        to the same value to prefend indexing out of bounds.
-                    </p>
-                </figcaption>
+            <figcaption class="text-beside">
+                <h3>Materials</h3>
+                <p>
+                    Within the Trace function, the values of each material type are calculated. This is then used to
+                    calculate the
+                    different material types: transparent, reflective, emissive, and colour. The code block below shows
+                    an example of one
+                    of the functions to calculate such a value. This one is to get the albedo value from the texture.
+                    For this, I am using mipmaps for each texture; these are precalculated at the creation of a mesh.
+                    I loop through each mipmap level, getting its distance threshold for the current and next mipmap
+                    level, then a check to see
+                    if the distance(distance from camera to the surface) is less than or equal to the next mipmap levels
+                    threshold. If so,
+                    then it does a trilinear interpolation between the current and next mipmap levels based on how close
+                    the distance is to the
+                    threshold. This makes the texture smoothly change between mipmap levels. For the last mipmap level,
+                    both thresholds are set
+                    to the same value to prefend indexing out of bounds.
+                </p>
+            </figcaption>
 
-                <details>
-            <summary>
-                <span class="summary-text summary-text--closed">Click to open code</span>
-                <span class="summary-text summary-text--open">Click to close code</span>
-            </summary>
-            <pre><code class="language-cpp">
+            <details>
+                <summary>
+                    <span class="summary-text summary-text--closed">Click to open code</span>
+                    <span class="summary-text summary-text--open">Click to close code</span>
+                </summary>
+                <pre><code class="language-cpp">
 float3 Material::GetAlbedo(float _distance, float _u, float _v) const
 {
 	if (texture != nullptr)
@@ -538,95 +559,91 @@ float3 Material::GetAlbedo(float _distance, float _u, float _v) const
             </details>
 
             <figure class="content-row">
-            <!-- <div class="page-game raytI1">
+                <!-- <div class="page-game raytI1">
                 <img src="Content/Images/Materials.PNG" 
                      alt="Different materials"
                      loading="lazy">
             </div> -->
 
-            <label for="modal-mat">
-    <img src="Content/Images/Materials.PNG" 
-         alt="Wav file format"
-         loading="lazy"
-         class="thumbnail"
-         style="max-width: 350px;">
-</label>
+                <label for="modal-mat">
+                    <img src="Content/Images/Materials.PNG" alt="Wav file format" loading="lazy" class="thumbnail"
+                        style="max-width: 350px;">
+                </label>
 
-<!-- Checkbox (hidden) -->
-<input type="checkbox" id="modal-mat" class="modal-toggle">
+                <!-- Checkbox (hidden) -->
+                <input type="checkbox" id="modal-mat" class="modal-toggle">
 
-<!-- Modal overlay -->
-<div class="modal-overlay">
-    <label for="modal-mat" class="modal-close"></label>
-    <img src="Content/Images/Materials.PNG" 
-         alt="Wav file format" 
-         class="modal-image">
-</div>
+                <!-- Modal overlay -->
+                <div class="modal-overlay">
+                    <label for="modal-mat" class="modal-close"></label>
+                    <img src="Content/Images/Materials.PNG" alt="Wav file format" class="modal-image">
+                </div>
 
-            <!-- <div class="page-game raytI1">
+                <!-- <div class="page-game raytI1">
                 <img src="Content/Images/EmissiveDuck.PNG" 
                      alt="Different materials"
                      loading="lazy">
             </div> -->
 
-            <label for="modal-emis">
-    <img src="Content/Images/EmissiveDuck.PNG" 
-         alt="Wav file format"
-         loading="lazy"
-         class="thumbnail"
-         style="max-width: 600px;">
-</label>
+                <label for="modal-emis">
+                    <img src="Content/Images/EmissiveDuck.PNG" alt="Wav file format" loading="lazy" class="thumbnail"
+                        style="max-width: 600px;">
+                </label>
 
-<!-- Checkbox (hidden) -->
-<input type="checkbox" id="modal-emis" class="modal-toggle">
+                <!-- Checkbox (hidden) -->
+                <input type="checkbox" id="modal-emis" class="modal-toggle">
 
-<!-- Modal overlay -->
-<div class="modal-overlay">
-    <label for="modal-emis" class="modal-close"></label>
-    <img src="Content/Images/EmissiveDuck.PNG" 
-         alt="Wav file format" 
-         class="modal-image">
-</div>
+                <!-- Modal overlay -->
+                <div class="modal-overlay">
+                    <label for="modal-emis" class="modal-close"></label>
+                    <img src="Content/Images/EmissiveDuck.PNG" alt="Wav file format" class="modal-image">
+                </div>
 
-            <!-- <div class="page-game raytI1">
+                <!-- <div class="page-game raytI1">
                 <img src="Content/Images/EmissiveDuck2.PNG" 
                      alt="Different materials"
                      loading="lazy">
             </div> -->
 
-            <label for="modal-emis2">
-    <img src="Content/Images/EmissiveDuck2.PNG" 
-         alt="Wav file format"
-         loading="lazy"
-         class="thumbnail"
-         style="max-width: 600px;">
-</label>
+                <label for="modal-emis2">
+                    <img src="Content/Images/EmissiveDuck2.PNG" alt="Wav file format" loading="lazy" class="thumbnail"
+                        style="max-width: 600px;">
+                </label>
 
-<!-- Checkbox (hidden) -->
-<input type="checkbox" id="modal-emis2" class="modal-toggle">
+                <!-- Checkbox (hidden) -->
+                <input type="checkbox" id="modal-emis2" class="modal-toggle">
 
-<!-- Modal overlay -->
-<div class="modal-overlay">
-    <label for="modal-emis2" class="modal-close"></label>
-    <img src="Content/Images/EmissiveDuck2.PNG" 
-         alt="Wav file format" 
-         class="modal-image">
-</div>
+                <!-- Modal overlay -->
+                <div class="modal-overlay">
+                    <label for="modal-emis2" class="modal-close"></label>
+                    <img src="Content/Images/EmissiveDuck2.PNG" alt="Wav file format" class="modal-image">
+                </div>
             </figure>
 
             <h2>My Thoughts</h2>
             <p>
-                I liked how this project went, I learned a lot about ray tracing, how different materials are caluclated, how you could apply
-                post processing effects, different types of lights but also the techniques behind it, how you could optimize it,
-                how to make it faster, and much more. What I didnt like very much was the performance it wasnt that good of a perforance on
-                a big window, so maybe later in time I would retry to make a ray tracing scene and see if I can make it for a full width and height
+                I liked how this project went, I learned a lot about ray tracing, how different materials are
+                caluclated, how you could apply
+                post processing effects, different types of lights but also the techniques behind it, how you could
+                optimize it,
+                how to make it faster, and much more. What I didnt like very much was the performance it wasnt that good
+                of a perforance on
+                a big window, so maybe later in time I would retry to make a ray tracing scene and see if I can make it
+                for a full width and height
                 of the screen.
             </p>
 
         </div>
     </main>
+
+    <!-- Placed in each page, to enable image enlarge -->
+    <dialog id="image-modal" class="modal">
+        <img class="modal-image" src="" alt="">
+    </dialog>
+
     <script src="Content/highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
     <script src="script.js"></script>
 </body>
+
 </html>
