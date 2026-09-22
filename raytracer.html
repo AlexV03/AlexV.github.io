@@ -116,8 +116,11 @@
                 </figcaption>
             </figure>
 
-            <details close>
-            <summary></summary>
+            <details>
+            <summary>
+                <span class="summary-text summary-text--closed">Click to open code</span>
+                <span class="summary-text summary-text--open">Click to close code</span>
+            </summary>
             <pre><code class="language-cpp">
 float3 Renderer::Trace(Ray& ray, int depth, int _x, int _y, int _frame)
 {
@@ -236,8 +239,11 @@ float3 Renderer::Trace(Ray& ray, int depth, int _x, int _y, int _frame)
 
             </figure>
 
-            <details close>
-            <summary></summary>
+            <details>
+            <summary>
+                <span class="summary-text summary-text--closed">Click to open code</span>
+                <span class="summary-text summary-text--open">Click to close code</span>
+            </summary>
             <pre><code class="language-cpp">
 float3 PointLight::CalculatePointLight(const LightData& _lightData, float3 _normal, float3 _objectPosition, Scene& _scene, float3 _rayDir, std::vector<float3>& _vertices, std::vector<float3>& _normals, tinybvh::Intersection _bvhHit)//add indicator visual to see where light is
 {
@@ -312,8 +318,11 @@ float3 PointLight::CalculatePointLight(const LightData& _lightData, float3 _norm
                   </p>
             </figcaption>
 
-                <details close>
-                <summary></summary>
+                <details>
+            <summary>
+                <span class="summary-text summary-text--closed">Click to open code</span>
+                <span class="summary-text summary-text--open">Click to close code</span>
+            </summary>
                 <pre><code class="language-cpp">
 void Renderer::ApplyPostProcessing()
 {
@@ -389,8 +398,11 @@ void Renderer::ApplyPostProcessing()
                     </p>
                 </figcaption>
 
-                <details close>
-                <summary></summary>
+                <details>
+            <summary>
+                <span class="summary-text summary-text--closed">Click to open code</span>
+                <span class="summary-text summary-text--open">Click to close code</span>
+            </summary>
                 <pre><code class="language-cpp">
 //Screen
 void main()
@@ -490,8 +502,11 @@ void main()
                     </p>
                 </figcaption>
 
-                <details close>
-                <summary></summary>
+                <details>
+            <summary>
+                <span class="summary-text summary-text--closed">Click to open code</span>
+                <span class="summary-text summary-text--open">Click to close code</span>
+            </summary>
             <pre><code class="language-cpp">
 float3 Material::GetAlbedo(float _distance, float _u, float _v) const
 {
@@ -614,5 +629,6 @@ float3 Material::GetAlbedo(float _distance, float _u, float _v) const
     </main>
     <script src="Content/highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
+    <script src="script.js"></script>
 </body>
 </html>

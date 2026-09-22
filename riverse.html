@@ -38,18 +38,18 @@
         </ul>
 
         <ul class="social-links">
-        <li>
-            <a href="https://www.linkedin.com/in/av3xv/" target="_blank" rel="noopener noreferrer"
-            class="social-icon" aria-label="LinkedIn profile (opens in new tab)">
-            <img src="Content/Images/LinkedinIcon.svg" alt="">
-            </a>
-        </li>
-        <li>
-            <a href="https://av03.itch.io/" target="_blank" rel="noopener noreferrer"
-            class="social-icon" aria-label="Itch.io profile (opens in new tab)">
-            <img src="Content/Images/ItchIcon.svg" alt="">
-            </a>
-        </li>
+            <li>
+                <a href="https://www.linkedin.com/in/av3xv/" target="_blank" rel="noopener noreferrer"
+                    class="social-icon" aria-label="LinkedIn profile (opens in new tab)">
+                    <img src="Content/Images/LinkedinIcon.svg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="https://av03.itch.io/" target="_blank" rel="noopener noreferrer" class="social-icon"
+                    aria-label="Itch.io profile (opens in new tab)">
+                    <img src="Content/Images/ItchIcon.svg" alt="">
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -190,29 +190,20 @@
                     Play Riverse on Itch.io
                 </a>
             </p>
-            <!-- <div class="page-game rivi1">
-                <img src="Content/Images/M3LevelRiv.PNG" 
-                     alt="Riverse level 3 environment design"
-                     loading="lazy">
-            </div> -->
 
-            <label for="modal-m3l">
-                <img src="Content/Images/M3LevelRiv.PNG" alt="Wav file format" loading="lazy" class="thumbnail"
-                    style="max-width: 600px;">
-            </label>
+            <button type="button" class="thumbnail-button" data-modal-target="modal-m3l">
+                <img src="Content/Images/M3LevelRiv.PNG" alt="Riverse level 3 layout screenshot" loading="lazy"
+                    class="thumbnail">
+            </button>
 
-            <!-- Checkbox (hidden) -->
-            <input type="checkbox" id="modal-m3l" class="modal-toggle">
-
-            <!-- Modal overlay -->
-            <div class="modal-overlay">
-                <label for="modal-m3l" class="modal-close"></label>
-                <img src="Content/Images/M3LevelRiv.PNG" alt="Wav file format" class="modal-image">
-            </div>
+            <dialog id="modal-m3l" class="modal">
+                <img src="Content/Images/M3LevelRiv.PNG" alt="Riverse level 3 layout screenshot" class="modal-image">
+            </dialog>
 
         </div>
     </main>
 
+    <script src="script.js"></script>
 </body>
 
 </html>

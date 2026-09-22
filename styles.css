@@ -45,6 +45,10 @@
     --tag-project: #958D71;
     --tag-role: #606C77;
     --tag-time: #7D614A;
+
+    /* About me button colors */
+    --download-btn-bg: #205392;
+    --download-btn-bg-hover: #1e40af;
 }
 
 /* * = all elements */
@@ -263,6 +267,170 @@ code {
 }
 
 /* ========================================
+           PROJECTS GRID LAYOUT
+           ======================================== */
+
+.projects-container {
+    padding: 2rem;
+    /* CHANGE THIS: Space around the entire grid */
+    max-width: var(--max-width-container);
+    /* CHANGE THIS: Maximum width of the grid container */
+    margin: auto;
+    /* Centers the container */
+    position: relative;
+    z-index: var(--z-content);
+    /* padding-bottom: 4rem; */
+}
+
+.projects-grid {
+    display: grid;
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ========================================
+           PROJECT CARDS (SQUARES)
+           ======================================== */
+
+.project-card {
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    /* width: 100%; */
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    /* CHANGE THIS: How much card lifts up on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    /* Shadow effect on hover */
+}
+
+.project-card:focus-visible {
+    outline: 2px solid var(--accent-orange);
+    outline-offset: -3px;
+}
+
+.project-image {
+    width: 100%;
+    flex: 1;
+    /* IMPORTANT: Takes remaining space, shrinks if needed */
+    object-fit: cover;
+    background-color: #16213e;
+    min-height: 0;
+}
+
+.project-title {
+    padding: 0.75rem 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: center;
+    background-color: var(--bg-accent);
+    color: var(--text-light);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========================================
+           Tag for title
+           ======================================== */
+
+.project-tags {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.tag {
+    border-radius: 7px;
+    color: var(--text-light);
+    cursor: default;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.75rem;
+    height: 2em;
+    justify-content: center;
+    line-height: 1.5;
+    padding: 0 0.75em;
+    transition: 0.2s ease;
+    white-space: nowrap;
+}
+
+.tag-team-size { background-color: var(--tag-team-size); }
+.tag-engine    { background-color: var(--tag-engine); }
+.tag-language  { background-color: var(--tag-language); }
+.tag-role      { background-color: var(--tag-role); }
+.tag-project   { background-color: var(--tag-project); }
+.tag-time      { background-color: var(--tag-time); }
+
+.tag:hover {
+    transform: scale(1.05);
+}
+
+.text-center-screen {
+    text-align: center;
+    width: fit-content;
+    max-width: 40%;
+    margin: 0 auto;
+}
+
+/* ========================================
+           Project info box
+           ======================================== */
+
+.project-info-box {
+    background-color: var(--bg-secondary);
+    border: var(--border-width) solid var(--accent-orange);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    /* CHANGE: Space inside box */
+    margin-bottom: 2rem;
+    /* CHANGE: Space below box */
+    max-width: 600px;
+    /* CHANGE: Fixed horizontal width */
+    list-style: none;
+    /* Height grows automatically with content */
+}
+
+.info-item {
+    /* margin-bottom: 0rem; CHANGE: Space between items */
+    line-height: 1.6;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
+    /* No space after last item */
+}
+
+.info-label {
+    font-weight: bold;
+    color: var(--accent-orange);
+    /* CHANGE: Label text color */
+    font-size: 1rem;
+    /* CHANGE: Label text size */
+}
+
+.info-value {
+    color: var(--text-light);
+    /* CHANGE: Value text color */
+    font-size: 1rem;
+    /* CHANGE: Value text size */
+    margin-left: 0.5rem;
+}
+
+/* ========================================
            PAGE TITLE (Big title above projects)
            ======================================== */
 
@@ -315,40 +483,45 @@ pre code {
     color: inherit;
 }
 
+/* text drop down for code*/
+
 details {
-    margin: 1rem 0;
+  margin: 1rem 0;
 }
 
 summary {
-    cursor: pointer;
-    font-weight: bold;
-    color: var(--accent-orange);
-    padding: 0.5rem;
-    background-color: var(--bg-secondary);
-    border-radius: 5px;
-    margin-bottom: 0.5rem;
-    transition: background-color 0.3s ease;
-}
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--accent-orange);
+  padding: 0.5rem;
+  background-color: var(--bg-secondary);
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.3s ease;
 
-summary:hover {
+  &:hover {
     background-color: var(--hov-blue);
-}
+  }
 
-summary:focus {
+  &:focus-visible {
     outline: 2px solid var(--accent-orange);
     outline-offset: 2px;
+  }
 }
 
-/* Hide the original text and show custom text */
-details summary::before {
-    content: "Click to open code";
-    /* Text when closed */
+.summary-text--open {
+  display: none;
 }
 
-details[open] summary::before {
-    content: "Click to close code";
-    /* Text when open */
+details[open] .summary-text--closed {
+  display: none;
 }
+
+details[open] .summary-text--open {
+  display: inline;
+}
+
+
 
 .content-row {
     display: flex;
@@ -363,6 +536,68 @@ details[open] summary::before {
     flex: 1;
     /* Text takes remaining space */
     min-width: 300px;
+}
+
+/* ========================================
+           Image interaction
+           ======================================== */
+
+.thumbnail-button {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  z-index: var(--z-content);
+}
+
+.thumbnail {
+  max-width: 500px;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.thumbnail--large {
+  max-width: 600px;
+}
+
+.modal {
+  border: none;
+  padding: 0;
+  background: transparent;
+  max-width: 90vw;
+  max-height: 90vh;
+
+  &::backdrop {
+    background-color: rgb(0 0 0 / 0.9);
+  }
+}
+
+.modal-image {
+  display: block;
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  cursor: pointer; /* signals it's clickable to close */
+}
+
+/* ========================================
+           Linkies colours
+           ======================================== */
+
+a {
+    font-family: var(--font-primary);
+    color: var(--accent-orange);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-blue);
+    /* Color when hovering */
 }
 
 /* ========================================
@@ -536,58 +771,6 @@ details[open] summary::before {
     /*Center of screen*/
     transform: translateX(-50%);
     /*Shift back by half of image width*/
-}
-
-
-.modal-toggle {
-    display: none;
-}
-
-/* Thumbnail styling */
-.thumbnail {
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-    max-width: 500px;
-}
-
-.thumbnail:hover {
-    opacity: 0.8;
-}
-
-/* Modal overlay - hidden by default */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    align-items: center;
-    justify-content: center;
-}
-
-/* Show modal when checkbox is checked */
-.modal-toggle:checked+.modal-overlay {
-    display: flex;
-}
-
-/* The enlarged image */
-.modal-image {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-}
-
-/* Close area */
-.modal-close {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
 }
 
 /* ========================================
@@ -812,170 +995,6 @@ details[open] summary::before {
 }
 
 /* ========================================
-           PROJECTS GRID LAYOUT
-           ======================================== */
-
-.projects-container {
-    padding: 2rem;
-    /* CHANGE THIS: Space around the entire grid */
-    max-width: var(--max-width-container);
-    /* CHANGE THIS: Maximum width of the grid container */
-    margin: auto;
-    /* Centers the container */
-    position: relative;
-    z-index: var(--z-content);
-    /* padding-bottom: 4rem; */
-}
-
-.projects-grid {
-    display: grid;
-    /* grid-template-columns: repeat(3, 1fr); */
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 1.5rem;
-}
-
-/* ========================================
-           PROJECT CARDS (SQUARES)
-           ======================================== */
-
-.project-card {
-    background-color: var(--bg-secondary);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    height: 400px;
-    /* width: 100%; */
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-    /* CHANGE THIS: How much card lifts up on hover */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    /* Shadow effect on hover */
-}
-
-.project-card:focus-visible {
-    outline: 2px solid var(--accent-orange);
-    outline-offset: -3px;
-}
-
-.project-image {
-    width: 100%;
-    flex: 1;
-    /* IMPORTANT: Takes remaining space, shrinks if needed */
-    object-fit: cover;
-    background-color: #16213e;
-    min-height: 0;
-}
-
-.project-title {
-    padding: 0.75rem 1rem;
-    font-size: 1.4rem;
-    font-weight: 600;
-    text-align: center;
-    background-color: var(--bg-accent);
-    color: var(--text-light);
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* ========================================
-           Tag for title
-           ======================================== */
-
-.project-tags {
-    display: flex;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.tag {
-    border-radius: 7px;
-    color: var(--text-light);
-    cursor: default;
-    display: inline-flex;
-    align-items: center;
-    font-size: 0.75rem;
-    height: 2em;
-    justify-content: center;
-    line-height: 1.5;
-    padding: 0 0.75em;
-    transition: 0.2s ease;
-    white-space: nowrap;
-}
-
-.tag-team-size { background-color: var(--tag-team-size); }
-.tag-engine    { background-color: var(--tag-engine); }
-.tag-language  { background-color: var(--tag-language); }
-.tag-role      { background-color: var(--tag-role); }
-.tag-project   { background-color: var(--tag-project); }
-.tag-time      { background-color: var(--tag-time); }
-
-.tag:hover {
-    transform: scale(1.05);
-}
-
-.text-center-screen {
-    text-align: center;
-    width: fit-content;
-    max-width: 40%;
-    margin: 0 auto;
-}
-
-/* ========================================
-           Project info box
-           ======================================== */
-
-.project-info-box {
-    background-color: var(--bg-secondary);
-    border: var(--border-width) solid var(--accent-orange);
-    border-radius: var(--border-radius);
-    padding: 1rem;
-    /* CHANGE: Space inside box */
-    margin-bottom: 2rem;
-    /* CHANGE: Space below box */
-    max-width: 600px;
-    /* CHANGE: Fixed horizontal width */
-    list-style: none;
-    /* Height grows automatically with content */
-}
-
-.info-item {
-    /* margin-bottom: 0rem; CHANGE: Space between items */
-    line-height: 1.6;
-}
-
-.info-item:last-child {
-    margin-bottom: 0;
-    /* No space after last item */
-}
-
-.info-label {
-    font-weight: bold;
-    color: var(--accent-orange);
-    /* CHANGE: Label text color */
-    font-size: 1rem;
-    /* CHANGE: Label text size */
-}
-
-.info-value {
-    color: var(--text-light);
-    /* CHANGE: Value text color */
-    font-size: 1rem;
-    /* CHANGE: Value text size */
-    margin-left: 0.5rem;
-}
-
-/* ========================================
            Invisible hover image
            ======================================== */
 
@@ -1122,21 +1141,7 @@ details[open] summary::before {
     min-height: calc(100vh - 90px);
 }
 
-/* ========================================
-           Linkies colours
-           ======================================== */
 
-a {
-    font-family: var(--font-primary);
-    color: var(--accent-orange);
-    text-decoration: underline;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: var(--accent-blue);
-    /* Color when hovering */
-}
 
 /* ========================================
    ABOUT PAGE SECTIONS
@@ -1151,15 +1156,13 @@ a:hover {
 
 .section-title {
     font-size: 2.5rem;
-    /* CHANGE: Title size */
     color: var(--accent-orange);
-    /* CHANGE: Title color */
     margin-bottom: 1.5rem;
     font-weight: 700;
     text-align: left;
-    /* CHANGE: left, center, or right */
 }
 
+/* NOT BEING USED*/
 /* ========================================
    ABOUT ME SECTION
    ======================================== */
@@ -1206,6 +1209,9 @@ a:hover {
     object-fit: cover;
     /* Crops image to fit */
 }
+/* NOT BEING USED*/
+
+
 
 /* ========================================
    CONTACT INFO SECTION
@@ -1217,34 +1223,27 @@ a:hover {
     gap: 1rem;
     /* CHANGE: Space between contact items */
     max-width: 450px;
-    /* CHANGE: Maximum width */
 }
 
 .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    /* CHANGE: Padding inside each item */
-    background-color: var(--bg-secondary);
-    /* CHANGE: Background color */
-    border-radius: 8px;
-    /* CHANGE: Rounded corners */
-    border-left: 4px solid var(--accent-orange);
-    /* CHANGE: Left accent bar */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  border-left: 4px solid var(--accent-orange);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-.contact-item:hover {
+  &:hover {
     transform: translateX(5px);
-    /* CHANGE: Slides right on hover */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .contact-label {
     font-weight: bold;
     color: var(--accent-orange);
-    /* CHANGE: Label color */
     min-width: 100px;
     /* CHANGE: Fixed width for alignment */
     font-size: 1rem;
@@ -1252,49 +1251,42 @@ a:hover {
 }
 
 .contact-link {
-    color: var(--text-light);
-    /* CHANGE: Link color */
-    text-decoration: none;
-    font-size: 1rem;
-    /* CHANGE: Link text size */
-    transition: color 0.3s ease;
-}
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
 
-.contact-link:hover {
+  &:hover {
     color: var(--accent-blue);
-    /* CHANGE: Hover color */
     text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent-orange);
+    outline-offset: 2px;
+  }
 }
 
 .download-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    /* CHANGE: Padding around button text */
-    background-color: #205392;
-    /* CHANGE: Button background */
-    color: white !important;
-    /* CHANGE: Always white text */
-    border-radius: 6px;
-    /* CHANGE: Rounded corners */
-    font-weight: 600;
-    /* CHANGE: Bold text */
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--download-btn-bg);
+  color: white;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 
-.download-button:hover {
-    background-color: #1e40af;
-    /* CHANGE: Darker blue on hover */
+  &:hover {
+    background-color: var(--download-btn-bg-hover);
     transform: scale(1.05);
-    /* CHANGE: Slightly grows on hover */
     text-decoration: none;
-    /* Remove underline on hover */
+  }
 }
 
 .download-icon {
     font-size: 1.2rem;
-    /* CHANGE: Icon size */
     transition: transform 0.3s ease;
 }
 
@@ -1361,30 +1353,6 @@ a:hover {
     scale: 100px;
     transform: rotate(0deg);
     /* CHANGE: Rotation angle */
-}
-
-.progress-container {
-    max-width: 500px;
-}
-
-.progress-label {
-    margin-bottom: 8px;
-    margin-top: 10px;
-    font-size: 14px;
-    color: #ffffff;
-}
-
-.progress-bar-wrapper {
-    width: 100%;
-    height: 10px;
-    background-color: #3a3a3a;
-    /* margin-bottom: 20px; */
-}
-
-.progress-bar-fill {
-    height: 100%;
-    background-color: rgb(71, 100, 164);
-    /* width: 65%; */
 }
 
 /* ========================================
