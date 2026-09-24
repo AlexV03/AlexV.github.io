@@ -1061,110 +1061,83 @@ a:hover {
     /* transform: translateX(-50%); */
 }
 
-/* UNUSED REMOVE!!! */
-/* ========================================
-           CONTENT BORDER
-           ======================================== */
-
-.content-border {
-    max-width: var(--max-width-content);
-    margin: 0 auto;
-    position: relative;
-    /* padding-top: 0; Remove this padding */
-}
-
-.content-border::before {
-    content: '';
-    position: fixed;
-    top: 60px;
-    /* Below nav bar, adjust as needed */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 105%;
-    /* Or 1200px to match border */
-    height: 30px;
-    /* Height of gap to cover */
-    background-color: var(--bg-primary);
-    z-index: var(--z-border-mask);
-}
-
-.border-top {
-    position: fixed;
-    top: 90px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: var(--max-width-content);
-    height: var(--border-width);
-    /* CHANGE: Give it height to cover the gap */
-    background-color: var(--accent-orange);
-    /* Top border as background */
-    z-index: var(--z-border);
-    /* CHANGE: Higher than content borders TODO!!! HAVE TO TEST IF NEWEST TEST WORKS*/
-}
-
-.border-top::before,
-.border-top::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    width: var(--border-width);
-    height: 100vh;
-    /* Full height sides */
-    background-color: var(--accent-orange);
-}
-
-.border-top::before {
-    left: calc(50% - 600px);
-    /* CHANGE: Calculate left position */
-}
-
-.border-top::after {
-    right: calc(50% - 600px);
-    /* CHANGE: Calculate right position */
-}
-
-/* Bottom border - FIXED at bottom of viewport */
-.border-bottom {
-    position: fixed;
-    /* CHANGE: Make it fixed */
-    bottom: 7px;
-    /* CHANGE: Stick to bottom */
-    left: 50%;
-    transform: translateX(-50%);
-    width: var(--max-width-content);
-    height: var(--border-width);
-    background-color: var(--accent-orange);
-    z-index: var(--z-border);
-}
-
-/* Add a mask overlay below the bottom border */
-.border-bottom::after {
-    content: '';
-    position: fixed;
-    bottom: -21px;
-    left: 0;
-    width: 105%;
-    height: 21px;
-    /* CHANGE: Match bottom border position */
-    background-color: var(--bg-primary);
-    /* Same as body background */
-    z-index: var(--z-border-cover);
-    /* Below border, above content */
-}
 
 /* Content area */
 .border-content {
-    max-width: var(--max-width-content);
-    margin: 0 auto;
-    margin-top: 90px;
-    /* Space below fixed top border */
-    padding: 2rem;
-    padding-bottom: 50px;
-    /* Space above fixed bottom border */
-    min-height: calc(100vh - 90px);
-}
-/* UNUSED REMOVE!!! */
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  margin-top: 90px;      /* Space below fixed top border */
+  padding: 2rem;
+  padding-bottom: 50px;  /* Space above fixed bottom border */
+  min-height: calc(100vh - 90px);
 
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ========================================
+   Standalone content (no pairing)
+   ======================================== */
+.content-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  max-width: 700px;
+}
+
+.content-media img,
+.content-media video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+}
+
+/* ========================================
+   OBJECT: .content-block
+   Text + media side by side; stacks on mobile
+   ======================================== */
+.content-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap; /* safety net if a child can't shrink enough */
+}
+
+.content-block__text {
+  flex: 1 1 300px; /* grow, shrink, but don't go below ~300px before wrapping */
+  order: 1;
+
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.content-block__media {
+  flex: 1 1 300px;
+  order: 2;
+  min-width: 0; /* lets img/video shrink properly inside flex */
+
+  img,
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+  }
+}
+
+/* MODIFIER: flips which side text/media sit on, desktop only */
+.content-block--reverse {
+  .content-block__text {
+    order: 2;
+  }
+
+  .content-block__media {
+    order: 1;
+  }
+}
 
 /* ========================================
    ABOUT PAGE SECTIONS
@@ -1487,6 +1460,21 @@ a:hover {
 
     h3 {
         font-size: 1.2rem;
+    }
+
+    /* Content blocks: always stack, text first — regardless of --reverse */
+    .content-block {
+        flex-direction: column;
+    }
+
+    .content-block__text,
+    .content-block--reverse .content-block__text {
+        order: 1;
+    }
+
+    .content-block__media,
+    .content-block--reverse .content-block__media {
+        order: 2;
     }
 }
 
