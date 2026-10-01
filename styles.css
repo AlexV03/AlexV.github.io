@@ -1106,12 +1106,20 @@ a:hover {
 }
 
 .content-block__text {
-  flex: 1 1 300px; /* grow, shrink, but don't go below ~300px before wrapping */
+  flex: 1 1 300px;
   order: 1;
 
   font-size: 1.1rem;
   line-height: 1.5;
   color: var(--text-muted);
+
+  p {
+    margin: 0 0 1rem 0; /* spacing between paragraphs */
+
+    &:last-child {
+      margin-bottom: 0; /* no extra space after the last one */
+    }
+  }
 }
 
 .content-block__media {
@@ -1136,6 +1144,25 @@ a:hover {
 
   .content-block__media {
     order: 1;
+  }
+}
+
+.media-row {
+  display: flex;
+  gap: var(--gap-lg);
+  flex-wrap: wrap;
+}
+
+.media-row__item {
+  flex: 1 1 0; /* all items share space equally */
+  min-width: 220px; /* stops items getting too cramped before wrapping */
+
+  img,
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
   }
 }
 
@@ -1476,6 +1503,10 @@ a:hover {
     .content-block--reverse .content-block__media {
         order: 2;
     }
+
+    .media-row {
+    flex-direction: column;
+  }
 }
 
 /* ======================================

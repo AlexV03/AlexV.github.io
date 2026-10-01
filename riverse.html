@@ -101,43 +101,20 @@
                 obstacles, and rewinding hazards with your pocket watch.
             </p>
 
-
-
-            <h2>About</h2>
-            <p>
-                Riverse was made in my first year at BUAS with a team of 13 people in Unreal Engine 5. We were given
-                reference games to choose from, and we chose Clustertruck.
-            </p>
-
-            <p>
-                We had 8 weeks to concept the game, work it out, and create it. The game is a fast-paced platformer
-                where you reach the goal as quickly as possible by jumping from platform to platform, avoiding
-                obstacles, and rewinding hazards with your pocket watch.
-            </p>
-
             <h2>Creation I Made</h2>
-            <p>
+            <p class="content-text">
                 In this project, I created the time rewind feature. The system can group rewindable objects together.
                 When you look at a rewindable object, every other object in the same group highlights, showing that
                 those objects will rewind when you activate the feature.
             </p>
-
-            <p>
+            <p class="content-text">
                 I chose this approach to give players control over what to rewind, which aligned with our design goal of
                 creating a better player experience.
             </p>
 
-            <figure class="content-row">
-                <div class="page-game rivv1">
-                    <video controls width="400" preload="metadata" aria-label="Objects rewind test demonstration"
-                        autoplay loop muted>
-                        <source src="Content/Videos/DuckRewinds.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-
-                <figcaption class="text-beside">
-                    <h3>Objects Test</h3>
+            <h3>Objects Test</h3>
+            <div class="content-block content-block--reverse">
+                <div class="content-block__text">
                     <p>
                         The PlaySnapshot function ensures recorded data is applied to objects correctly using a circular
                         buffer with indexes. It grabs a snapshot, checks it against world time, and if it has gone far
@@ -148,20 +125,19 @@
                         shows a test with many objects recording and rewinding simultaneously to verify the system can
                         handle the load.
                     </p>
-                </figcaption>
-            </figure>
-
-            <figure class="content-row">
-                <div class="page-game rivv2">
-                    <video controls width="400" preload="metadata" aria-label="Group rewind test demonstration" autoplay
-                        loop muted>
-                        <source src="Content/Videos/GroupRewind.mp4" type="video/mp4">
+                </div>
+                <div class="content-block__media">
+                    <video controls width="400" preload="metadata" aria-label="Objects rewind test demonstration"
+                        autoplay loop muted>
+                        <source src="Content/Videos/DuckRewinds.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
+            </div>
 
-                <figcaption class="text-beside">
-                    <h3>Group Test</h3>
+            <h3>Group Test</h3>
+            <div class="content-block content-block--reverse">
+                <div class="content-block__text">
                     <p>
                         The RecordSnapshot function records the necessary data from objects that need to be rewound. It
                         creates a local snapshot, assigns all required values, and applies it to the snapshots buffer.
@@ -171,33 +147,38 @@
                         The video shows a test with two groups of rewindable objects. You aim at an object in that
                         group, and when you rewind, all objects in that group rewind without affecting the other group.
                     </p>
-                </figcaption>
-            </figure>
+                </div>
 
-            <figure class="content-row">
-                <div class="page-game rivv3">
+                <div class="content-block__media">
+                    <video controls width="400" preload="metadata" aria-label="Group rewind test demonstration" autoplay
+                        loop muted>
+                        <source src="Content/Videos/GroupRewind.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <h3>In the Game</h3>
+            <div class="content-block content-block--reverse">
+                <p class="content-block__text">
+                    The video shows how the rewind feature looks in the game, with highlighting of groups that can
+                    be rewound.
+                </p>
+                <div class="content-block__media">
                     <video controls width="400" preload="metadata" aria-label="In-game rewind demonstration" autoplay
                         loop muted>
                         <source src="Content/Videos/RewindProject.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
+            </div>
 
-                <figcaption class="text-beside">
-                    <h3>In the Game</h3>
-                    <p>
-                        The video shows how the rewind feature looks in the game, with highlighting of groups that can
-                        be rewound.
-                    </p>
-                </figcaption>
-            </figure>
-
-            <h2>My Thoughts</h2>
+            <!-- <h2>My Thoughts</h2>
             <p>
                 Creating this feature in Unreal Engine was a fun challenge. I hadn't used C++ in Unreal Engine much
                 before, so figuring out how to implement it was very interesting, and I learned a lot from the
                 experience.
-            </p>
+            </p> -->
             <p>
                 <a href="https://buas.itch.io/team-bludhaven" target="_blank" rel="noopener noreferrer">
                     Play Riverse on Itch.io

@@ -52,70 +52,69 @@
         </ul>
     </nav>
 
-    <div class="page-header">
+    <header class="page-header">
         <h1 class="page-title">Ray tracer</h1>
-    </div>
+    </header>
 
     <main>
         <div class="border-content">
 
-            <div class="project-info-box">
-                <div class="info-item">
+            <ul class="project-info-box">
+                <li class="info-item">
                     <span class="info-label">Project Duration:</span>
                     <span class="info-value">8 weeks</span>
-                </div>
-                <div class="info-item">
+                </li>
+                <li class="info-item">
                     <span class="info-label">Team Size:</span>
                     <span class="info-value">Solo</span>
-                </div>
-                <div class="info-item">
+                </li>
+                <li class="info-item">
                     <span class="info-label">Language:</span>
                     <span class="info-value">C++</span>
-                </div>
-                <div class="info-item">
+                </li>
+                <li class="info-item">
                     <span class="info-label">Role:</span>
                     <span class="info-value">Gameplay Programmer</span>
-                </div>
-                <div class="info-item">
+                </li>
+                <li class="info-item">
                     <span class="info-label">Date:</span>
                     <span class="info-value">February 2025</span>
-                </div>
-                <div class="info-item">
+                </li>
+                <li class="info-item">
                     <span class="info-label">School project</span>
-                </div>
-            </div>
+                </li>
+            </ul>
 
             <h2>About</h2>
-            <p>
+            <p class="content-text">
                 This project was made in my first year at BUAS. We had to make a ray tracer. With different kinds of
                 materials and post processing effects.
                 With this I made a chess match.
             </p>
 
             <h2>Creation I Made</h2>
-            <p>
+            <p class="content-text">
                 I made a ray tracer with different materials: texture, metalic and glass, different effects: vignette,
                 chromatic abberation,
                 depth of field, bloom and more and having different types of lights: pointlight, arealight, etc.
             </p>
 
-            <figure class="content-row">
-                <div class="page-game rivv1">
-                    <video controls width="400" preload="metadata" aria-label="Ray tracer scene">
-                        <source src="Content/Videos/RayTracedChessMatch.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-
-                <figcaption class="text-beside">
+            <div class="content-block content-block--reverse">
+                <div class="content-block__text">
                     <h3>Ray tracing</h3>
                     <p>
                         With the ray tracing, rays are being shot from the camera to every pixel on the screen.
                         By looping through each pixel on the screen, I call the Trace function, the rays then calculated
                         different things, the skybox, the materials and lights.
                     </p>
-                </figcaption>
-            </figure>
+                </div>
+                <div class="content-block__media">
+                    <video controls width="400" preload="metadata" aria-label="Ray tracer scene" autoplay loop muted>
+                        <source src="Content/Videos/RayTracedChessMatch.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
 
             <details>
                 <summary>
@@ -175,65 +174,32 @@ float3 Renderer::Trace(Ray& ray, int depth, int _x, int _y, int _frame)
             </code></pre>
             </details>
 
-            <figure class="content-row">
-                <figcaption class="text-beside">
-                    <h3>Lights</h3>
-                    <p>
-                        For in the Trace function a caluclate different lights. A example in the code snippet is the
-                        calculation for a point light.
-                        A direction is first calculated, then to solve a issue with the shadows I am applying a shadow
-                        terminator. I am doing this
-                        because, when shadows were being cast on object on some parts of the mesh the whole triangle was
-                        covered with shadow.
-                        With the terminator, that resolves the issues and makes it a nice smooth shadow on the mesh.
-                        After that a new ray is shot
-                        for the shadows, a attenuation for light fallof, the diffuse of the light and after that a
-                        specular effect.
-                    </p>
-                </figcaption>
+            <h3>Lights</h3>
+            <div class="content-block">
+                <p class="content-block__text">
 
-                <!-- <div class="page-game raytI2"> -->
-                <!-- <img src="Content/Images/AreaLight.PNG" 
-                     alt="Different materials"
-                     loading="lazy"> -->
-                <!-- </div> -->
-
-                <label for="modal-area">
-                    <img src="Content/Images/AreaLight.PNG" alt="Wav file format" loading="lazy" class="thumbnail"
-                        style="max-width: 300px;">
-                </label>
-
-                <!-- Checkbox (hidden) -->
-                <input type="checkbox" id="modal-area" class="modal-toggle">
-
-                <!-- Modal overlay -->
-                <div class="modal-overlay">
-                    <label for="modal-area" class="modal-close"></label>
-                    <img src="Content/Images/AreaLight.PNG" alt="Wav file format" class="modal-image">
+                    For in the Trace function a caluclate different lights. A example in the code snippet is the
+                    calculation for a point light.
+                    A direction is first calculated, then to solve a issue with the shadows I am applying a shadow
+                    terminator. I am doing this
+                    because, when shadows were being cast on object on some parts of the mesh the whole triangle was
+                    covered with shadow.
+                    With the terminator, that resolves the issues and makes it a nice smooth shadow on the mesh.
+                    After that a new ray is shot
+                    for the shadows, a attenuation for light fallof, the diffuse of the light and after that a
+                    specular effect.
+                </p>
+                <div class="content-block__media">
+                    <button type="button" class="thumbnail-button">
+                        <img src="Content/Images/AreaLight.PNG" alt="Image showing arealight" loading="lazy"
+                            class="thumbnail">
+                    </button>
                 </div>
+            </div>
 
-
-                <!-- <div class="page-game raytI2">
-                <img src="Content/Images/SpotLight.PNG" 
-                     alt="Different materials"
-                     loading="lazy">
-            </div> -->
-
-                <label for="modal-spot">
-                    <img src="Content/Images/SpotLight.PNG" alt="Wav file format" loading="lazy" class="thumbnail"
-                        style="max-width: 300px;">
-                </label>
-
-                <!-- Checkbox (hidden) -->
-                <input type="checkbox" id="modal-spot" class="modal-toggle">
-
-                <!-- Modal overlay -->
-                <div class="modal-overlay">
-                    <label for="modal-spot" class="modal-close"></label>
-                    <img src="Content/Images/SpotLight.PNG" alt="Wav file format" class="modal-image">
-                </div>
-
-            </figure>
+            <button type="button" class="thumbnail-button">
+                <img src="Content/Images/SpotLight.PNG" alt="Image showing spotlight" loading="lazy" class="thumbnail">
+            </button>
 
             <details>
                 <summary>
@@ -304,18 +270,21 @@ float3 PointLight::CalculatePointLight(const LightData& _lightData, float3 _norm
             </code></pre>
             </details>
 
-            <figcaption class="text-beside">
-                <h3>Post processing</h3>
-                <p>
-                    With the code block below, post processing is applied. First the original screen is copied to a
-                    texture.
-                    Then the color grading shader is applied (brightness, contrast, saturation, gamma correction),
-                    rendering the result to a second framebuffer.
-                    Second, the color graded result is used as input for the screen effect shader (vignette,
-                    chromaticAberration, bloom),
-                    which renders the output directly to the screen.
+            <h3>Post processing</h3>
+            <div class="content-block">
+                <p class="content-block__text">
+                    For in the Trace function a caluclate different lights. A example in the code snippet is the
+                    calculation for a point light.
+                    A direction is first calculated, then to solve a issue with the shadows I am applying a shadow
+                    terminator. I am doing this
+                    because, when shadows were being cast on object on some parts of the mesh the whole triangle was
+                    covered with shadow.
+                    With the terminator, that resolves the issues and makes it a nice smooth shadow on the mesh.
+                    After that a new ray is shot
+                    for the shadows, a attenuation for light fallof, the diffuse of the light and after that a
+                    specular effect.
                 </p>
-            </figcaption>
+            </div>
 
             <details>
                 <summary>
@@ -372,9 +341,9 @@ void Renderer::ApplyPostProcessing()
             </code></pre>
             </details>
 
-            <figcaption class="text-beside">
-                <h3>Shaders</h3>
-                <p>
+            <h3>Shaders</h3>
+            <div class="content-block">
+                <p class="content-block__text">
                     In the shaders is where the magic happens. There are 2 shaders: one to adjust colours and the other
                     one for screen effects.
                     The first code block shows how I am calculating different screen effects: Bloom,
@@ -410,7 +379,7 @@ void Renderer::ApplyPostProcessing()
                     Together these calculations form color grading. The last effect is gamma correction, which is a
                     simple square root of the colour.
                 </p>
-            </figcaption>
+            </div>
 
             <details>
                 <summary>
@@ -453,8 +422,11 @@ void main()
             </code></pre>
             </details>
 
-            <details close>
-                <summary></summary>
+            <details>
+                <summary>
+                    <span class="summary-text summary-text--closed">Click to open code</span>
+                    <span class="summary-text summary-text--open">Click to close code</span>
+                </summary>
                 <pre><code class="language-cpp">
 //Colors
 void main()
@@ -494,16 +466,14 @@ void main()
             </code></pre>
             </details>
 
-            <div class="page-game raytv1">
-                <video controls width="400" preload="metadata" aria-label="Post processing effects">
-                    <source src="Content/Videos/PostProcessing.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+            <video controls width="400" preload="metadata" aria-label="Post processing effects">
+                <source src="Content/Videos/PostProcessing.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
 
-            <figcaption class="text-beside">
-                <h3>Materials</h3>
-                <p>
+            <h3>Materials</h3>
+            <div class="content-block">
+                <p class="content-block__text">
                     Within the Trace function, the values of each material type are calculated. This is then used to
                     calculate the
                     different material types: transparent, reflective, emissive, and colour. The code block below shows
@@ -520,7 +490,7 @@ void main()
                     both thresholds are set
                     to the same value to prefend indexing out of bounds.
                 </p>
-            </figcaption>
+            </div>
 
             <details>
                 <summary>
@@ -558,81 +528,26 @@ float3 Material::GetAlbedo(float _distance, float _u, float _v) const
             </code></pre>
             </details>
 
-            <figure class="content-row">
-                <!-- <div class="page-game raytI1">
-                <img src="Content/Images/Materials.PNG" 
-                     alt="Different materials"
-                     loading="lazy">
-            </div> -->
-
-                <label for="modal-mat">
-                    <img src="Content/Images/Materials.PNG" alt="Wav file format" loading="lazy" class="thumbnail"
-                        style="max-width: 350px;">
-                </label>
-
-                <!-- Checkbox (hidden) -->
-                <input type="checkbox" id="modal-mat" class="modal-toggle">
-
-                <!-- Modal overlay -->
-                <div class="modal-overlay">
-                    <label for="modal-mat" class="modal-close"></label>
-                    <img src="Content/Images/Materials.PNG" alt="Wav file format" class="modal-image">
+            <div class="media-row">
+                <div class="media-row__item">
+                    <button type="button" class="thumbnail-button">
+                        <img src="Content/Images/Materials.PNG" alt="Riverse level 3 layout screenshot" loading="lazy"
+                            class="thumbnail">
+                    </button>
                 </div>
-
-                <!-- <div class="page-game raytI1">
-                <img src="Content/Images/EmissiveDuck.PNG" 
-                     alt="Different materials"
-                     loading="lazy">
-            </div> -->
-
-                <label for="modal-emis">
-                    <img src="Content/Images/EmissiveDuck.PNG" alt="Wav file format" loading="lazy" class="thumbnail"
-                        style="max-width: 600px;">
-                </label>
-
-                <!-- Checkbox (hidden) -->
-                <input type="checkbox" id="modal-emis" class="modal-toggle">
-
-                <!-- Modal overlay -->
-                <div class="modal-overlay">
-                    <label for="modal-emis" class="modal-close"></label>
-                    <img src="Content/Images/EmissiveDuck.PNG" alt="Wav file format" class="modal-image">
+                <div class="media-row__item">
+                    <button type="button" class="thumbnail-button">
+                        <img src="Content/Images/EmissiveDuck.PNG" alt="Riverse level 3 layout screenshot"
+                            loading="lazy" class="thumbnail">
+                    </button>
                 </div>
-
-                <!-- <div class="page-game raytI1">
-                <img src="Content/Images/EmissiveDuck2.PNG" 
-                     alt="Different materials"
-                     loading="lazy">
-            </div> -->
-
-                <label for="modal-emis2">
-                    <img src="Content/Images/EmissiveDuck2.PNG" alt="Wav file format" loading="lazy" class="thumbnail"
-                        style="max-width: 600px;">
-                </label>
-
-                <!-- Checkbox (hidden) -->
-                <input type="checkbox" id="modal-emis2" class="modal-toggle">
-
-                <!-- Modal overlay -->
-                <div class="modal-overlay">
-                    <label for="modal-emis2" class="modal-close"></label>
-                    <img src="Content/Images/EmissiveDuck2.PNG" alt="Wav file format" class="modal-image">
+                <div class="media-row__item">
+                    <button type="button" class="thumbnail-button">
+                        <img src="Content/Images/EmissiveDuck2.PNG" alt="Riverse level 3 layout screenshot"
+                            loading="lazy" class="thumbnail">
+                    </button>
                 </div>
-            </figure>
-
-            <h2>My Thoughts</h2>
-            <p>
-                I liked how this project went, I learned a lot about ray tracing, how different materials are
-                caluclated, how you could apply
-                post processing effects, different types of lights but also the techniques behind it, how you could
-                optimize it,
-                how to make it faster, and much more. What I didnt like very much was the performance it wasnt that good
-                of a perforance on
-                a big window, so maybe later in time I would retry to make a ray tracing scene and see if I can make it
-                for a full width and height
-                of the screen.
-            </p>
-
+            </div>
         </div>
     </main>
 
