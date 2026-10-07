@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="INYIU - Is a 3D point-and-click adventure">
+    <meta name="author" content="Alex V">
+
+    <!-- Tags for social media. preview links -->
+    <meta property="og:title" content="INYIU - Game Project">
+    <meta property="og:description" content="3D point-and-click adventure">
+    <meta property="og:image" content="Content/Images/T_GameStartup.png">
+    <meta property="og:type" content="website">
+    <!---->
+
+    <title>INYIU - Game Development Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="T_GameStartup.png">
+</head>
+
+<body>
+    <!-- Swirly circles-->
+    <div class="swirl" aria-hidden="true"></div>
+    <div class="swirl swirl--blue" aria-hidden="true"></div>
+    <div class="swirl swirl--orange" aria-hidden="true"></div>
+
+    <nav class="main-nav" aria-label="Main navigation">
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link" aria-current="page">Projects</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+
+        <ul class="social-links">
+            <li>
+                <a href="https://www.linkedin.com/in/av3xv/" target="_blank" rel="noopener noreferrer"
+                    class="social-icon" aria-label="LinkedIn profile (opens in new tab)">
+                    <img src="Content/Images/LinkedinIcon.svg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="https://av03.itch.io/" target="_blank" rel="noopener noreferrer" class="social-icon"
+                    aria-label="Itch.io profile (opens in new tab)">
+                    <img src="Content/Images/ItchIcon.svg" alt="">
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <img src="Content/Images/T_GameTitle.png" alt="INYIU game logo">
+    </header>
+
+    <main>
+        <div class="border-content">
+
+            <ul class="project-info-box">
+                <li class="info-item">
+                    <span class="info-label">Project Duration:</span>
+                    <span class="info-value">8 weeks</span>
+                </li>
+                <li class="info-item">
+                    <span class="info-label">Team Size:</span>
+                    <span class="info-value">13</span>
+                </li>
+                <li class="info-item">
+                    <span class="info-label">Engine:</span>
+                    <span class="info-value">Unreal Engine 5</span>
+                </li>
+                <li class="info-item">
+                    <span class="info-label">Language:</span>
+                    <span class="info-value">Blueprints</span>
+                </li>
+                <li class="info-item">
+                    <span class="info-label">Role:</span>
+                    <span class="info-value">Programmer lead & Gameplay Programmer</span>
+                </li>
+                <li class="info-item">
+                    <span class="info-label">Date:</span>
+                    <span class="info-value">April 2026</span>
+                </li>
+                <li class="info-item">
+                    <span class="info-label">School project</span>
+                </li>
+            </ul>
+
+            <p>
+                <a href="inyiuBlog.html" target="_blank" rel="noopener noreferrer">Detailed page about INYIU</a>
+                <br>
+                <a href="https://buas.itch.io/inyiu" target="_blank" rel="noopener noreferrer">
+                    Play INYIU on Itch.io
+                </a>
+            </p>
+
+            <h2>About</h2>
+            <div class="content-block">
+                <p class="content-block__text">
+                    In my second year at BUAS, together with a team we created It's not you it's us(INYIU).
+                    The designers had 8 weeks to comeup with a game prototype, then we had 8 weeks with all the disaplines
+                    to make the full game. The game is a 3D point and click adventure, where you play as different characters
+                    each with there own ability. You explore the town and using your ability you take care of the town.
+                </p>
+                <div class="content-block__media">
+                    <button type="button" class="thumbnail-button">
+                        <img src="Content/Images/INYIUP2.png" alt="INYIU level picture" loading="lazy"
+                            class="thumbnail">
+                    </button>
+                </div>
+            </div>
+
+            <h2>Creation I Made</h2>
+            <p class="content-text">
+                With this project I was the lead programmer, while managing the other programmers and deciding on decissions with the other leads
+                and the producer, when i had the time I worked on some smaller features. I made the camera follow functionality, with a lot
+                of custimizibility for the designers to use, Camera zooming in and out when interacting with other characters, and fixing bugs.
+            </p>
+
+            <div class="content-block__media">
+                <button type="button" class="thumbnail-button">
+                    <img src="Content/Images/INYIUP1.png" alt="INYIU level picture" loading="lazy" class="thumbnail">
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Placed in each page, to enable image enlarge -->
+    <dialog id="image-modal" class="modal">
+        <img class="modal-image" src="" alt="">
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
