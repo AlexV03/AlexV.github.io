@@ -62,6 +62,209 @@
 
             <!-- Add content-->
 
+            <!--
+            
+            //made quick test in blueprints to see if time rewind worked
+            //Blueprint code image
+
+            //Made then c++ version, that can time rewind everything with a time rewind component
+            //Video
+            //Code recoring
+            //Code of playsnapshot
+            //Explanation of what i used and why use that
+
+            //Then added grouping to time rewind
+            //Show grouping code,
+            //How to use in project
+            //Explain
+        
+            -->
+
+            <p class="content-text">
+                Little explanition time rewind
+            </p>
+
+            <details>
+                <summary>
+                    <span class="summary-text summary-text--closed">Click to open code</span>
+                    <span class="summary-text summary-text--open">Click to close code</span>
+                </summary>
+                <pre><code class="language-cpp">
+void UBPC_TimeRewind::RecordSnapshot(float _deltaTime, float _worldTime)
+{
+	FsnapShots snapShot;
+
+	snapShot.position = ownerRootComponent->GetComponentLocation();
+	snapShot.rotation = ownerRootComponent->GetComponentRotation();
+	if (ownerRootComponent->IsSimulatingPhysics())
+	{
+		snapShot.velocity = ownerRootComponent->GetPhysicsLinearVelocity();
+		snapShot.angularVelocity = ownerRootComponent->GetPhysicsAngularVelocityInRadians();
+	}
+	snapShot.worldTime = _worldTime;
+	snapShot.isInvalid = false;
+
+	snapshots[currentIndex] = snapShot;
+
+	currentIndex++;
+
+	if (currentIndex >= maxSnapshots)
+	{
+		currentIndex = 0;
+		hasLooped = true;
+	}
+
+	snapshots[currentIndex].isInvalid = false;
+}
+  </code></pre>
+            </details>
+
+            <div class="content-block">
+                <div class="content-block__text">
+                    <p>Explanation text for record code
+                        //Explain how code works
+                        used array because simpler,
+                        looked into TRingBuffer, and List,
+                        why chose array, because....,
+                        struct used to store info about object, pos, rot, and physics, worldtime
+                    </p>
+                </div>
+                <div class="content-block__media">
+                    <video controls width="400" preload="metadata" aria-label="In-game rewind demonstration" autoplay
+                        loop muted>
+                        <source src="Content/Videos/DuckRewinds.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+
+            <div class="content-block">
+                <div class="content-block__text">
+                    <p>Play snapshot function,using circular indexing, why? because it seemed better to do that
+                        then having to delete and add a new element, now its just overriding it.
+                        loops over the snapshots with the index
+                        then lerps the position and rotation .</p>
+                </div>
+                <div class="content-block__media">
+                    <details>
+                        <summary>
+                            <span class="summary-text summary-text--closed">Click to open code</span>
+                            <span class="summary-text summary-text--open">Click to close code</span>
+                        </summary>
+                        <pre><code class="language-cpp">
+void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _worldTime)
+{
+	if (hasReachedEnd)
+		return;
+
+	if (currentIndex == endIndex)
+	{
+		hasReachedEnd = true;
+		return;
+	}
+	else
+	{
+		int prefIndex2 = currentIndex - 1;
+		if (hasLooped)
+		{
+			if (prefIndex2 < 0)
+				prefIndex2 = maxSnapshots - 1;
+		}
+		else
+		{
+			if (prefIndex2 < 0)
+				prefIndex2 = 0;
+		}
+
+		if (_worldTime < snapshots[prefIndex2].worldTime)
+		{
+			if (!snapshots[currentIndex].isInvalid)
+				if (currentIndex != endIndex)
+				{
+					snapshots[currentIndex].isInvalid = true;
+					currentIndex--;
+					if (currentIndex < 0)
+						currentIndex = maxSnapshots - 1;
+				}
+		}
+
+
+		int prefIndex = currentIndex - 1;
+		if (hasLooped)
+		{
+			if (prefIndex < 0)
+				prefIndex = maxSnapshots - 1;
+		}
+		else
+		{
+			if (prefIndex < 0)
+				prefIndex = 0;
+		}
+
+		const FsnapShots& curSnap = snapshots[currentIndex];
+		const FsnapShots& prefSnap = snapshots[prefIndex];
+
+		float alpha = (curSnap.worldTime - _worldTime) / (curSnap.worldTime - prefSnap.worldTime);
+
+		FVector position = FMath::Lerp(curSnap.position, prefSnap.position, alpha);
+		FRotator rotation = FMath::Lerp(curSnap.rotation, prefSnap.rotation, alpha);
+
+		ownerRootComponent->SetWorldLocationAndRotation(position, rotation);
+	}
+}
+  </code></pre>
+                    </details>
+                </div>
+            </div>
+
+            <details>
+                <summary>
+                    <span class="summary-text summary-text--closed">Click to open code</span>
+                    <span class="summary-text summary-text--open">Click to close code</span>
+                </summary>
+                <pre><code class="language-cpp">
+USTRUCT(BlueprintType)
+struct FGroupRewind
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int groupID = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<UBPC_TimeRewind*> timeComponents;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float worldTime = 0.0f;
+	UPROPERTY()
+	bool isRewinding = false;
+	UPROPERTY()
+	bool hasReachedEnd = false;
+	UPROPERTY()
+	bool isSelected = false;
+};
+  </code></pre>
+            </details>
+
+            <div class="content-block">
+                <div class="content-block__text">
+                    <p>Explanation text for grouping.
+                        Struct, saving, the group, each group their own world time.
+                        stored in the time manager,
+                        each timerewind component can have a group id and will be added to the group,
+                        in the timemanager.
+
+                    </p>
+                </div>
+                <div class="content-block__media">
+                    <video controls width="400" preload="metadata" aria-label="In-game rewind demonstration" autoplay
+                        loop muted>
+                        <source src="Content/Videos/GroupRewind.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+
             <a href="riverse.html">Back to normal riverse page</a>
 
         </div>
@@ -72,7 +275,10 @@
         <img class="modal-image" src="" alt="">
     </dialog>
 
-    <script src="script.js"></script>
+    <script src="Content/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <!-- <script src="script.js"></script> (This is for images to enlarge)-->
 </body>
 
 </html>

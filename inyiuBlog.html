@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description"
-        content="INYIU - Is a 3D point-and-click adventure">
+    <meta name="description" content="INYIU - Is a 3D point-and-click adventure">
     <meta name="author" content="Alex V">
 
     <!-- Tags for social media. preview links -->
@@ -60,7 +59,101 @@
 
             <a href="inyiu.html">Back to normal riverse page</a>
 
-            <!-- Add content-->
+            <!-- Add content
+             
+                With this project I was the lead programmer, while managing the other programmers and deciding on decissions with the other leads
+                and the producer, when i had the time I worked on some smaller features. I made the camera follow functionality, with a lot
+                of custimizibility for the designers to use, Camera zooming in and out when interacting with other characters, and fixing bugs.
+
+                Camera follow/switching,
+                Camera zoomin/out
+                made see through shader, but with resources online
+            -->
+
+            <div class="media-row">
+                <div class="media-row__item">
+                    <button type="button" class="thumbnail-button">
+                        <img src="Content/Images/shot1.png" alt="Description of shot 1" loading="lazy"
+                            class="thumbnail">
+                    </button>
+                </div>
+                <div class="media-row__item">
+                    <button type="button" class="thumbnail-button">
+                        <img src="Content/Images/shot2.png" alt="Description of shot 2" loading="lazy"
+                            class="thumbnail">
+                    </button>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <div class="content-block__text">
+                    <p>
+                        explain the follow/switch code, when doing nothing follows target, simpel postion with offset,
+                        when switching work when selecting new character, using the settings calculates a speed and smoothly accelerates
+                        to a constant speed then nearing the target smoothly decellerates, acces to lot of variable to custimize the switching
+                        of characters.
+                    </p>
+                </div>
+                <div class="content-block__media">
+                    <video controls width="400" preload="metadata" aria-label="In-game rewind demonstration" autoplay
+                        loop muted>
+                        <source src="Content/Videos/CameraSwitchImproved.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <div class="content-media">
+                <button type="button" class="thumbnail-button">
+                    <img src="Content/Images/CameraSystemINYIU.png" alt="Variables of camera system" loading="lazy"
+                        class="thumbnail">
+                </button>
+            </div>
+
+            <details>
+                <summary>
+                    <span class="summary-text summary-text--closed">Click to open code</span>
+                    <span class="summary-text summary-text--open">Click to close code</span>
+                </summary>
+                <pre><code class="language-cpp">
+camera zoominout code
+  </code></pre>
+            </details>
+
+            <div class="content-block">
+                <div class="content-block__text">
+                    <p>
+                        explain the xoomin/out code,
+                        when interacting with a NPC, cmaera zooms in, when conversation ends camera zooms out to original position,
+                        tweakable with multiple variables.
+                    </p>
+                </div>
+                <div class="content-block__media">
+                    <video controls width="400" preload="metadata" aria-label="In-game rewind demonstration" autoplay
+                        loop muted>
+                        <source src="Content/Videos/CameraZoomInOut.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <div class="content-block__text">
+                    <p>
+                        see through shader.
+                        player is able to see through certain objects when player character is behind objects.
+                        using see through material when object needs to be afftected by the shader,
+                        learned more about shaders, used a tutorial to use this.
+                    </p>
+                </div>
+                <div class="content-block__media">
+                    <video controls width="400" preload="metadata" aria-label="In-game rewind demonstration" autoplay
+                        loop muted>
+                        <source src="Content/Videos/OcclusionMaskShowcase.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
 
             <a href="inyiu.html">Back to normal riverse page</a>
 
@@ -71,6 +164,9 @@
     <dialog id="image-modal" class="modal">
         <img class="modal-image" src="" alt="">
     </dialog>
+
+    <script src="Content/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 
     <script src="script.js"></script>
 </body>
