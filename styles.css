@@ -632,6 +632,7 @@ details[open] .summary-text--open {
     background: transparent;
     max-width: 90vw;
     max-height: 90vh;
+    margin: auto;
 
     &::backdrop {
         background-color: rgb(0 0 0 / 0.9);
