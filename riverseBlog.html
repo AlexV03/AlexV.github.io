@@ -85,7 +85,10 @@
             -->
 
             <p class="content-text">
-                Little explanition time rewind
+                The time rewind system works by adding a time rewind component to an object, which makes it record the object's transform and physics
+                velocities.
+                Each component can be assigned a group, and all time rewind components in the same group will be rewound together. This is handled
+                by the time rewind manager, which keeps track of the groups.
             </p>
 
             <details>
@@ -125,12 +128,13 @@ void UBPC_TimeRewind::RecordSnapshot(float _deltaTime, float _worldTime)
 
             <div class="content-block">
                 <div class="content-block__text">
-                    <p>Explanation text for record code
-                        //Explain how code works
-                        used array because simpler,
-                        looked into TRingBuffer, and List,
-                        why chose array, because....,
-                        struct used to store info about object, pos, rot, and physics, worldtime
+                    <p>
+                        Part of the time rewind system is the RecordSnapshot function. It is called at every snapshot interval by the time rewind manager.
+                        When a snapshot is taken, the position and rotation are stored, and if the object has physics, the velocity and
+                        angular velocity are stored as well. All of this is saved together with the world time so the object can be rewound accurately.
+                        The snapshot is then saved at the correct index of the array using circular indexing.
+                        Circular indexing is used so that, instead of adding and removing a snapshot every time, the oldest snapshot is simply overwritten.
+                        This prevents constant memory allocations and the cost of shifting every element in the array.
                     </p>
                 </div>
                 <div class="content-block__media">
@@ -145,10 +149,11 @@ void UBPC_TimeRewind::RecordSnapshot(float _deltaTime, float _worldTime)
 
             <div class="content-block">
                 <div class="content-block__text">
-                    <p>Play snapshot function,using circular indexing, why? because it seemed better to do that
-                        then having to delete and add a new element, now its just overriding it.
-                        loops over the snapshots with the index
-                        then lerps the position and rotation .</p>
+                    <p>
+                        When rewinding, the PlaySnapshots function is called. As long as the end hasn't been reached, it gets the previous snapshot
+                        and checks if it has been reached. If it has, the snapshot is marked as invalid, meaning it has been reached. Then the
+                        previous and current snapshots are taken from the array, and an alpha is calculated using the world time to smoothly lerp
+                        between the position and rotation of the two snapshots.
                 </div>
                 <div class="content-block__media">
                     <details>
@@ -157,11 +162,12 @@ void UBPC_TimeRewind::RecordSnapshot(float _deltaTime, float _worldTime)
                             <span class="summary-text summary-text--open">Click to close code</span>
                         </summary>
                         <pre><code class="language-cpp">
-void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _worldTime)
+void UBPC_TimeRewind::PlaySnapshots(float _worldTime)
 {
 	if (hasReachedEnd)
 		return;
 
+    //End reach, return
 	if (currentIndex == endIndex)
 	{
 		hasReachedEnd = true;
@@ -193,7 +199,6 @@ void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _
 				}
 		}
 
-
 		int prefIndex = currentIndex - 1;
 		if (hasLooped)
 		{
@@ -211,6 +216,7 @@ void UBPC_TimeRewind::PlaySnapshots(float _deltaTime, bool _isRewinding, float _
 
 		float alpha = (curSnap.worldTime - _worldTime) / (curSnap.worldTime - prefSnap.worldTime);
 
+        //Smoothly lerping between old and current snapshot using alpha
 		FVector position = FMath::Lerp(curSnap.position, prefSnap.position, alpha);
 		FRotator rotation = FMath::Lerp(curSnap.rotation, prefSnap.rotation, alpha);
 
@@ -251,12 +257,10 @@ struct FGroupRewind
 
             <div class="content-block">
                 <div class="content-block__text">
-                    <p>Explanation text for grouping.
-                        Struct, saving, the group, each group their own world time.
-                        stored in the time manager,
-                        each timerewind component can have a group id and will be added to the group,
-                        in the timemanager.
-
+                    <p>
+                        Within the time rewind manager, the groups are stored using the GroupRewind struct, with each group stored in a seperate struct.
+                        When there is no rewinding, the manager updates each group and each time rewind component. If the player is rewinding time,
+                        the selected group gets rewound while the other groups will continue normally.
                     </p>
                 </div>
                 <div class="content-block__media">

@@ -74,7 +74,7 @@
                 made see through shader, but with resources online
             -->
 
-            <div class="media-row">
+            <!-- <div class="media-row">
                 <div class="media-row__item">
                     <button type="button" class="thumbnail-button">
                         <img src="Content/Images/shot1.png" alt="Description of shot 1" loading="lazy"
@@ -87,25 +87,37 @@
                             class="thumbnail">
                     </button>
                 </div>
-            </div>
+            </div> -->
 
             <div class="content-block">
                 <div class="content-block__text">
                     <p>
-                        explain the follow/switch code, when doing nothing follows target, simpel postion with offset,
-                        when switching work when selecting new character, using the settings calculates a speed and smoothly accelerates
-                        to a constant speed then nearing the target smoothly decellerates, acces to lot of variable to custimize the switching
-                        of characters.
+                        When switching between characters the camera smoothly moves from the old character to the new character.
+                        This is done by smoothly interpelating between the 2 characters using a easefunction supplied with different
+                        values to custimize the movement, a acceleration speed is calculate until a max speed, then solong its not nearing the 
+                        new character, movement stays constant, then when nearing the new character, deceleration kicks in and smoothly goes from its 
+                        current speed to 0. The image below shows the variables that can be tweak to change to feeling of the 
+                        switching behavior.
                     </p>
                 </div>
                 <div class="content-block__media">
-                    <video controls width="400" preload="metadata" aria-label="In-game rewind demonstration" autoplay
+                    <video controls width="400" preload="metadata" aria-label="Camera switching between characters" autoplay
                         loop muted>
                         <source src="Content/Videos/CameraSwitchImproved.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
             </div>
+
+            <!-- <details>
+                <summary>
+                    <span class="summary-text summary-text--closed">Click to open code</span>
+                    <span class="summary-text summary-text--open">Click to close code</span>
+                </summary>
+                <pre><code class="language-cpp">
+                    follow/switch code
+                </code></pre>
+            </details> -->
 
             <div class="content-media">
                 <button type="button" class="thumbnail-button">
@@ -114,7 +126,7 @@
                 </button>
             </div>
 
-            <details>
+            <!-- <details>
                 <summary>
                     <span class="summary-text summary-text--closed">Click to open code</span>
                     <span class="summary-text summary-text--open">Click to close code</span>
@@ -122,18 +134,23 @@
                 <pre><code class="language-cpp">
 camera zoominout code
   </code></pre>
-            </details>
+            </details> -->
 
             <div class="content-block">
                 <div class="content-block__text">
                     <p>
                         explain the xoomin/out code,
-                        when interacting with a NPC, cmaera zooms in, when conversation ends camera zooms out to original position,
+                        when interacting with a NPC, cmaera zooms in, when conversation ends camera zooms out to
+                        original position,
                         tweakable with multiple variables.
+
+                        With the camera system it is also possible to zoom in/out when starting a conversation. This is similiar to the switching logic
+                        where the camera with a offset goes to the character with a zoomin offset. This also uses the easefunction to smoothly move between
+                        the two position.
                     </p>
                 </div>
                 <div class="content-block__media">
-                    <video controls width="400" preload="metadata" aria-label="In-game rewind demonstration" autoplay
+                    <video controls width="400" preload="metadata" aria-label="Zoom in and out camera" autoplay
                         loop muted>
                         <source src="Content/Videos/CameraZoomInOut.mp4" type="video/mp4">
                         Your browser does not support the video tag.
@@ -144,19 +161,34 @@ camera zoominout code
             <div class="content-block">
                 <div class="content-block__text">
                     <p>
-                        see through shader.
-                        player is able to see through certain objects when player character is behind objects.
-                        using see through material when object needs to be afftected by the shader,
-                        learned more about shaders, used a tutorial to use this.
+                        Because the camera can get behind objects that block the view to the controleld character, i made a see through shader with the
+                        help of some resources, to learn more about shaders. With this shader the character will always be visible behind objects, that
+                        have been specied to be occluded, this to make sure not all objects are occluded for the character. For the shader i am using
+                        a Material Parameter Colletion(MPC) and a material.
+                        The MPC stores the variables  I want to change in blueprints, so in the blueprints i can check if i am behind something and
+                        make the shader grow smoothly bigger or smaller. then within the material i can acces the parameters and use them
+                        to create the seethrough shader.
+
+                        Resources:
+                        https://www.youtube.com/watch?v=wzKmSIWKf7M
+                        https://www.youtube.com/watch?v=gmWRQOv8hiY
+                        https://www.youtube.com/watch?v=OseR_iK7ZEE
                     </p>
                 </div>
                 <div class="content-block__media">
-                    <video controls width="400" preload="metadata" aria-label="In-game rewind demonstration" autoplay
+                    <video controls width="400" preload="metadata" aria-label="See through objects shader" autoplay
                         loop muted>
                         <source src="Content/Videos/OcclusionMaskShowcase.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
+            </div>
+
+            <div class="content-media">
+                <button type="button" class="thumbnail-button">
+                    <img src="Content/Images/CameraSystemINYIU.png" alt="See through shader nodes" loading="lazy"
+                        class="thumbnail">
+                </button>
             </div>
 
             <div class="button-group">
